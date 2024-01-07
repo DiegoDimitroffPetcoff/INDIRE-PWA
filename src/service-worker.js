@@ -70,3 +70,8 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+
+
+
+//new version
+const version = "app-version-v2"

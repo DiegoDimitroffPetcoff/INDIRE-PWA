@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import  React  from "react";
+import { Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home.jsx";
+import { AddProjectPage } from "./pages/AddProjectPage.jsx";
+import { ProjectDitailPage } from "./pages/ProjectDitail.jsx";
+import  GrealInfoMocks  from "./mocks/GralInfoMock.json";
 
+export const Context = React.createContext();
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Context.Provider value={GrealInfoMocks}>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/AddProjectPage" element={<AddProjectPage />} />
+        <Route path="/ProjectDitail/:id" element={<ProjectDitailPage />} />
+      </Routes>
+    </Context.Provider>
   );
 }
 

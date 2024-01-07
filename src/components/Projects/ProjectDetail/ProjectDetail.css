@@ -1,0 +1,56 @@
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: beige;
+  min-width: 100px;
+  margin: 1%;
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 15px;
+}
+p {
+  font-size: 10px;
+  font-weight: bold;
+}
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-left: 15%;
+}
+
+.GralInfoComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: beige;
+  min-width: 100px;
+  margin: 1%;
+}
+
+.logo {
+  width: 10%;
+}
+
+.main_img_url {
+  width: 300px;
+  height: 300px;
+}
+
+.basicContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: rgb(215, 215, 83);
+  min-width: 100px;
+  margin: 1%;
+  text-align: justify;
+}
