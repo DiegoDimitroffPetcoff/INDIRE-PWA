@@ -1,5 +1,8 @@
 import { Logo } from "./Logo";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import { Login } from "@microsoft/mgt-react";
+
 export const SideBar = () => {
   return (
     <>
@@ -16,12 +19,18 @@ export const SideBar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <Link to="/"><Logo /></Link>
+          <Link to="/">
+            <Logo />
+          </Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link to="/AddProjectPage" className="nav-link active" aria-current="page">
-                Add Project
+                <Link
+                  to="/AddProjectPage"
+                  className="nav-link active"
+                  aria-current="page"
+                >
+                  Add Project
                 </Link>
               </li>
               <li className="nav-item">
@@ -34,26 +43,31 @@ export const SideBar = () => {
                   Search By Title
                 </a>
               </li>
-  {/*             <li className="nav-item">
+              <li className="nav-item">
                 <a className="nav-link disabled" aria-disabled="true">
                   Disabled
                 </a>
-              </li>/>*/}
-            </ul>  
-           <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-/>
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+              </li>
+            </ul>
+            <Login />
           </div>
         </div>
       </nav>
     </>
   );
 };
+
+{
+  /* SEARCHER (IF IS NECESSARY)
+  <form className="d-flex" role="search">
+<input
+  className="form-control me-2"
+  type="search"
+  placeholder="Search"
+  aria-label="Search"
+/>
+<button className="btn btn-outline-success" type="submit">
+  Search
+</button>
+</form> */
+}

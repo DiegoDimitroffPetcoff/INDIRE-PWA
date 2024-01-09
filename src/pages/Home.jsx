@@ -2,7 +2,6 @@ import { SideBar } from "../components/Common/SideBar";
 import { ProjectListByDate } from "../components/Projects/ProjectList/ProjectListByDate";
 import projectListMocks from "../mocks/projectListMocks.json";
 
-import { Login } from '@microsoft/mgt-react';
 
 
 import "../styles/global.css";
@@ -13,9 +12,7 @@ export const Home = () => {
 
   return (
     <>
-      <header>
-        <Login />
-      </header>
+
       <SideBar />
       <ProjectListByDate projectList={projectListMocks} />
     </>
