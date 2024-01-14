@@ -74,4 +74,4 @@ self.addEventListener('message', (event) => {
 
 
 //new version
-const version = "app-version-v12 - Add Microsoft Login" 
+const version = "app-version-v13 -  - Add Microsoft Files and Uppload Buttom" 

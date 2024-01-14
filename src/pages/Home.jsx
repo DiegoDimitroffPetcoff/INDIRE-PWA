@@ -1,4 +1,6 @@
 import { SideBar } from "../components/Common/SideBar";
+import { FetchAddProjectTest2 } from "../components/Projects/AddProject/FetchAddProjectTest2";
+import { FetchAddProjectTest } from "../components/Projects/AddProject/FetchAddProjectTest";
 import { MicrosoftGraphFiles } from "../components/Projects/MicrosoftGraphFiles/MicrosoftGraphFiles";
 import { ProjectListByDate } from "../components/Projects/ProjectList/ProjectListByDate";
 import projectListMocks from "../mocks/projectListMocks.json";
@@ -15,8 +17,9 @@ export const Home = () => {
     <>
 
       <SideBar />
-      <ProjectListByDate projectList={projectListMocks} />
-      <MicrosoftGraphFiles/>
+      {/* <ProjectListByDate projectList={projectListMocks} /> */}
+     <div><FetchAddProjectTest/></div> 
+    {/*   <MicrosoftGraphFiles/> */}
     </>
   );
 };
