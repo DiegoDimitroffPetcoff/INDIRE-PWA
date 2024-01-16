@@ -36,7 +36,7 @@ export const AddProject = ({ GralInfoMock }) => {
      // setDocumentContent(pdfBlob);
       FetchPostMicrosoftGraph(pdfBlob)
     } catch (error) {
-      setErrorMessage(error.message || "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde.");
+      setErrorMessage("Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde.");
      // console.error("Error converting PDF to Blob:", error);
     }
   };
