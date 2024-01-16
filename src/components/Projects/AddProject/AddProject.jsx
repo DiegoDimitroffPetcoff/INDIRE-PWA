@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { BlobConversor } from "../../../services/BlobConversor";
+import { BlobConversor } from "../../../services/blobConversor";
 import { FetchAddProjectTest } from "./FetchAddProjectTest";
+import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 
 export const AddProject = ({ GralInfoMock }) => {
   const [title, setTitle] = useState("");
@@ -9,6 +10,7 @@ export const AddProject = ({ GralInfoMock }) => {
   const [documentContent, setDocumentContent] = useState("");
 
   const [list, setList] = useState(GralInfoMock);
+
   function handleSubmite(e) {
     e.preventDefault();
 
@@ -25,34 +27,29 @@ export const AddProject = ({ GralInfoMock }) => {
     setAddress("");
     setDescription("");
     setDocumentContent("");
-
-
-
-
   }
 
+  const readAndConvertPDF = async (file) => {
+    try {
+      const pdfBlob = await BlobConversor(file);
+     // setDocumentContent(pdfBlob);
+      FetchPostMicrosoftGraph(pdfBlob)
+    } catch (error) {
+      console.error("Error converting PDF to Blob:", error);
+    }
+  };
 
-    const readAndConvertPDF = async (file) => {
-      try {
-        const pdfBlob = await BlobConversor(file);
-        setDocumentContent(pdfBlob);
-      } catch (error) {
-        console.error("Error converting PDF to Blob:", error);
-      }
-    };
-  
-    const handleFileChange = (event) => {
-      const file = event.target.files[0];
-      if (file) {
-        readAndConvertPDF(file);
-      }
-    };
-  
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      readAndConvertPDF(file);
+    }
+  };
 
   return (
     <>
       <h1>Add New Project</h1>
-      {documentContent && <FetchAddProjectTest data={documentContent} />}
+     
       <form onSubmit={handleSubmite}>
         <div className="mb-3">
           <label for="exampleFormControlInput1" className="form-label">

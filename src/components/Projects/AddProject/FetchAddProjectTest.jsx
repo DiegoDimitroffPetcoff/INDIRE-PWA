@@ -25,9 +25,6 @@ export const FetchAddProjectTest = ({data}) => {
   useEffect(() => {
     if (token) {
       fetch(
-        //FOLDER: "FolderA"
-        //FILE NAME : "FileB.txt"
-        //Tested change by FileB.pdf and its works
         "https://graph.microsoft.com/v1.0/me/drive/root:/FolderA/PRUEBA2-16-2024.pdf:/content",
         {
           method: "PUT",
