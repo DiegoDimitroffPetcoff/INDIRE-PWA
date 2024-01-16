@@ -1,7 +1,6 @@
 import { SideBar } from "../components/Common/SideBar";
 import { AddPDF } from "../components/Projects/AddProject/AddPDF";
-import { AddPDF2 } from "../components/Projects/AddProject/AddPDF2";
-import { FetchAddProjectTest } from "../components/Projects/AddProject/FetchAddProjectTest";
+
 import { MicrosoftGraphFiles } from "../components/Projects/MicrosoftGraphFiles/MicrosoftGraphFiles";
 import { ProjectListByDate } from "../components/Projects/ProjectList/ProjectListByDate";
 import projectListMocks from "../mocks/projectListMocks.json";
@@ -43,7 +42,7 @@ export const Home = () => {
       <ConvertToBinare/>
       </div> */}
 
-      <AddPDF2/>
+    
     </>
   );
 };

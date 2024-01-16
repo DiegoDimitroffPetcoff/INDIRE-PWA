@@ -3,7 +3,7 @@ Selecciona un archivo PDF lo convierte en un BLOB
 y lo envia
 - ya saque la logica.. falta eliminarlo y probar si todo sigue funcionando
 
-FetchAddProjectTest.jsx
+FetchAddProjectTest.jsx(deprequeted - non confirmed)
 Se envia a Microsoft Graph data en binario
    como aplicacion /PDF
 
@@ -12,11 +12,17 @@ REORDENAR CODIGO
 Leer que es BLOB
 Buscar como almacenar el archivo PDF localmente para casos offline
 Mirar el archivos BlobConversor y practicar retornos de promesas
+Hacer visual de usuario no logeado
 
 
 *PAGES
  **AddProject.jsx
   es el que va a crear el PDF
 *UTILS
- **BlobConversor.jsx
+ **blobConversor.jsx
   Se encarga de convertir un archivo PDF en formato BLOB
+ **fetchPostMicrosoftGraph.jsx
+  Se encarga de Subir un archivo PDF a Microsoft siempre que el usuario este logeado correctamente
+ **auth.jsx
+  Se encarga de enviar el Token de seguridad si el usuario esta logueado
+  

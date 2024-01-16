@@ -1,20 +1,13 @@
 import { useEffect } from "react";
 import { Providers, ProviderState } from "@microsoft/mgt-element";
+import { Auth } from "./auth";
 
 export const FetchPostMicrosoftGraph = (file) => {
   return new Promise(async (resolve, reject) => {
-    //primero checkeo si esta logeado 
+    //primero checkeo si esta logeado
     //y obtengo el token
-    //si no esta logeado me da error
-    if (Providers.globalProvider.state === ProviderState.SignedIn) {
-      let accessToken;
-      try {
-        accessToken = await Providers.globalProvider.getAccessToken({});
-      } catch (error) {
-        console.error("Error trying to get token: ", error);
-        reject("Error trying to get token");
-      }
-
+    try {
+      let accessToken = await Auth();
       //luego hago el fetch
       fetch(
         "https://graph.microsoft.com/v1.0/me/drive/root:/FolderA/PRUEBA2-16-2024.pdf:/content",
@@ -43,8 +36,8 @@ export const FetchPostMicrosoftGraph = (file) => {
           console.error("Error en la solicitud:", error);
           reject("Error in the request");
         });
-    } else {
-      reject("User is not signed in");
+    } catch (error) {
+      console.log(error);
     }
   });
 };

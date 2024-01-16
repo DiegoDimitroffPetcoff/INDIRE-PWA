@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { BlobConversor } from "../../../services/blobConversor";
-import { FetchAddProjectTest } from "./FetchAddProjectTest";
+
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 
 export const AddProject = ({ GralInfoMock }) => {
@@ -8,6 +8,7 @@ export const AddProject = ({ GralInfoMock }) => {
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
   const [documentContent, setDocumentContent] = useState("");
+  const [errorMessage, setErrorMessage] = useState("Subir Projecto");
 
   const [list, setList] = useState(GralInfoMock);
 
@@ -35,7 +36,8 @@ export const AddProject = ({ GralInfoMock }) => {
      // setDocumentContent(pdfBlob);
       FetchPostMicrosoftGraph(pdfBlob)
     } catch (error) {
-      console.error("Error converting PDF to Blob:", error);
+      setErrorMessage(error.message || "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde.");
+     // console.error("Error converting PDF to Blob:", error);
     }
   };
 
@@ -48,8 +50,8 @@ export const AddProject = ({ GralInfoMock }) => {
 
   return (
     <>
-      <h1>Add New Project</h1>
-     
+      {errorMessage && <h1>{errorMessage}</h1>}
+
       <form onSubmit={handleSubmite}>
         <div className="mb-3">
           <label for="exampleFormControlInput1" className="form-label">
