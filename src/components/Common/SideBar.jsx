@@ -3,29 +3,26 @@ import { Logo } from "./Logo";
 import { Link } from "react-router-dom";
 
 import { Login } from "@microsoft/mgt-react";
-/*   TO KNOW IF IS LOGGED IN
-import { Providers, ProviderState } from "@microsoft/mgt-element";
-
-function useIsSignedIn() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
-  useEffect(() => {
-    const updateState = () => {
-      const provider = Providers.globalProvider;
-      setIsSignedIn(provider && provider.state === ProviderState.SignedIn);
-    };
-    Providers.onProviderUpdated(updateState);
-    updateState();
-    return () => {
-      Providers.removeProviderUpdatedListener(updateState);
-    };
-  }, []);
-  return [isSignedIn];
-} */
+import { Auth } from "../../services/auth";
 
 export const SideBar = () => {
-  /*   TO KNOW IF IS LOGGED IN
-const [isSignedIn] = useIsSignedIn();
-  console.log(isSignedIn); */
+  const [disable, setDisable] = useState(false);
+  async function log() {
+    try {
+      const auth = await Auth();
+
+      if (auth === "User no Logged") {
+        console.log("No logeado :)");
+        setDisable("nav-link disabled");
+      } else {
+        console.log("Logeado :)");
+        setDisable("nav-link");
+      }
+    } catch (error) {
+      console.error("Error during authentication:", error);
+    }
+  }
+  log();
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -49,7 +46,7 @@ const [isSignedIn] = useIsSignedIn();
               <li className="nav-item">
                 <Link
                   to="/AddProjectPage"
-                  className="nav-link active"
+                  className={disable}
                   aria-current="page"
                 >
                   Add Project
@@ -66,7 +63,7 @@ const [isSignedIn] = useIsSignedIn();
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">
+                <a className={disable} aria-disabled={disable}>
                   Disabled
                 </a>
               </li>
