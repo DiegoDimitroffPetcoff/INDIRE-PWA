@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Providers, ProviderState } from "@microsoft/mgt-element";
 
-export const FetchAddProjectTest = () => {
+export const FetchAddProjectTest = ({data}) => {
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -9,7 +9,7 @@ export const FetchAddProjectTest = () => {
       try {
       
           const accessToken = await Providers.globalProvider.getAccessToken({});
-          console.log(accessToken);
+         // console.log(accessToken);
           setToken(accessToken);
         
       } catch (error) {
@@ -25,14 +25,18 @@ export const FetchAddProjectTest = () => {
   useEffect(() => {
     if (token) {
       fetch(
-        "https://graph.microsoft.com/v1.0/me/drive/root:/FolderA/FileB.txt:/content",
+        //FOLDER: "FolderA"
+        //FILE NAME : "FileB.txt"
+        //Tested change by FileB.pdf and its works
+        "https://graph.microsoft.com/v1.0/me/drive/root:/FolderA/PRUEBA2-16-2024.pdf:/content",
         {
           method: "PUT",
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "text/plain",
+            //To post PDF I changed "text/pdf"
+            "Content-Type": "application/pdf",
           },
-          body: "The contents of the file goes here.",
+          body: data,
         }
       )
         .then((response) => {

@@ -1,12 +1,17 @@
 import { useState } from "react";
+import { BlobConversor } from "../../../services/BlobConversor";
+import { FetchAddProjectTest } from "./FetchAddProjectTest";
 
 export const AddProject = ({ GralInfoMock }) => {
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
+  const [documentContent, setDocumentContent] = useState("");
+
   const [list, setList] = useState(GralInfoMock);
   function handleSubmite(e) {
     e.preventDefault();
+
     const newObject = {
       title,
       address,
@@ -19,11 +24,35 @@ export const AddProject = ({ GralInfoMock }) => {
     setTitle("");
     setAddress("");
     setDescription("");
+    setDocumentContent("");
+
+
+
+
   }
+
+
+    const readAndConvertPDF = async (file) => {
+      try {
+        const pdfBlob = await BlobConversor(file);
+        setDocumentContent(pdfBlob);
+      } catch (error) {
+        console.error("Error converting PDF to Blob:", error);
+      }
+    };
+  
+    const handleFileChange = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        readAndConvertPDF(file);
+      }
+    };
+  
 
   return (
     <>
       <h1>Add New Project</h1>
+      {documentContent && <FetchAddProjectTest data={documentContent} />}
       <form onSubmit={handleSubmite}>
         <div className="mb-3">
           <label for="exampleFormControlInput1" className="form-label">
@@ -68,6 +97,7 @@ export const AddProject = ({ GralInfoMock }) => {
           ></textarea>
         </div>
         <button>AGREGAR</button>
+        <input type="file" onChange={handleFileChange} />
       </form>
 
       {/*TEMPLANTES:*/}

@@ -1,0 +1,22 @@
+AddPD2.jsx (deprequeted - non confirmed)
+Selecciona un archivo PDF lo convierte en un BLOB
+y lo envia
+- ya saque la logica.. falta eliminarlo y probar si todo sigue funcionando
+
+FetchAddProjectTest.jsx
+Se envia a Microsoft Graph data en binario
+   como aplicacion /PDF
+
+TAREAS:
+REORDENAR CODIGO
+Leer que es BLOB
+Buscar como almacenar el archivo PDF localmente para casos offline
+Mirar el archivos BlobConversor y practicar retornos de promesas
+
+
+*PAGES
+ **AddProject.jsx
+  es el que va a crear el PDF
+*UTILS
+ **BlobConversor.jsx
+  Se encarga de convertir un archivo PDF en formato BLOB
