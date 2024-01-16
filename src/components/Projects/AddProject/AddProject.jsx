@@ -54,7 +54,7 @@ export const AddProject = ({ GralInfoMock }) => {
 
       <form onSubmit={handleSubmite}>
         <div className="mb-3">
-          <label for="exampleFormControlInput1" className="form-label">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
             Project Name
           </label>
           <input
@@ -69,7 +69,7 @@ export const AddProject = ({ GralInfoMock }) => {
         </div>
 
         <div className="mb-3">
-          <label for="exampleFormControlInput1" className="form-label">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
             Address
           </label>
           <input
@@ -83,7 +83,7 @@ export const AddProject = ({ GralInfoMock }) => {
           />
         </div>
         <div className="mb-3">
-          <label for="exampleFormControlTextarea1" className="form-label">
+          <label htmlFor="exampleFormControlTextarea1" className="form-label">
             Project Description Example
           </label>
           <textarea
@@ -110,11 +110,10 @@ export const AddProject = ({ GralInfoMock }) => {
           className="btn-check"
           name="vbtn-radio"
           id="vbtn-radio1"
-          autocomplete="off"
-          checked
+         
         />
 
-        <label className="btn btn-outline-danger" for="vbtn-radio1">
+        <label className="btn btn-outline-danger" htmlFor="vbtn-radio1">
           Template 1
         </label>
         <input
@@ -122,9 +121,9 @@ export const AddProject = ({ GralInfoMock }) => {
           className="btn-check"
           name="vbtn-radio"
           id="vbtn-radio2"
-          autocomplete="off"
+          autoComplete="off"
         />
-        <label className="btn btn-outline-danger" for="vbtn-radio2">
+        <label className="btn btn-outline-danger" htmlFor="vbtn-radio2">
           Template 2
         </label>
         <input
@@ -132,9 +131,9 @@ export const AddProject = ({ GralInfoMock }) => {
           className="btn-check"
           name="vbtn-radio"
           id="vbtn-radio3"
-          autocomplete="off"
+          autoComplete="off"
         />
-        <label className="btn btn-outline-danger" for="vbtn-radio3">
+        <label className="btn btn-outline-danger" htmlFor="vbtn-radio3">
           Template 3
         </label>
       </div>
