@@ -1,42 +1,80 @@
-import { useRef, useState } from "react";
-import { BlobConversor } from "../../../utils/blobConversor";
+import { useState } from "react";
+import { BlobConversor } from "../../../services/blobConversor";
 
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 
 import jsPDF from "jspdf";
-import { PDFMaker } from "../../../utils/pdfMaker";
 
 export const AddProject = ({ GralInfoMock }) => {
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
-  const [file, setFile] = useState(null);
-  const fileInputRef = useRef(null); // 
-
+  const [documentContent, setDocumentContent] = useState("");
   const [errorMessage, setErrorMessage] = useState("Subir Projecto");
 
   const [list, setList] = useState(GralInfoMock);
 
-  const handleSubmite = (e) => {
+  function handleSubmite(e) {
     e.preventDefault();
-    const newPDF = {
+
+    const newObject = {
       title,
       address,
       description,
     };
-    //Create PDF
-    const pdf = PDFMaker(newPDF);
-    //Save the PFD on LocalStorage with "PDF"
-    localStorage.setItem("PDF", pdf.output("datauristring"));
-    //Clean the state
+
+/*     let NewList = [...list, newObject];
+    setList(NewList); */
+   
+    const pdf = new jsPDF();
+    pdf.text(title  , 10, 10);
+    // Agrega más contenido según sea necesario
+
+    // Guarda el PDF en localStorage
+    localStorage.setItem("PDFprueba", pdf.output("datauristring"));
+
+
+
     setTitle("");
     setAddress("");
     setDescription("");
+    setDocumentContent("");
+  }
+
+  const readAndConvertPDF = async (file) => {
+    try {
+      const pdfBlob = await BlobConversor(file);
+
+      setDocumentContent(pdfBlob);
+      FetchPostMicrosoftGraph(pdfBlob);
+    } catch (error) {
+      setErrorMessage(
+        "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde."
+      );
+      // console.error("Error converting PDF to Blob:", error);
+    }
   };
 
-  const SaveOnOneDrive = async () => {
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      readAndConvertPDF(file);
+    }
+  };
+
+  const generarPDF = () => {
+    console.log("generarPDF");
+    const pdf = new jsPDF();
+    pdf.text("Hola, este es mi PDF", 10, 10);
+    // Agrega más contenido según sea necesario
+
+    // Guarda el PDF en localStorage
+    localStorage.setItem("PDFprueba", pdf.output("datauristring"));
+  };
+
+  const subir = async () => {
     //recupero el pdf del local storage
-    let pdf = localStorage.getItem("PDF");
+    let pdf = localStorage.getItem("PDFprueba");
     //quito la primera parte del pdf, dejando solo el codigo base64
     var url = pdf.split(",");
     var base64Data = url[1];
@@ -46,35 +84,6 @@ export const AddProject = ({ GralInfoMock }) => {
     const blob = new Blob([decodedData], { type: "application/pdf" });
     readAndConvertPDF(blob);
   };
-
-  const readAndConvertPDF = async (file) => {
-    try {
-      const pdfBlob = await BlobConversor(file);
-      FetchPostMicrosoftGraph(pdfBlob);
-    } catch (error) {
-      setErrorMessage(
-        "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde."
-      );
-    }
-  };
-
-  const handleFileChange = async (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  const SaveFile =async ()=>{
-    if (file) {
-      try {
-        const pdfBlob = await BlobConversor(file);
-        FetchPostMicrosoftGraph(pdfBlob);
-        fileInputRef.current.value = null;
-      } catch (error) {
-        setErrorMessage(
-          "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde."
-        );
-      }
-    }
-  }
 
   return (
     <>
@@ -126,10 +135,9 @@ export const AddProject = ({ GralInfoMock }) => {
         <button>Crear PD y Cookie </button>
         <input type="file" onChange={handleFileChange} />
       </form>
-
-      <button onClick={SaveOnOneDrive}>SUBIR PDF</button>
-      <button onClick={SaveFile} ref={fileInputRef} >SUBIR FILE</button>
-    
+     
+      <button onClick={subir}>SUBIR</button>
+      {/*TEMPLANTES:*/}
       <div
         className="btn-group"
         role="group"

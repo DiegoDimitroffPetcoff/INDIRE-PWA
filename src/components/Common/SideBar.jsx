@@ -3,7 +3,7 @@ import { Logo } from "./Logo";
 import { Link } from "react-router-dom";
 
 import { Login } from "@microsoft/mgt-react";
-import { Auth } from "../../services/auth";
+import { Auth } from "../../utils/auth";
 
 export const SideBar = () => {
 

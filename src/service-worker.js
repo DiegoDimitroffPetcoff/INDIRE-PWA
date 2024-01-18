@@ -74,4 +74,4 @@ self.addEventListener('message', (event) => {
 
 
 //new version
-const version = "app-version-v14.1 - Testing id the PDF save on cache" 
+const version = "app-version-v15 - Create pdf and upload pdf " 
