@@ -5,7 +5,7 @@ export const FetchPostMicrosoftGraph = async (file) => {
     const accessToken = await Auth();
 
     const response = await fetch(
-      "https://graph.microsoft.com/v1.0/me/drive/root:/FolderA/PRUEBA2-16-2024.pdf:/content",
+      "https://graph.microsoft.com/v1.0/me/drive/root:/Pruebas-Test/PRUEBA2-18-2024.pdf:/content",
       {
         method: "PUT",
         headers: {

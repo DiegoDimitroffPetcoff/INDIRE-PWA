@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BlobConversor } from "../../../utils/blobConversor";
 
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
@@ -11,27 +11,36 @@ export const AddProject = ({ GralInfoMock }) => {
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
-  const fileInputRef = useRef(null); // 
-
+  const fileInputRef = useRef(null); //
   const [errorMessage, setErrorMessage] = useState("Subir Projecto");
+  const [loading, setLoading] = useState(false);
 
-  const [list, setList] = useState(GralInfoMock);
-
-  const handleSubmite = (e) => {
+  const handleSubmite = async (e) => {
     e.preventDefault();
-    const newPDF = {
-      title,
-      address,
-      description,
-    };
-    //Create PDF
-    const pdf = PDFMaker(newPDF);
-    //Save the PFD on LocalStorage with "PDF"
-    localStorage.setItem("PDF", pdf.output("datauristring"));
-    //Clean the state
-    setTitle("");
-    setAddress("");
-    setDescription("");
+    setLoading(true)
+
+    try {
+      console.log(loading);
+      const newPDF = {
+        title,
+        address,
+        description,
+      };
+      //Create PDF
+      const pdf = PDFMaker(newPDF);
+      //Save the PFD on LocalStorage with "PDF"
+      localStorage.setItem("PDF", pdf.output("datauristring"));
+      //The PDF is gonna be download automatly
+      pdf.save("pdfPrueba");
+
+      setTitle("");
+      setAddress("");
+      setDescription("");
+    } catch (error) {
+      console.log(error);
+    }finally{
+      setLoading(false)
+    }
   };
 
   const SaveOnOneDrive = async () => {
@@ -62,7 +71,7 @@ export const AddProject = ({ GralInfoMock }) => {
     setFile(event.target.files[0]);
   };
 
-  const SaveFile =async ()=>{
+  const SaveFile = async () => {
     if (file) {
       try {
         const pdfBlob = await BlobConversor(file);
@@ -74,7 +83,7 @@ export const AddProject = ({ GralInfoMock }) => {
         );
       }
     }
-  }
+  };
 
   return (
     <>
@@ -123,13 +132,15 @@ export const AddProject = ({ GralInfoMock }) => {
             }}
           ></textarea>
         </div>
-        <button>Crear PD y Cookie </button>
-        <input type="file" onChange={handleFileChange} />
+        {loading ? "Cargando" : <button>CREAR PDF </button>}
+        {loading ? " " : <input type="file" onChange={handleFileChange} />}
       </form>
 
       <button onClick={SaveOnOneDrive}>SUBIR PDF</button>
-      <button onClick={SaveFile} ref={fileInputRef} >SUBIR FILE</button>
-    
+      <button onClick={SaveFile} ref={fileInputRef}>
+        SUBIR FILE
+      </button>
+
       <div
         className="btn-group"
         role="group"
