@@ -6,23 +6,8 @@ import { Login } from "@microsoft/mgt-react";
 import { Auth } from "../../services/auth";
 
 export const SideBar = () => {
-  const [disable, setDisable] = useState(false);
-  async function log() {
-    try {
-      const auth = await Auth();
 
-      if (auth === "User no Logged") {
-        console.log("No logeado :)");
-        setDisable("nav-link disabled");
-      } else {
-        console.log("Logeado :)");
-        setDisable("nav-link");
-      }
-    } catch (error) {
-      console.error("Error during authentication:", error);
-    }
-  }
-  log();
+ 
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -46,7 +31,7 @@ export const SideBar = () => {
               <li className="nav-item">
                 <Link
                   to="/AddProjectPage"
-                  className={disable}
+                  className="nav-link"
                   aria-current="page"
                 >
                   Add Project
@@ -63,7 +48,7 @@ export const SideBar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className={disable} aria-disabled={disable}>
+                <a className="nav-link" aria-disabled="false">
                   Disabled
                 </a>
               </li>

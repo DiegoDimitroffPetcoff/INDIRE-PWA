@@ -12,8 +12,9 @@ REORDENAR CODIGO
 Leer que es BLOB
 Buscar como almacenar el archivo PDF localmente para casos offline
 Mirar el archivos BlobConversor y practicar retornos de promesas
-Hacer visual de usuario no logeado
-MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO)
+Hacer visual de usuario no logeado (hecho pero desordenado) Tambien desabilitar ruta segun este o no logeado
+MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO) 
+
 
 
 *PAGES

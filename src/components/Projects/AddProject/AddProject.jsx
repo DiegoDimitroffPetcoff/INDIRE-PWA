@@ -3,6 +3,8 @@ import { BlobConversor } from "../../../services/blobConversor";
 
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 
+import jsPDF from "jspdf";
+
 export const AddProject = ({ GralInfoMock }) => {
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
@@ -21,9 +23,18 @@ export const AddProject = ({ GralInfoMock }) => {
       description,
     };
 
-    let NewList = [...list, newObject];
-    setList(NewList);
-    console.log(list);
+/*     let NewList = [...list, newObject];
+    setList(NewList); */
+   
+    const pdf = new jsPDF();
+    pdf.text(title  , 10, 10);
+    // Agrega más contenido según sea necesario
+
+    // Guarda el PDF en localStorage
+    localStorage.setItem("PDFprueba", pdf.output("datauristring"));
+
+
+
     setTitle("");
     setAddress("");
     setDescription("");
@@ -33,11 +44,14 @@ export const AddProject = ({ GralInfoMock }) => {
   const readAndConvertPDF = async (file) => {
     try {
       const pdfBlob = await BlobConversor(file);
-     // setDocumentContent(pdfBlob);
-      FetchPostMicrosoftGraph(pdfBlob)
+
+      setDocumentContent(pdfBlob);
+      FetchPostMicrosoftGraph(pdfBlob);
     } catch (error) {
-      setErrorMessage("Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde.");
-     // console.error("Error converting PDF to Blob:", error);
+      setErrorMessage(
+        "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde."
+      );
+      // console.error("Error converting PDF to Blob:", error);
     }
   };
 
@@ -46,6 +60,29 @@ export const AddProject = ({ GralInfoMock }) => {
     if (file) {
       readAndConvertPDF(file);
     }
+  };
+
+  const generarPDF = () => {
+    console.log("generarPDF");
+    const pdf = new jsPDF();
+    pdf.text("Hola, este es mi PDF", 10, 10);
+    // Agrega más contenido según sea necesario
+
+    // Guarda el PDF en localStorage
+    localStorage.setItem("PDFprueba", pdf.output("datauristring"));
+  };
+
+  const subir = async () => {
+    //recupero el pdf del local storage
+    let pdf = localStorage.getItem("PDFprueba");
+    //quito la primera parte del pdf, dejando solo el codigo base64
+    var url = pdf.split(",");
+    var base64Data = url[1];
+    //decodifico el pdf pasandolo a base64 desde
+    var decodedData = window.atob(base64Data);
+    //convierto el codifo en un objeto PDF
+    const blob = new Blob([decodedData], { type: "application/pdf" });
+    readAndConvertPDF(blob);
   };
 
   return (
@@ -95,10 +132,11 @@ export const AddProject = ({ GralInfoMock }) => {
             }}
           ></textarea>
         </div>
-        <button>AGREGAR</button>
+        <button>Crear PD y Cookie </button>
         <input type="file" onChange={handleFileChange} />
       </form>
-
+     
+      <button onClick={subir}>SUBIR</button>
       {/*TEMPLANTES:*/}
       <div
         className="btn-group"
@@ -110,7 +148,6 @@ export const AddProject = ({ GralInfoMock }) => {
           className="btn-check"
           name="vbtn-radio"
           id="vbtn-radio1"
-         
         />
 
         <label className="btn btn-outline-danger" htmlFor="vbtn-radio1">
