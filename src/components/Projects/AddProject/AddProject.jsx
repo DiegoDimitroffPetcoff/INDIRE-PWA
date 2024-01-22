@@ -3,8 +3,8 @@ import { BlobConversor } from "../../../utils/blobConversor";
 
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 
-import jsPDF from "jspdf";
 import { PDFMaker } from "../../../utils/pdfMaker";
+import { PDFMaker2 } from "../../../utils/pdfMaker2";
 
 export const AddProject = ({ GralInfoMock }) => {
   const [title, setTitle] = useState("");
@@ -17,46 +17,62 @@ export const AddProject = ({ GralInfoMock }) => {
 
   const handleSubmite = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     try {
-      console.log(loading);
       const newPDF = {
         title,
         address,
         description,
       };
       //Create PDF
-      const pdf = PDFMaker(newPDF);
-      //Save the PFD on LocalStorage with "PDF"
-      localStorage.setItem("PDF", pdf.output("datauristring"));
-      //The PDF is gonna be download automatly
-      pdf.save("pdfPrueba");
+     const pdf = await PDFMaker(newPDF);
+     // const pdf2 = await PDFMaker2(document.getElementById("prueba"));
+     /*      const response = await FetchPostMicrosoftGraph(pdf.output());
+      console.log(response); */
+
+
+   
+     localStorage.setItem("PDF", pdf.output("datauristring"));
+     //localStorage.setItem("PDF2", pdf2);
+
+     pdf.save("pdfPrueba");
 
       setTitle("");
       setAddress("");
       setDescription("");
     } catch (error) {
       console.log(error);
-    }finally{
-      setLoading(false)
+      setErrorMessage("Hubo un problema al crear el PDF.");
+    } finally {
+      setLoading(false);
     }
   };
 
   const SaveOnOneDrive = async () => {
-    //recupero el pdf del local storage
-    let pdf = localStorage.getItem("PDF");
-    //quito la primera parte del pdf, dejando solo el codigo base64
-    var url = pdf.split(",");
-    var base64Data = url[1];
-    //decodifico el pdf pasandolo a base64 desde
-    var decodedData = window.atob(base64Data);
-    //convierto el codifo en un objeto PDF
-    const blob = new Blob([decodedData], { type: "application/pdf" });
-    readAndConvertPDF(blob);
+    try {
+      //recupero el pdf del local storage
+      let pdf = localStorage.getItem("PDF");
+      //quito la primera parte del pdf, dejando solo el codigo base64
+
+      var url = pdf.split(",");
+
+      var base64Data = url[1];
+      //decodifico el pdf pasandolo a base64 desde
+      var decodedData = window.atob(base64Data);
+      //convierto el codifo en un objeto PDF
+      const blob = new Blob([decodedData], { type: "application/pdf" });
+ 
+      
+      readAndConvertPDF(blob);
+    } catch (error) {
+      console.log(error);
+      setErrorMessage("Hubo un problema al crear el PDF.");
+    }
   };
 
   const readAndConvertPDF = async (file) => {
+    setLoading(true);
     try {
       const pdfBlob = await BlobConversor(file);
       FetchPostMicrosoftGraph(pdfBlob);
@@ -64,6 +80,8 @@ export const AddProject = ({ GralInfoMock }) => {
       setErrorMessage(
         "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde."
       );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -89,8 +107,8 @@ export const AddProject = ({ GralInfoMock }) => {
     <>
       {errorMessage && <h1>{errorMessage}</h1>}
 
-      <form onSubmit={handleSubmite}>
-        <div className="mb-3">
+      <form  onSubmit={handleSubmite}>
+        <div id="prueba" className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">
             Project Name
           </label>
