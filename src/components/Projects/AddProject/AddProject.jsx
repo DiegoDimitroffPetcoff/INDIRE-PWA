@@ -4,20 +4,26 @@ import { BlobConversor } from "../../../utils/blobConversor";
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 
 import { PDFMaker } from "../../../utils/pdfMaker";
-import { PDFMaker2 } from "../../../utils/pdfMaker2";
 
-export const AddProject = ({ GralInfoMock }) => {
+
+export const AddProject = () => {
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null); //
   const [errorMessage, setErrorMessage] = useState("Subir Projecto");
-  const [loading, setLoading] = useState(false);
 
-  const handleSubmite = async (e) => {
+/* REDUCE UPLOAD FILE FUNCTION
+DELETE BLOB FUNCTION AND CREATE A NEW ONE
+TRY BETTER THE CALL MICROSOFHT GRAPH 
+maybe I can add the loading in FetchPostMicrosoftGraph()
+*/
+
+
+const handleSubmite = async (e) => {
+    //I TOOK AWAY THE COOKIE SAVER - I DONT SAVE THE PDF ON THE LOCAL STORAGE
     e.preventDefault();
-    setLoading(true);
 
     try {
       const newPDF = {
@@ -25,65 +31,33 @@ export const AddProject = ({ GralInfoMock }) => {
         address,
         description,
       };
-      //Create PDF
-     const pdf = await PDFMaker(newPDF);
-     // const pdf2 = await PDFMaker2(document.getElementById("prueba"));
-     /*      const response = await FetchPostMicrosoftGraph(pdf.output());
-      console.log(response); */
 
+      //CREATE PDF + CONVERT TO OUTPUT - TWO IN ONE
+      let pdf = await PDFMaker(newPDF).output("datauristring")
 
-   
-     localStorage.setItem("PDF", pdf.output("datauristring"));
-     //localStorage.setItem("PDF2", pdf2);
+      //SPLINT THE LINK UP TO DECODE 
+      var url = pdf.split(",");
+      var base64Data = url[1];
 
-     pdf.save("pdfPrueba");
+      //CONVERT TO BASE64
+      var decodedData = window.atob(base64Data);
 
+      //CONVERT TO A BLOB OBJECT
+      const blob = new Blob([decodedData], { type: "application/pdf" });
+
+      //CONVERT AND SAVE
+      FetchPostMicrosoftGraph(blob);
+      
       setTitle("");
       setAddress("");
       setDescription("");
     } catch (error) {
       console.log(error);
       setErrorMessage("Hubo un problema al crear el PDF.");
-    } finally {
-      setLoading(false);
     }
   };
 
-  const SaveOnOneDrive = async () => {
-    try {
-      //recupero el pdf del local storage
-      let pdf = localStorage.getItem("PDF");
-      //quito la primera parte del pdf, dejando solo el codigo base64
-
-      var url = pdf.split(",");
-
-      var base64Data = url[1];
-      //decodifico el pdf pasandolo a base64 desde
-      var decodedData = window.atob(base64Data);
-      //convierto el codifo en un objeto PDF
-      const blob = new Blob([decodedData], { type: "application/pdf" });
  
-      
-      readAndConvertPDF(blob);
-    } catch (error) {
-      console.log(error);
-      setErrorMessage("Hubo un problema al crear el PDF.");
-    }
-  };
-
-  const readAndConvertPDF = async (file) => {
-    setLoading(true);
-    try {
-      const pdfBlob = await BlobConversor(file);
-      FetchPostMicrosoftGraph(pdfBlob);
-    } catch (error) {
-      setErrorMessage(
-        "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde."
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleFileChange = async (event) => {
     setFile(event.target.files[0]);
@@ -107,7 +81,7 @@ export const AddProject = ({ GralInfoMock }) => {
     <>
       {errorMessage && <h1>{errorMessage}</h1>}
 
-      <form  onSubmit={handleSubmite}>
+      <form onSubmit={handleSubmite}>
         <div id="prueba" className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">
             Project Name
@@ -150,11 +124,17 @@ export const AddProject = ({ GralInfoMock }) => {
             }}
           ></textarea>
         </div>
-        {loading ? "Cargando" : <button>CREAR PDF </button>}
-        {loading ? " " : <input type="file" onChange={handleFileChange} />}
+        <button>CREAR PDF </button>
+        <input type="file" onChange={handleFileChange} />
       </form>
 
-      <button onClick={SaveOnOneDrive}>SUBIR PDF</button>
+      <button
+        onClick={() => {
+          console.log("agregar funcion");
+        }}
+      >
+        SUBIR PDF
+      </button>
       <button onClick={SaveFile} ref={fileInputRef}>
         SUBIR FILE
       </button>

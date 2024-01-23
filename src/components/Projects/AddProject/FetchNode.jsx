@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Providers, ProviderState } from "@microsoft/mgt-element";
 import { Auth } from "../../../utils/auth";
-import { FetchPost } from "../../../services/fetchGetData";
+import { FetchGet } from "../../../services/fetchGetData";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com/users";
 
 export const FetchNode = () => {
-  const { data, loading, error } = FetchPost(BASE_URL);
+  const { data, loading, error } = FetchGet(BASE_URL);
 
   return (
     <ul>
