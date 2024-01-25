@@ -1,0 +1,24 @@
+{
+  "templates": {
+    "title": [
+      "Proyecto de Rehabilitación en Montijo",
+      "Plan de Renovación en Ciudad XYZ",
+      "Proyecto de Mejora de Infraestructura"
+    ],
+    "sub_title": [
+      "Subtítulo del primer proyecto",
+      "Estrategias de Desarrollo Urbano",
+      "Optimización de Espacios Públicos"
+    ],
+    "main_img_url": [
+      "www.imagen.com/proyecto1.jpg",
+      "www.imagen.com/proyecto2.jpg",
+      "www.imagen.com/proyecto3.jpg"
+    ],
+    "address": [
+      "Calle Mármol 554 - Resistencia, Chaco",
+      "Avenida Principal 123 - Ciudad ABC",
+      "Calle Renovación 789 - Pueblo XYZ"
+    ]
+  }
+}

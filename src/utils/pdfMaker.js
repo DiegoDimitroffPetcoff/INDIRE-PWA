@@ -1,40 +1,52 @@
 import jsPDF from "jspdf";
 
 export const PDFMaker = (data) => {
-  const { title, address, description } = data;
-
+  const { title, sub_title, address, description, introduction } = data;
+  const elementsOnFirstPage = [title, sub_title, address];
+  const elementsToPaginate = [description, introduction];
   const doc = new jsPDF("p", "in", "a4", "", false);
 
+  // Página de formato
+  doc.setDrawColor("red");
+  doc.setLineWidth(1 / 72);
+  doc.line(1.5, 1.5, 1.5, 11.25);
+  doc.line(8.85, 1.5, 8.85, 11.25);
+  doc.setLineWidth(1.5);
+  doc.line(20, 35, 60, 35);
 
+  // Ancho y altura
+  const maxWidth = 7.25; // Convertir pulgadas a puntos (1 pulgada = 72 puntos)
+  let verticalOffset = 0.5;
 
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(18);
-  
-
-  const textWidth = 7.25;
-  const maxTextHeight = 10.75; // Adjust the maximum height to leave space for other content
-  const textlines = doc.setFont("").setFontSize(12).splitTextToSize(description,title, address,  textWidth);
-
-  let verticalOffset = 0.7; // Adjust the vertical offset
-  textlines.forEach((line) => {
-    if (verticalOffset < maxTextHeight) {
-      doc.text(line, 1, verticalOffset);
-      verticalOffset += 12 / 72; // Adjust the line height
-    } else {
-      // Break if the text exceeds the maximum height
-      return;
-    }
+  // Agregamos elementos a la primera página
+  elementsOnFirstPage.forEach((data) => {
+    const textLines = doc.splitTextToSize(data, maxWidth);
+    doc.text(textLines, 0.5, verticalOffset + 12 / 72);
+    verticalOffset += (textLines.length * 12) / 72 + 0.5;
   });
 
-  // Add three lines of text below the existing code
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(12);
-  verticalOffset += 0.2; // Adjust the vertical offset
-  doc.text(title, 1, verticalOffset);
-  verticalOffset += 0.2;
-  doc.text(description, 1, verticalOffset);
-  verticalOffset += 0.2;
-  doc.text(address, 1, verticalOffset);
+  // Agregamos elementos paginados
+  elementsToPaginate.forEach((data) => {
+    const textLines = doc.splitTextToSize(data, maxWidth);
+
+    const uno = verticalOffset + (textLines.length * 12) / 72 + 0.5
+  
+
+    // Verificamos si el texto sobrepasará el margen inferior de la página
+ 
+    if (verticalOffset + (textLines.length * 12) / 72 + 0.5 > 11) {
+      console.log("se agrega una nueva pagina");
+      doc.addPage(); // Agregamos una nueva página si el texto excede la altura de la página
+      verticalOffset = 0.5;
+    }
+
+    doc.text(textLines, 0.5, verticalOffset + 12 / 72);
+    verticalOffset += (textLines.length * 12) / 72 + 0.5;
+  });
+
+  const pdfDataUrl = doc.output("datauristring");
+  window.open(pdfDataUrl, "_blank");
 
   return doc;
 };
+

@@ -15,6 +15,7 @@ Mirar el archivos BlobConversor y practicar retornos de promesas
 Hacer visual de usuario no logeado (hecho pero desordenado) Tambien desabilitar ruta segun este o no logeado
 MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO) 
 Crear ventanas emergentes para los casos en los que se suban de manera exitosa los archivos
+Arreglar el <br> que pus en AddProject y solucionar css
 
 
 

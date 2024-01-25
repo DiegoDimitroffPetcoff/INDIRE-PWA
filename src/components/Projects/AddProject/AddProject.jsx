@@ -1,41 +1,50 @@
 import { useEffect, useRef, useState } from "react";
-import { BlobConversor } from "../../../utils/blobConversor";
 
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 
-import { PDFMaker } from "../../../utils/pdfMaker";
+import Templates from "../Templates/Introduction.json";
 
+import { PDFMaker } from "../../../utils/pdfMaker";
+import { BlobConversor } from "../../../utils/blobConversor";
+import { IntroductionInput } from "./ProjectSections/introduction/introductionInput";
+import { Summary } from "./Summary/summary";
+import { Gral_description } from "./ProjectSections/gral_description/gral_description";
 
 export const AddProject = () => {
   const [title, setTitle] = useState("");
+  const [sub_title, setSub_title] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
+  const [gral_description, setGral_description] = useState("");
+  const [introduction, setIntroduction] = useState("");
+
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null); //
   const [errorMessage, setErrorMessage] = useState("Subir Projecto");
 
-/* REDUCE UPLOAD FILE FUNCTION
+  /* REDUCE UPLOAD FILE FUNCTION
 DELETE BLOB FUNCTION AND CREATE A NEW ONE
 TRY BETTER THE CALL MICROSOFHT GRAPH 
-maybe I can add the loading in FetchPostMicrosoftGraph()
+maybe I can add the loading
 */
 
-
-const handleSubmite = async (e) => {
+  const handleSubmite = async (e) => {
     //I TOOK AWAY THE COOKIE SAVER - I DONT SAVE THE PDF ON THE LOCAL STORAGE
     e.preventDefault();
 
     try {
       const newPDF = {
         title,
+        sub_title,
         address,
         description,
+        introduction,
       };
 
       //CREATE PDF + CONVERT TO OUTPUT - TWO IN ONE
-      let pdf = await PDFMaker(newPDF).output("datauristring")
+      let pdf = await PDFMaker(newPDF).output("datauristring");
 
-      //SPLINT THE LINK UP TO DECODE 
+      //SPLINT THE LINK UP TO DECODE
       var url = pdf.split(",");
       var base64Data = url[1];
 
@@ -46,8 +55,8 @@ const handleSubmite = async (e) => {
       const blob = new Blob([decodedData], { type: "application/pdf" });
 
       //CONVERT AND SAVE
-      FetchPostMicrosoftGraph(blob);
-      
+      //FetchPostMicrosoftGraph(blob);
+
       setTitle("");
       setAddress("");
       setDescription("");
@@ -56,8 +65,6 @@ const handleSubmite = async (e) => {
       setErrorMessage("Hubo un problema al crear el PDF.");
     }
   };
-
- 
 
   const handleFileChange = async (event) => {
     setFile(event.target.files[0]);
@@ -82,48 +89,24 @@ const handleSubmite = async (e) => {
       {errorMessage && <h1>{errorMessage}</h1>}
 
       <form onSubmit={handleSubmite}>
-        <div id="prueba" className="mb-3">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
-            Project Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            value={title}
-            placeholder="Example: Description of the project"
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-        </div>
+        <Summary
+          setTitle={setTitle}
+          title={title}
+          setSub_title={setSub_title}
+          sub_title={sub_title}
+          setAddress={setAddress}
+          adrress={address}
+        />
 
-        <div className="mb-3">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
-            Address
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            value={address}
-            placeholder="Address Building"
-            onChange={(e) => {
-              setAddress(e.target.value);
-            }}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="exampleFormControlTextarea1" className="form-label">
-            Project Description Example
-          </label>
-          <textarea
-            className="form-control"
-            value={description}
-            rows="10"
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          ></textarea>
-        </div>
+        <IntroductionInput
+          introduction={introduction}
+          setIntroduction={setIntroduction}
+        />
+        <Gral_description
+          gral_description={gral_description}
+          setGral_description={setGral_description}
+        />
+
         <button>CREAR PDF </button>
         <input type="file" onChange={handleFileChange} />
       </form>
@@ -138,43 +121,7 @@ const handleSubmite = async (e) => {
       <button onClick={SaveFile} ref={fileInputRef}>
         SUBIR FILE
       </button>
-
-      <div
-        className="btn-group"
-        role="group"
-        aria-label="Vertical radio toggle button group"
-      >
-        <input
-          type="radio"
-          className="btn-check"
-          name="vbtn-radio"
-          id="vbtn-radio1"
-        />
-
-        <label className="btn btn-outline-danger" htmlFor="vbtn-radio1">
-          Template 1
-        </label>
-        <input
-          type="radio"
-          className="btn-check"
-          name="vbtn-radio"
-          id="vbtn-radio2"
-          autoComplete="off"
-        />
-        <label className="btn btn-outline-danger" htmlFor="vbtn-radio2">
-          Template 2
-        </label>
-        <input
-          type="radio"
-          className="btn-check"
-          name="vbtn-radio"
-          id="vbtn-radio3"
-          autoComplete="off"
-        />
-        <label className="btn btn-outline-danger" htmlFor="vbtn-radio3">
-          Template 3
-        </label>
-      </div>
+      <br></br>
     </>
   );
 };
