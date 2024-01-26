@@ -91,7 +91,7 @@ maybe I can add the loading
   };
 
   return (
-    <div id="crearpdf" >
+    <div id="projectPDF" style={{width:"100%"}} >
       {errorMessage && <h1>{errorMessage}</h1>}
 
       <form onSubmit={handleSubmite}>

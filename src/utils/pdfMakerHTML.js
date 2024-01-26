@@ -2,7 +2,7 @@ import jsPDF from "jspdf";
 import { FetchPostMicrosoftGraph } from "../services/fetchPostMicrosoftGraph";
 
 export const PDFMakerHTML = async (html) => {
-  var doc = new jsPDF();
+  var doc = new jsPDF("p","px",[1000,1400]);
 
   await doc.html(html, {
     callback: async function (doc) {
@@ -18,7 +18,7 @@ export const PDFMakerHTML = async (html) => {
       FetchPostMicrosoftGraph(blob);
       return blob;
     },
-    x: 0,
+    x: 250,
     y: 0,
   });
   return doc;
