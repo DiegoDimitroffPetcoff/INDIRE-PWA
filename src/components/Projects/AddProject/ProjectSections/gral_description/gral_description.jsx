@@ -2,7 +2,7 @@ import Templates from "../../../Templates/Gral_description.json";
 
 export const Gral_description = ({ gral_description, setGral_description }) => {
   const { template1, template2, template3 } = Templates.templates;
-  console.log(template1);
+
 
   return (
     <>
@@ -20,6 +20,7 @@ export const Gral_description = ({ gral_description, setGral_description }) => {
           onChange={(e) => {
             setGral_description(e.target.value);
           }}
+          
         />
       </div>
       {/* TEMPLATES */}

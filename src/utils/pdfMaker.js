@@ -45,7 +45,8 @@ export const PDFMaker = (data) => {
   });
 
   const pdfDataUrl = doc.output("datauristring");
-  window.open(pdfDataUrl, "_blank");
+  
+  //window.open(pdfDataUrl, "_blank");
 
   return doc;
 };

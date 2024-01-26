@@ -10,6 +10,9 @@ import { IntroductionInput } from "./ProjectSections/introduction/introductionIn
 import { Summary } from "./Summary/summary";
 import { Gral_description } from "./ProjectSections/gral_description/gral_description";
 
+import { jsPDF } from "jspdf";
+import { PDFMakerHTML } from "../../../utils/pdfMakerHTML";
+
 export const AddProject = () => {
   const [title, setTitle] = useState("");
   const [sub_title, setSub_title] = useState("");
@@ -30,9 +33,12 @@ maybe I can add the loading
 
   const handleSubmite = async (e) => {
     //I TOOK AWAY THE COOKIE SAVER - I DONT SAVE THE PDF ON THE LOCAL STORAGE
+    //I CREATED PDF WITH HTML
     e.preventDefault();
 
     try {
+      PDFMakerHTML(document.getElementById("crearpdf"));
+      /*
       const newPDF = {
         title,
         sub_title,
@@ -43,7 +49,7 @@ maybe I can add the loading
 
       //CREATE PDF + CONVERT TO OUTPUT - TWO IN ONE
       let pdf = await PDFMaker(newPDF).output("datauristring");
-
+      
       //SPLINT THE LINK UP TO DECODE
       var url = pdf.split(",");
       var base64Data = url[1];
@@ -55,7 +61,7 @@ maybe I can add the loading
       const blob = new Blob([decodedData], { type: "application/pdf" });
 
       //CONVERT AND SAVE
-      //FetchPostMicrosoftGraph(blob);
+      //FetchPostMicrosoftGraph(blob); */
 
       setTitle("");
       setAddress("");
@@ -85,7 +91,7 @@ maybe I can add the loading
   };
 
   return (
-    <>
+    <div id="crearpdf" >
       {errorMessage && <h1>{errorMessage}</h1>}
 
       <form onSubmit={handleSubmite}>
@@ -105,9 +111,10 @@ maybe I can add the loading
         <Gral_description
           gral_description={gral_description}
           setGral_description={setGral_description}
+          
         />
 
-        <button>CREAR PDF </button>
+        <button>CREAR PDF CON HTML </button>
         <input type="file" onChange={handleFileChange} />
       </form>
 
@@ -122,6 +129,6 @@ maybe I can add the loading
         SUBIR FILE
       </button>
       <br></br>
-    </>
+    </div>
   );
 };

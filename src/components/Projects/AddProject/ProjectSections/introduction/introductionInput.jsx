@@ -18,6 +18,7 @@ export const IntroductionInput = ({ introduction, setIntroduction }) => {
           onChange={(e) => {
             setIntroduction(e.target.value);
           }}
+       
         />
       </div>
       {/* TEMPLATES */}
