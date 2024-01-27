@@ -10,7 +10,9 @@ export const FetchPostMicrosoftGraph = async (file) => {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/pdf",
+          "Content-Type": "application/pdf; charset=utf-8",
+          "Accept-Language": "pt"
+          
         },
         body: file,
       }

@@ -37,8 +37,8 @@ maybe I can add the loading
     e.preventDefault();
 
     try {
-      PDFMakerHTML(document.getElementById("crearpdf"));
-      /*
+      // PDFMakerHTML(document.getElementById("crearpdf"));
+      console.log("si");
       const newPDF = {
         title,
         sub_title,
@@ -49,7 +49,7 @@ maybe I can add the loading
 
       //CREATE PDF + CONVERT TO OUTPUT - TWO IN ONE
       let pdf = await PDFMaker(newPDF).output("datauristring");
-      
+
       //SPLINT THE LINK UP TO DECODE
       var url = pdf.split(",");
       var base64Data = url[1];
@@ -58,10 +58,12 @@ maybe I can add the loading
       var decodedData = window.atob(base64Data);
 
       //CONVERT TO A BLOB OBJECT
-      const blob = new Blob([decodedData], { type: "application/pdf" });
+      const blob = new Blob([decodedData], {
+        type: "application/pdf,  charset=utf-8",
+      });
 
       //CONVERT AND SAVE
-      //FetchPostMicrosoftGraph(blob); */
+      FetchPostMicrosoftGraph(blob);
 
       setTitle("");
       setAddress("");
@@ -73,6 +75,7 @@ maybe I can add the loading
   };
 
   const handleFileChange = async (event) => {
+    console.log(event.target.files[0]);
     setFile(event.target.files[0]);
   };
 
@@ -91,7 +94,7 @@ maybe I can add the loading
   };
 
   return (
-    <div id="projectPDF" style={{width:"100%"}} >
+    <div id="projectPDF" style={{ width: "100%" }}>
       {errorMessage && <h1>{errorMessage}</h1>}
 
       <form onSubmit={handleSubmite}>
@@ -111,20 +114,12 @@ maybe I can add the loading
         <Gral_description
           gral_description={gral_description}
           setGral_description={setGral_description}
-          
         />
 
         <button>CREAR PDF CON HTML </button>
         <input type="file" onChange={handleFileChange} />
       </form>
 
-      <button
-        onClick={() => {
-          console.log("agregar funcion");
-        }}
-      >
-        SUBIR PDF
-      </button>
       <button onClick={SaveFile} ref={fileInputRef}>
         SUBIR FILE
       </button>

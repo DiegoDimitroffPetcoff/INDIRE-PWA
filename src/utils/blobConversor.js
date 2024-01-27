@@ -5,6 +5,7 @@ export const BlobConversor = async (file) => {
 
     reader.onload = (event) => {
       const pdfBytes = new Uint8Array(event.target.result);
+
       const pdfBlob = new Blob([pdfBytes], { type: "application/pdf" });
       resolve(pdfBlob);
     };

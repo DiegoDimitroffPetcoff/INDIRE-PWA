@@ -8,7 +8,8 @@ import { PDFMakerHTML } from "../../utils/pdfMakerHTML.js";
 
 export const ProjectComponent = () => {
   const [formData, setFormData] = useState({});
-  const [showPreview, setShowPreview] = useState(true);
+  const [showPreview, setShowPreview] = useState(false);
+
 
   const createPDF = async (e) => {
     try {
