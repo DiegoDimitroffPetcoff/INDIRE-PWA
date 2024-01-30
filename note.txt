@@ -16,6 +16,9 @@ Hacer visual de usuario no logeado (hecho pero desordenado) Tambien desabilitar 
 MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO) 
 Crear ventanas emergentes para los casos en los que se suban de manera exitosa los archivos
 Arreglar el <br> que pus en AddProject y solucionar css
+Aislar la funcion de fecha en utils
+cuando se cambia de vista se deben coservar los cambios
+RESOLVER: DEPENDIENDO DE LAS MEDIDAS SE VA A GUARDAR EL PDF
 
 
 

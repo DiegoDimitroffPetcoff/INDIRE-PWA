@@ -7,19 +7,11 @@ import { ProjectDetail } from "./ProjectDetail/ProjectDetail.jsx";
 import { PDFMakerHTML } from "../../utils/pdfMakerHTML.js";
 
 export const ProjectComponent = () => {
-  const [formData, setFormData] = useState({});
+  const [data, setData] = useState({});
   const [showPreview, setShowPreview] = useState(false);
-
 
   const createPDF = async (e) => {
     try {
-      const componentToRender = showPreview ? (
-        <ProjectDetail />
-      ) : (
-        <AddProject />
-      );
-     // console.log(typeof window.print());
-      const htmlString = renderToStaticMarkup(componentToRender);
       PDFMakerHTML(document.getElementById("projectPDF"));
     } catch (error) {
       console.log("ERROR: " + error);
@@ -27,10 +19,21 @@ export const ProjectComponent = () => {
   };
   return (
     <>
-      {showPreview ? <ProjectDetail /> : <AddProject />}
-      <button onClick={createPDF}>CREAR PDF</button>
-      <button onClick={() => setShowPreview(!showPreview)}>
-        CAMBIAR VISTA
+      {showPreview ? (
+        <ProjectDetail
+          data={data}
+          setShowPreview={setShowPreview}
+          showPreview={showPreview}
+        />
+      ) : (
+        <AddProject
+          setData={setData}
+          setShowPreview={setShowPreview}
+          showPreview={showPreview}
+        />
+      )}
+      <button style={{ background: "green" }} onClick={createPDF}>
+        CREAR PDF
       </button>
     </>
   );

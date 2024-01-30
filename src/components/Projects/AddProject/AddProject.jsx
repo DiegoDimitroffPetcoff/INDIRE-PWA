@@ -2,22 +2,22 @@ import { useEffect, useRef, useState } from "react";
 
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 
-import Templates from "../Templates/Introduction.json";
-
 import { PDFMaker } from "../../../utils/pdfMaker";
-import { BlobConversor } from "../../../utils/blobConversor";
+import { PDFMakerFILE } from "../../../utils/pdfMakerFILE";
 import { IntroductionInput } from "./ProjectSections/introduction/introductionInput";
 import { Summary } from "./Summary/summary";
 import { Gral_description } from "./ProjectSections/gral_description/gral_description";
 
-import { jsPDF } from "jspdf";
-import { PDFMakerHTML } from "../../../utils/pdfMakerHTML";
+import { BTNTemplates } from "../../../hooks/BTNtemplates";
+import introductionTemplate from "../Templates/Introduction.json";
+import gral_descriptionTemplate from "../Templates/Gral_description.json";
 
-export const AddProject = () => {
+export const AddProject = ({ setData, setShowPreview, showPreview }) => {
   const [title, setTitle] = useState("");
   const [sub_title, setSub_title] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
+
   const [gral_description, setGral_description] = useState("");
   const [introduction, setIntroduction] = useState("");
 
@@ -38,16 +38,31 @@ maybe I can add the loading
 
     try {
       // PDFMakerHTML(document.getElementById("crearpdf"));
-      console.log("si");
-      const newPDF = {
+
+      /*       const newPDF = {
         title,
         sub_title,
         address,
         description,
         introduction,
+      }; */
+      const newPDF = {
+        project_id: 1,
+        user: 1,
+        title,
+        sub_title,
+        main_img_url:
+          "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
+        address,
+        date: new Date(),
+        project_number: "Ref.ª 19.11.12_RELATÓRIO_INSPEÇÃO_v1.0",
+        description,
+        introduction,
+        gral_description,
       };
-
-      //CREATE PDF + CONVERT TO OUTPUT - TWO IN ONE
+      setData(newPDF);
+      setShowPreview(!showPreview);
+      /*       //CREATE PDF + CONVERT TO OUTPUT - TWO IN ONE
       let pdf = await PDFMaker(newPDF).output("datauristring");
 
       //SPLINT THE LINK UP TO DECODE
@@ -63,11 +78,7 @@ maybe I can add the loading
       });
 
       //CONVERT AND SAVE
-      FetchPostMicrosoftGraph(blob);
-
-      setTitle("");
-      setAddress("");
-      setDescription("");
+      FetchPostMicrosoftGraph(blob); */
     } catch (error) {
       console.log(error);
       setErrorMessage("Hubo un problema al crear el PDF.");
@@ -75,15 +86,14 @@ maybe I can add the loading
   };
 
   const handleFileChange = async (event) => {
-    console.log(event.target.files[0]);
+    console.log(event.target.files);
     setFile(event.target.files[0]);
   };
 
   const SaveFile = async () => {
     if (file) {
       try {
-        const pdfBlob = await BlobConversor(file);
-        FetchPostMicrosoftGraph(pdfBlob);
+        await PDFMakerFILE(file);
         fileInputRef.current.value = null;
       } catch (error) {
         setErrorMessage(
@@ -111,19 +121,39 @@ maybe I can add the loading
           introduction={introduction}
           setIntroduction={setIntroduction}
         />
-        <Gral_description
-          gral_description={gral_description}
-          setGral_description={setGral_description}
+        <BTNTemplates
+          templates={introductionTemplate}
+          setState={setIntroduction}
         />
 
-        <button>CREAR PDF CON HTML </button>
-        <input type="file" onChange={handleFileChange} />
+        <Gral_description
+          Gral_description={gral_description}
+          setGral_description={setGral_description}
+        />
+        <BTNTemplates
+          templates={gral_descriptionTemplate}
+          setState={setGral_description}
+        />
+
+        <br></br>
+        {/*         <button style={{ background: "blue" }}>
+          CREAR PDF CON FORM CONTENT{" "}
+        </button> */}
+        <button style={{ background: "green" }}> PREVIEW</button>
       </form>
 
-      <button onClick={SaveFile} ref={fileInputRef}>
+      <button
+        style={{ background: "pink" }}
+        onClick={SaveFile}
+        ref={fileInputRef}
+      >
         SUBIR FILE
       </button>
-      <br></br>
+      <input
+        style={{ background: "pink" }}
+        type="file"
+        onChange={handleFileChange}
+      />
     </div>
   );
 };
