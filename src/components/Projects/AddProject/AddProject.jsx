@@ -1,16 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
-
 import { PDFMaker } from "../../../utils/pdfMaker";
 import { PDFMakerFILE } from "../../../utils/pdfMakerFILE";
-import { IntroductionInput } from "./ProjectSections/introduction/introductionInput";
 import { Summary } from "./Summary/summary";
-import { Gral_description } from "./ProjectSections/gral_description/gral_description";
-
-import { BTNTemplates } from "../../../hooks/BTNtemplates";
-import introductionTemplate from "../Templates/Introduction.json";
 import gral_descriptionTemplate from "../Templates/Gral_description.json";
+import { AddInput } from "./AddInput";
 
 export const AddProject = ({ setData, setShowPreview, showPreview }) => {
   const [title, setTitle] = useState("");
@@ -20,6 +15,9 @@ export const AddProject = ({ setData, setShowPreview, showPreview }) => {
 
   const [gral_description, setGral_description] = useState("");
   const [introduction, setIntroduction] = useState("");
+  const [building_technical_inspection, setBuilding_technical_inspection] =
+    useState("");
+  const [base_element, setBase_element] = useState("");
 
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null); //
@@ -59,6 +57,8 @@ maybe I can add the loading
         description,
         introduction,
         gral_description,
+        building_technical_inspection,
+        base_element,
       };
       setData(newPDF);
       setShowPreview(!showPreview);
@@ -117,22 +117,36 @@ maybe I can add the loading
           adrress={address}
         />
 
-        <IntroductionInput
-          introduction={introduction}
-          setIntroduction={setIntroduction}
-        />
-        <BTNTemplates
-          templates={introductionTemplate}
-          setState={setIntroduction}
+        <AddInput
+          Prop={introduction}
+          setProp={setIntroduction}
+          title="INTRODUÇÃO"
+          placeholder="INTRODUÇÃO"
+          templates={gral_descriptionTemplate}
         />
 
-        <Gral_description
-          Gral_description={gral_description}
-          setGral_description={setGral_description}
-        />
-        <BTNTemplates
+        <AddInput
+          Prop={gral_description}
+          setProp={setGral_description}
+          title="DESCRIÇÃO GERAL"
+          placeholder="DESCRIÇÃO GERAL"
           templates={gral_descriptionTemplate}
-          setState={setGral_description}
+        />
+
+        <AddInput
+          Prop={building_technical_inspection}
+          setProp={setBuilding_technical_inspection}
+          title="INSPEÇÃO TÉCNICA AO EDIFÍCIO"
+          placeholder="INSPEÇÃO TÉCNICA AO EDIFÍCIO"
+          templates={gral_descriptionTemplate}
+        />
+
+        <AddInput
+          Prop={base_element}
+          setProp={setBase_element}
+          title="ELEMENTOS BASE"
+          placeholder="ELEMENTOS BASE"
+          templates={gral_descriptionTemplate}
         />
 
         <br></br>

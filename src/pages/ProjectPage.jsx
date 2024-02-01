@@ -6,7 +6,7 @@ export const ProjectPage = () => {
   return (
     <>
       <SideBar />
-      <div className="container">
+      <div className="container" style={{ width: "100%", height: "100vh" }}>
         <ProjectComponent />
       </div>
     </>

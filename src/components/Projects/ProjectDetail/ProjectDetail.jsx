@@ -1,36 +1,34 @@
 import LogoImage from "../../../assets/INDIRE_LOGO.png";
+import { DateMaker } from "../../../utils/dateMaker";
 import "./ProjectDetail.css";
 
 export const ProjectDetail = ({ data, setShowPreview, showPreview }) => {
-  var fechaActual = new Date();
-  var año = fechaActual.getFullYear();
-  var mes = fechaActual.getMonth();
-  var dia = fechaActual.getDate();
-  let date = `d${dia}-m${mes + 1}-a${año}`;
-
   return (
     <>
-      <article id="projectPDF" style={{ width: "100%" }}>
+      <article id="projectPDF" style={{ width: "100%", height: "100vh" }}>
         <figure>
           <img className="logo" src={LogoImage} alt="INDIRE LOGO" />
         </figure>
         <h1>{data.title}</h1>
         <address>{data.address}</address>
         <img className="main_img_url" src={data.main_img_url} alt="imagen" />
-        <span>{date}</span>
+        <span>{DateMaker()}</span>
         <p>{data.project_number}</p>
-        Introduction
+        INTRODUÇÃO
         <p>{data.introduction}</p>
-        Gral Description
+        DESCRIÇÃO GERAL
         <p>{data.gral_description}</p>
+        INSPEÇÃO TÉCNICA AO EDIFÍCIO
+        <p>{data.building_technical_inspection}</p>
+        LEMENTOS BASE
+        <p>{data.base_element}</p>
       </article>
       <button
-        style={{ background: "green" }}
         onClick={() => {
           setShowPreview(!showPreview);
         }}
       >
-      BACK
+        BACK
       </button>
     </>
   );
