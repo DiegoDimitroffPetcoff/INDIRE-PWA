@@ -12,7 +12,9 @@ export const ProjectComponent = () => {
 
   const createPDF = async (e) => {
     try {
-      PDFMakerHTML(document.getElementById("projectPDF"));
+      //PDFMakerHTML(document.getElementById("projectPDF"));
+      console.log("crate pdf");
+     
     } catch (error) {
       console.log("ERROR: " + error);
     }
@@ -34,6 +36,14 @@ export const ProjectComponent = () => {
       )}
       <button style={{ background: "green" }} onClick={createPDF}>
         CREAR PDF
+      </button>
+      <button
+        style={{ background: "green" }}
+        onClick={() => {
+          setShowPreview(!showPreview);
+        }}
+      >
+        BACK
       </button>
     </>
   );

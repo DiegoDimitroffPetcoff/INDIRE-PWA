@@ -6,14 +6,14 @@ export const AddInput = ({ Prop, setProp, title, placeholder, templates }) => {
       {" "}
       <div id="prueba" className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">
-          INTRODUÇÃO
+          {title}
         </label>
         <textarea
           type="text"
           rows={5}
           className="form-control"
           value={Prop}
-          placeholder={placeholder}
+          placeholder={"EXAMPLE:" + placeholder}
           onChange={(e) => {
             setProp(e.target.value);
           }}

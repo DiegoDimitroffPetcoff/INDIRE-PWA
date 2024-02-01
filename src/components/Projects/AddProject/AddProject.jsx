@@ -3,22 +3,27 @@ import { useEffect, useRef, useState } from "react";
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 import { PDFMaker } from "../../../utils/pdfMaker";
 import { PDFMakerFILE } from "../../../utils/pdfMakerFILE";
+
 import { Summary } from "./Summary/summary";
-import gral_descriptionTemplate from "../Templates/Gral_description.json";
 import { AddInput } from "./AddInput";
 
+import gral_descriptionTemplate from "../Templates/Gral_description.json";
+
 export const AddProject = ({ setData, setShowPreview, showPreview }) => {
+  //Summary States:
   const [title, setTitle] = useState("");
   const [sub_title, setSub_title] = useState("");
   const [address, setAddress] = useState("");
   const [description, setDescription] = useState("");
 
+  //Sections Statnes
   const [gral_description, setGral_description] = useState("");
   const [introduction, setIntroduction] = useState("");
+  const [base_element, setBase_element] = useState("");
   const [building_technical_inspection, setBuilding_technical_inspection] =
     useState("");
-  const [base_element, setBase_element] = useState("");
 
+  //File States
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null); //
   const [errorMessage, setErrorMessage] = useState("Subir Projecto");
@@ -35,15 +40,6 @@ maybe I can add the loading
     e.preventDefault();
 
     try {
-      // PDFMakerHTML(document.getElementById("crearpdf"));
-
-      /*       const newPDF = {
-        title,
-        sub_title,
-        address,
-        description,
-        introduction,
-      }; */
       const newPDF = {
         project_id: 1,
         user: 1,
@@ -52,14 +48,13 @@ maybe I can add the loading
         main_img_url:
           "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
         address,
-        date: new Date(),
         project_number: "Ref.ª 19.11.12_RELATÓRIO_INSPEÇÃO_v1.0",
-        description,
         introduction,
         gral_description,
         building_technical_inspection,
         base_element,
       };
+
       setData(newPDF);
       setShowPreview(!showPreview);
       /*       //CREATE PDF + CONVERT TO OUTPUT - TWO IN ONE

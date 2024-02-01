@@ -1,35 +1,94 @@
 import LogoImage from "../../../assets/INDIRE_LOGO.png";
+import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
 import { DateMaker } from "../../../utils/dateMaker";
-import "./ProjectDetail.css";
 
-export const ProjectDetail = ({ data, setShowPreview, showPreview }) => {
+import "./ProjectDetail.css";
+import ReactPDF, { PDFDownloadLink } from "@react-pdf/renderer";
+
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  PDFViewer,
+  Image,
+} from "@react-pdf/renderer";
+
+export const ProjectDetail = ({ data }) => {
   return (
     <>
-      <article id="projectPDF" style={{ width: "100%", height: "100vh" }}>
-        <figure>
-          <img className="logo" src={LogoImage} alt="INDIRE LOGO" />
-        </figure>
-        <h1>{data.title}</h1>
-        <address>{data.address}</address>
-        <img className="main_img_url" src={data.main_img_url} alt="imagen" />
-        <span>{DateMaker()}</span>
-        <p>{data.project_number}</p>
-        INTRODUÇÃO
-        <p>{data.introduction}</p>
-        DESCRIÇÃO GERAL
-        <p>{data.gral_description}</p>
-        INSPEÇÃO TÉCNICA AO EDIFÍCIO
-        <p>{data.building_technical_inspection}</p>
-        LEMENTOS BASE
-        <p>{data.base_element}</p>
-      </article>
-      <button
-        onClick={() => {
-          setShowPreview(!showPreview);
-        }}
+      <PDFViewer style={styles.viewer}>
+        <MyDocument data={data} />
+      </PDFViewer>
+      <br></br>
+      <PDFDownloadLink
+        document={<MyDocument data={data} />}
+        fileName="myfirstpdf.pdf"
       >
-        BACK
-      </button>
+        {({ loading, url, error, blob }) => {
+          //FetchPostMicrosoftGraph(blob)
+          loading ? (
+            <button>Loaging Document..</button>
+          ) : (
+            <button>Download now</button>
+          );
+        }}
+      </PDFDownloadLink>
     </>
   );
 };
+
+// Create styles
+const styles = StyleSheet.create({
+  page: {
+    flexDirection: "row",
+    backgroundColor: "#E4E4E4",
+    width: "100%",
+    height: "100vh",
+    justifyContent: "center",
+    alignContent: "center",
+    padding: 5,
+  },
+  section: {
+    margin: 10,
+    padding: 10,
+    flexGrow: 1,
+  },
+  viewer: {
+    width: "100%",
+    height: "100vh",
+  },
+  logo: {
+    width: "10%",
+  },
+  mainImg: {
+    height: " 50%",
+    width: "50%",
+  },
+});
+
+const MyDocument = ({ data }) => (
+  <Document style={styles.viewer}>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Image style={styles.logo} src={LogoImage} />
+        <Text>{data.title}</Text>
+        <Text>{data.address}</Text>
+        <Image style={styles.mainImg} src={data.main_img_url} />
+        <Text>{DateMaker()}</Text> {/* Asumo que DateMaker es una función */}
+        <Text>{data.project_number}</Text>
+      </View>
+    </Page>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Text>INTRODUÇÃO</Text>
+        <Text>{data.introduction}</Text>
+        <Text>DESCRIÇÃO GERAL</Text>
+        <Text>{data.gral_description}</Text>
+        <Text>INSPEÇÃO TÉCNICA AO EDIFÍCIO</Text>
+        <Text>{data.building_technical_inspection}</Text>
+      </View>
+    </Page>
+  </Document>
+);
