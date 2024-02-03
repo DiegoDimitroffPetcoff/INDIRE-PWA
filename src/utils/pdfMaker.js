@@ -29,11 +29,8 @@ export const PDFMaker = (data) => {
   elementsToPaginate.forEach((data) => {
     const textLines = doc.splitTextToSize(data, maxWidth);
 
-    const uno = verticalOffset + (textLines.length * 12) / 72 + 0.5
-  
-
     // Verificamos si el texto sobrepasará el margen inferior de la página
- 
+
     if (verticalOffset + (textLines.length * 12) / 72 + 0.5 > 11) {
       console.log("se agrega una nueva pagina");
       doc.addPage(); // Agregamos una nueva página si el texto excede la altura de la página
@@ -44,10 +41,7 @@ export const PDFMaker = (data) => {
     verticalOffset += (textLines.length * 12) / 72 + 0.5;
   });
 
-  const pdfDataUrl = doc.output("datauristring");
-  
   //window.open(pdfDataUrl, "_blank");
 
   return doc;
 };
-

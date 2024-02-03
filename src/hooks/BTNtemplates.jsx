@@ -13,6 +13,7 @@ export const BTNTemplates = ({ templates, setState }) => {
     >
       {templates.map((template, value) => (
         <label
+          key={value}
           className="btn btn-outline-danger"
           htmlFor="vbtn-radio2"
           onClick={(e) => handleTemplate(value, e)}

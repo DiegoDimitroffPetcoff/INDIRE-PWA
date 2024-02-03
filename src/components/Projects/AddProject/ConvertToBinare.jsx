@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import pdfjs from 'pdfjs-dist/build/pdf';
+
 
 export const ConvertToBinare = () => {
   const [file, setFile] = useState(null);

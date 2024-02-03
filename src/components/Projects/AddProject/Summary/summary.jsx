@@ -7,7 +7,25 @@ export const Summary = ({
   sub_title,
   setAddress,
   adrress,
+  main_img_url,
+  setMain_img_url,
 }) => {
+  const handleFileChange = (event) => {
+    console.log("SUMMARY");
+
+    try {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result;
+      };
+      reader.readAsDataURL(file);
+      setMain_img_url(file); // También puedes almacenar la URL base64 si es necesario
+
+    } catch (error) {
+      console.error("Error converting image to base64:", error);
+    }
+  };
   return (
     <>
       {" "}
@@ -60,11 +78,7 @@ export const Summary = ({
         <input
           type="file"
           className="form-control"
-          value={""}
-          placeholder="Exemplo:Av do uruguai 32B..."
-          onChange={(e) => {
-            setAddress(e.target.value);
-          }}
+          onChange={handleFileChange}
         />
       </div>
     </>

@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 
-import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
-import { PDFMaker } from "../../../utils/pdfMaker";
 import { PDFMakerFILE } from "../../../utils/pdfMakerFILE";
 
 import { Summary } from "./Summary/summary";
@@ -9,34 +7,29 @@ import { AddInput } from "./AddInput";
 
 import gral_descriptionTemplate from "../Templates/Gral_description.json";
 
-export const AddProject = ({ setData, setShowPreview, showPreview }) => {
+export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
   //Summary States:
-  const [title, setTitle] = useState("");
-  const [sub_title, setSub_title] = useState("");
-  const [address, setAddress] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(data.title || "");
+  const [sub_title, setSub_title] = useState(data.sub_title || "");
+  const [address, setAddress] = useState(data.address || "");
+  const [description, setDescription] = useState(data.description || "");
+  const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
 
   //Sections Statnes
-  const [gral_description, setGral_description] = useState("");
-  const [introduction, setIntroduction] = useState("");
-  const [base_element, setBase_element] = useState("");
+  const [gral_description, setGral_description] = useState(
+    data.gral_description || ""
+  );
+  const [introduction, setIntroduction] = useState(data.introduction || "");
+  const [base_element, setBase_element] = useState(data.base_element || "");
   const [building_technical_inspection, setBuilding_technical_inspection] =
-    useState("");
+    useState(data.building_technical_inspection || "");
 
   //File States
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null); //
   const [errorMessage, setErrorMessage] = useState("Subir Projecto");
 
-  /* REDUCE UPLOAD FILE FUNCTION
-DELETE BLOB FUNCTION AND CREATE A NEW ONE
-TRY BETTER THE CALL MICROSOFHT GRAPH 
-maybe I can add the loading
-*/
-
   const handleSubmite = async (e) => {
-    //I TOOK AWAY THE COOKIE SAVER - I DONT SAVE THE PDF ON THE LOCAL STORAGE
-    //I CREATED PDF WITH HTML
     e.preventDefault();
 
     try {
@@ -45,8 +38,7 @@ maybe I can add the loading
         user: 1,
         title,
         sub_title,
-        main_img_url:
-          "https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI",
+        main_img_url,
         address,
         project_number: "Ref.ª 19.11.12_RELATÓRIO_INSPEÇÃO_v1.0",
         introduction,
@@ -80,7 +72,8 @@ maybe I can add the loading
     }
   };
 
-  const handleFileChange = async (event) => {
+  const handleFileChange1 = async (event) => {
+    console.log("ADD PROJECT");
     console.log(event.target.files);
     setFile(event.target.files[0]);
   };
@@ -99,7 +92,7 @@ maybe I can add the loading
   };
 
   return (
-    <div id="projectPDF" style={{ width: "100%" }}>
+    <div style={{ width: "100%" }}>
       {errorMessage && <h1>{errorMessage}</h1>}
 
       <form onSubmit={handleSubmite}>
@@ -110,6 +103,8 @@ maybe I can add the loading
           sub_title={sub_title}
           setAddress={setAddress}
           adrress={address}
+          setMain_img_url={setMain_img_url}
+          main_img_url={main_img_url}
         />
 
         <AddInput
@@ -145,9 +140,7 @@ maybe I can add the loading
         />
 
         <br></br>
-        {/*         <button style={{ background: "blue" }}>
-          CREAR PDF CON FORM CONTENT{" "}
-        </button> */}
+
         <button style={{ background: "green" }}> PREVIEW</button>
       </form>
 
@@ -161,7 +154,7 @@ maybe I can add the loading
       <input
         style={{ background: "pink" }}
         type="file"
-        onChange={handleFileChange}
+        onChange={handleFileChange1}
       />
     </div>
   );
