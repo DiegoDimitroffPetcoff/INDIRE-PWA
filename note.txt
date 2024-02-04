@@ -15,10 +15,27 @@ Mirar el archivos BlobConversor y practicar retornos de promesas
 Hacer visual de usuario no logeado (hecho pero desordenado) Tambien desabilitar ruta segun este o no logeado
 MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO) 
 Crear ventanas emergentes para los casos en los que se suban de manera exitosa los archivos
-Arreglar el <br> que pus en AddProject y solucionar css
-Aislar la funcion de fecha en utils
-cuando se cambia de vista se deben coservar los cambios
 RESOLVER: DEPENDIENDO DE LAS MEDIDAS SE VA A GUARDAR EL PDF
+
+Dependencias eliminadas:
+PS C:\Users\diego\proyectos-practica\INDIRE-pws\FRONTEND> depcheck
+>>
+Unused dependencies
+* @testing-library/user-event
+* html2canvas
+* jspdf
+* workbox-background-sync
+* workbox-broadcast-update
+* workbox-cacheable-response
+* workbox-google-analytics
+* workbox-navigation-preload
+* workbox-range-requests
+* workbox-streams
+
+DEPENDENCIAS AGREGADAS
+Missing dependencies
+* eslint-config-react-app: .\package.json
+PS C:\Users\diego\proyectos-practica\INDIRE-pws\FRONTEND>
 
 
 
