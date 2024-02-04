@@ -42,6 +42,10 @@ npx depcheck
 npx npm depcheck
 
 
+COMANDOS PARA AUMENTAR LA MEMORIA PREDETERMINADA DE NODE JS
+NODE_OPTIONS="--max-old-space-size=4096" react-scripts start   (no funciono)
+
+
 *PAGES
  **AddProject.jsx
   es el que va a crear el PDF

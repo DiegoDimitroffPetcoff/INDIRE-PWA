@@ -23,7 +23,7 @@ export const PDFview = ({ data, styles }) => {
           <Image style={styles.logo} src={LogoImage} />
           <Text style={styles.mainTitle}>{data.title}</Text>
           <Text style={styles.adress}>{data.address}</Text>
-          {/*    <Image style={styles.mainImg} src={data?.main_img_url} /> */}
+          <Image style={styles.mainImg} src={data.main_img_url} />
           <Text style={styles.date}>{DateMaker()}</Text>
           <Text style={styles.subTitle}>{data.sub_title}</Text>
           <Text style={styles.title}>{data.project_number}</Text>

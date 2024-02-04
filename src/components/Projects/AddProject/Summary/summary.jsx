@@ -12,7 +12,7 @@ export const Summary = ({
   main_img_url,
   setMain_img_url,
 }) => {
-  const [fileName, setFileName] = useState(null)
+  const [fileName, setFileName] = useState(null);
   const handleFileChange = (event) => {
     event.preventDefault();
     console.log("SUMMARY");
@@ -67,21 +67,32 @@ export const Summary = ({
           Imagen
         </label>
         <input
+          id="inputFile"
           type="file"
           hidden
           className="form-control-file"
           onChange={({ target: { files } }) => {
-            console.log(files);
             files[0] && setFileName(files[0].name);
             if (files) {
-              setMain_img_url(URL.createObjectURL(files[0]));
+              const reader = new FileReader();
+              reader.onload = (e) => {
+                setMain_img_url(e.target.result);
+              };
+              reader.readAsDataURL(files[0]);
             }
           }}
         />
+
         {main_img_url ? (
           <img src={main_img_url} width={60} height={60} alt={fileName} />
         ) : (
-          <MdCloudUpload color="red" size={60} onClick={document.querySelector("form-control-file").click()} />
+          <MdCloudUpload
+            color="red"
+            size={60}
+            onClick={() =>
+              document.getElementsByClassName("form-control-file")[0].click()
+            }
+          />
         )}
       </div>
     </>
