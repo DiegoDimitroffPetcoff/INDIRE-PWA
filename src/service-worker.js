@@ -74,4 +74,4 @@ self.addEventListener('message', (event) => {
 
 
 //new version
-const version = "app-version-v16 - Succesfully PFD and Upload" 
+const version = "app-version-v17 - Succesfully PFD and Upload Imagen!" 
