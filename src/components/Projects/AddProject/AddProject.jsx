@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { PDFMakerFILE } from "../../../utils/pdfMakerFILE";
 
 import { Summary } from "./Summary/summary";
-import { AddInput } from "./AddInput";
+import { AddInput } from "./AddInput"
 
 import gral_descriptionTemplate from "../Templates/Gral_description.json";
 
@@ -12,7 +12,7 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
   const [title, setTitle] = useState(data.title || "");
   const [sub_title, setSub_title] = useState(data.sub_title || "");
   const [address, setAddress] = useState(data.address || "");
-  const [description, setDescription] = useState(data.description || "");
+  //const [description, setDescription] = useState(data.description || "");
   const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
 
   //Sections Statnes

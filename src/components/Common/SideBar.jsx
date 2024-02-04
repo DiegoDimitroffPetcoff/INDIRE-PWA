@@ -1,13 +1,9 @@
-import { useState, useEffect } from "react";
 import { Logo } from "./Logo";
 import { Link } from "react-router-dom";
 
 import { Login } from "@microsoft/mgt-react";
-import { Auth } from "../../utils/auth";
 
 export const SideBar = () => {
-
- 
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">

@@ -18,12 +18,9 @@ Crear ventanas emergentes para los casos en los que se suban de manera exitosa l
 RESOLVER: DEPENDIENDO DE LAS MEDIDAS SE VA A GUARDAR EL PDF
 
 Dependencias eliminadas:
-PS C:\Users\diego\proyectos-practica\INDIRE-pws\FRONTEND> depcheck
->>
-Unused dependencies
-* @testing-library/user-event
 * html2canvas
 * jspdf
+* @testing-library/user-event
 * workbox-background-sync
 * workbox-broadcast-update
 * workbox-cacheable-response
@@ -32,11 +29,17 @@ Unused dependencies
 * workbox-range-requests
 * workbox-streams
 
+
 DEPENDENCIAS AGREGADAS
 Missing dependencies
 * eslint-config-react-app: .\package.json
 PS C:\Users\diego\proyectos-practica\INDIRE-pws\FRONTEND>
+ 
 
+COMANDOS PARA VERIFICAR DEPENDENCIAS NO UTILIZADAS
+depcheck
+npx depcheck
+npx npm depcheck
 
 
 *PAGES

@@ -1,4 +1,4 @@
-import Templates from "../../Templates/Summary.json";
+
 
 export const Summary = ({
   setTitle,
@@ -13,18 +13,7 @@ export const Summary = ({
   const handleFileChange = (event) => {
     console.log("SUMMARY");
 
-    try {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result;
-      };
-      reader.readAsDataURL(file);
-      setMain_img_url(file); // También puedes almacenar la URL base64 si es necesario
 
-    } catch (error) {
-      console.error("Error converting image to base64:", error);
-    }
   };
   return (
     <>

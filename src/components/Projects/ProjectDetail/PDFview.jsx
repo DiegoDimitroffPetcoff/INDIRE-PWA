@@ -7,10 +7,10 @@ import {
   Text,
   View,
   Document,
-  StyleSheet,
-  PDFViewer,
+  //StyleSheet,
+  //PDFViewer,
   Image,
-  PDFDownloadLink,
+  //PDFDownloadLink,
 } from "@react-pdf/renderer";
 
 // Create styles
