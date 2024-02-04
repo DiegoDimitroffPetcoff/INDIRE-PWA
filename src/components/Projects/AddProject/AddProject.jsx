@@ -95,7 +95,7 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
     <div style={{ width: "100%" }}>
       {errorMessage && <h1>{errorMessage}</h1>}
 
-      <form onSubmit={handleSubmite}>
+      <form onSubmit={handleSubmite} >
         <Summary
           setTitle={setTitle}
           title={title}

@@ -1,4 +1,6 @@
-
+import { useState } from "react";
+import { AiFillFileImage } from "react-icons/ai";
+import { MdCloudUpload } from "react-icons/md";
 
 export const Summary = ({
   setTitle,
@@ -10,10 +12,10 @@ export const Summary = ({
   main_img_url,
   setMain_img_url,
 }) => {
+  const [fileName, setFileName] = useState(null)
   const handleFileChange = (event) => {
+    event.preventDefault();
     console.log("SUMMARY");
-
-
   };
   return (
     <>
@@ -66,9 +68,21 @@ export const Summary = ({
         </label>
         <input
           type="file"
-          className="form-control"
-          onChange={handleFileChange}
+          hidden
+          className="form-control-file"
+          onChange={({ target: { files } }) => {
+            console.log(files);
+            files[0] && setFileName(files[0].name);
+            if (files) {
+              setMain_img_url(URL.createObjectURL(files[0]));
+            }
+          }}
         />
+        {main_img_url ? (
+          <img src={main_img_url} width={60} height={60} alt={fileName} />
+        ) : (
+          <MdCloudUpload color="red" size={60} onClick={document.querySelector("form-control-file").click()} />
+        )}
       </div>
     </>
   );
