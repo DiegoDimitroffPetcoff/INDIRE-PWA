@@ -22,6 +22,8 @@ AGREGAR NUMERO DE RELATORIO
 
 automatizar componente de Text
 Validaciones de cuando no se agrega nada en el inputn(agregar el color que muestra cuando un input esta completado)
+Que el objeto sea crado de manera dinamica
+Validacion cuando no haya un data.body (es enviado desde addProject a PDFview)
 
 Dependencias eliminadas:
 * html2canvas

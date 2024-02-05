@@ -34,6 +34,7 @@ export const ProjectComponent = () => {
           showPreview={showPreview}
         />
       )}
+      <button onClick={()=>{console.log(data);}}>verdata</button>
     </>
   );
 };

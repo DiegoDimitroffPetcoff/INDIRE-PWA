@@ -67,24 +67,48 @@ const styles = StyleSheet.create({
   },
 });
 
-export const PDFView = ({ data }) => (
-  <Document style={styles.viewer}>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Image style={styles.logo} src={LogoImage} />
-        <Text style={styles.mainTitle}>{data.title}</Text>
-        <Text style={styles.adress}>{data.address}</Text>
-        {data.main_img_url && (
-          <Image style={styles.mainImg} src={data.main_img_url} />
-        )}
-        <Text style={styles.date}>{DateMaker()}</Text>
-        <Text style={styles.subTitle}>{data.sub_title}</Text>
-        <Text style={styles.title}>{data.project_number}</Text>
-      </View>
-    </Page>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text style={styles.title}>{data.title}</Text>
+export const PDFView = ({ data }) => {
+  return (
+    <Document style={styles.viewer}>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          <Image style={styles.logo} src={LogoImage} />
+          <Text style={styles.mainTitle}>{data.title}</Text>
+          <Text style={styles.adress}>{data.address}</Text>
+          {data.main_img_url && (
+            <Image style={styles.mainImg} src={data.main_img_url} />
+          )}
+          <Text style={styles.date}>{DateMaker()}</Text>
+          <Text style={styles.subTitle}>{data.sub_title}</Text>
+          <Text style={styles.title}>{data.project_number}</Text>
+        </View>
+      </Page>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.section}>
+          {data.sections ? (
+            data.sections.map((item, index) => (
+              <View key={index}>
+                {" "}
+                {item.content !== "" ? (
+                  <>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <Text>{item.content}</Text>
+                  </>
+                ) : (
+                  ""
+                )}
+              </View>
+            ))
+          ) : (
+            <Text>"No content Added"</Text>
+          )}
+        </View>
+      </Page>
+    </Document>
+  );
+};
+
+/*         <Text style={styles.title}>{data.title}</Text>
         <Text>{data.introduction}</Text>
         <Text style={styles.title}>{data.title}</Text>
         <Text>{data.gral_description}</Text>
@@ -99,8 +123,4 @@ export const PDFView = ({ data }) => (
         <Text style={styles.title}>{data.title}</Text>
         <Text>{data.recommendations}</Text>
         <Text style={styles.title}>{data.title}</Text>
-        <Text>{data.conclusions}</Text>
-      </View>
-    </Page>
-  </Document>
-);
+        <Text>{data.conclusions}</Text> */

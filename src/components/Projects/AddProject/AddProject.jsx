@@ -51,16 +51,18 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
         main_img_url,
         address,
         project_number: "Ref.ª 19.11.12_RELATÓRIO_INSPEÇÃO_v1.0",
-        introduction,
-        gral_description,
-        building_technical_inspection,
-        base_element,
-        history,
-        elemento,
-        recommendations,
-        conclusions,
+        sections: [
+          { content: introduction, title: "INTRODUÇÃO" },
+          { content: gral_description, title: "DESCRIÇÃO GERAL" },
+          { content: building_technical_inspection, title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO" },
+          { content: base_element, title: "ELEMENTOS BASE" },
+          { content: history, title: "HISTÓRICO DE INTERVENÇÕES" },
+          { content: elemento, title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS" },
+          { content: recommendations, title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO" },
+          { content: conclusions, title: "CONCLUSÕES" },
+        ],
       };
-console.log(newPDF.conclusions);
+    
       setData(newPDF);
       setShowPreview(!showPreview);
     } catch (error) {
@@ -146,14 +148,14 @@ console.log(newPDF.conclusions);
         <AddInput
           Prop={elemento}
           setProp={setElemento}
-          title=" ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
+          title="ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
           placeholder=" ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
           templates={gral_descriptionTemplate}
         />
         <AddInput
           Prop={recommendations}
           setProp={setRecommendations}
-          title=" RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO"
+          title="RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO"
           placeholder=" RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO"
           templates={gral_descriptionTemplate}
         />
@@ -182,6 +184,7 @@ console.log(newPDF.conclusions);
         type="file"
         onChange={handleFileChange1}
       />
+      
     </div>
   );
 };

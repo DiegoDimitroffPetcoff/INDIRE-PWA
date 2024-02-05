@@ -28,6 +28,7 @@ export const Summary = ({
           type="text"
           className="form-control"
           value={title}
+          required={true}
           placeholder="Exemplo: Intervenção de reabilitação..."
           onChange={(e) => {
             setTitle(e.target.value);

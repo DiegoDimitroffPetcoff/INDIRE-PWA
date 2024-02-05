@@ -1,7 +1,7 @@
 import { BTNTemplates } from "../../src/hooks/BTNtemplates";
 
 export const AddInput = ({ Prop, setProp, title, placeholder, templates }) => {
-  console.log(title);
+ console.log(Prop);
   return (
     <>
       {" "}
