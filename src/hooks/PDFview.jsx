@@ -1,5 +1,5 @@
-import LogoImage from "../../../assets/INDIRE_LOGO.png";
-import { DateMaker } from "../../../utils/dateMaker";
+import LogoImage from "../assets/INDIRE_LOGO.png";
+import { DateMaker } from "../utils/dateMaker";
 import {
   Page,
   Text,

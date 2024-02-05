@@ -19,6 +19,8 @@ RESOLVER: DEPENDIENDO DE LAS MEDIDAS SE VA A GUARDAR EL PDF
 TERMINAR RELATORIO INPUTS
 TERMINAR RELATORIO VISUAL PDF
 AGREGAR SETTINGS -> editar carpeta donde se va a guardar todo y NOMBRE DEL ARCHIVO
+Agregar espacio para subir directamente un PDF
+AGREGAR NUMERO DE RELATORIO
 
 Dependencias eliminadas:
 * html2canvas

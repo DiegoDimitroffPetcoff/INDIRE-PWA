@@ -7,15 +7,17 @@ import { AddInput } from "../../../hooks/AddInput";
 
 import gral_descriptionTemplate from "../Templates/Gral_description.json";
 
-export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
-  //Summary States:
+export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
+  //Summary States------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------
+
   const [title, setTitle] = useState(data.title || "");
   const [sub_title, setSub_title] = useState(data.sub_title || "");
   const [address, setAddress] = useState(data.address || "");
-  //const [description, setDescription] = useState(data.description || "");
   const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
 
-  //Sections Statnes
+  //Sections States----------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------
 
   const [introduction, setIntroduction] = useState(data.introduction || "");
   const [gral_description, setGral_description] = useState(
@@ -24,7 +26,6 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
   const [building_technical_inspection, setBuilding_technical_inspection] =
     useState(data.building_technical_inspection || "");
   const [base_element, setBase_element] = useState(data.base_element || "");
-
   const [history, setHistory] = useState(data.base_element || "");
   const [elemento, setElemento] = useState(data.base_element || "");
   const [recommendations, setRecommendations] = useState(
@@ -32,7 +33,8 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
   );
   const [conclusions, setConclusions] = useState(data.base_element || "");
 
-  //File States
+  //File States---------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------
   const [file, setFile] = useState(null);
   const fileInputRef = useRef(null); //
   const [errorMessage, setErrorMessage] = useState("Subir Projecto");
@@ -57,28 +59,10 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
         elemento,
         recommendations,
         conclusions,
-        
       };
 
       setData(newPDF);
       setShowPreview(!showPreview);
-      /*       //CREATE PDF + CONVERT TO OUTPUT - TWO IN ONE
-      let pdf = await PDFMaker(newPDF).output("datauristring");
-
-      //SPLINT THE LINK UP TO DECODE
-      var url = pdf.split(",");
-      var base64Data = url[1];
-
-      //CONVERT TO BASE64
-      var decodedData = window.atob(base64Data);
-
-      //CONVERT TO A BLOB OBJECT
-      const blob = new Blob([decodedData], {
-        type: "application/pdf,  charset=utf-8",
-      });
-
-      //CONVERT AND SAVE
-      FetchPostMicrosoftGraph(blob); */
     } catch (error) {
       console.log(error);
       setErrorMessage("Hubo un problema al crear el PDF.");

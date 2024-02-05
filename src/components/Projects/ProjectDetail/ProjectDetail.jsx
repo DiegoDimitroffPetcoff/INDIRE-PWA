@@ -1,7 +1,7 @@
 import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
-
 import { StyleSheet, PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
-import { PDFView } from "./PDFview";
+import { PDFView } from "../../../hooks/PDFview";
+
 // Create styles
 const styles = StyleSheet.create({
   viewer: {
