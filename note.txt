@@ -16,6 +16,9 @@ Hacer visual de usuario no logeado (hecho pero desordenado) Tambien desabilitar 
 MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO) 
 Crear ventanas emergentes para los casos en los que se suban de manera exitosa los archivos
 RESOLVER: DEPENDIENDO DE LAS MEDIDAS SE VA A GUARDAR EL PDF
+TERMINAR RELATORIO INPUTS
+TERMINAR RELATORIO VISUAL PDF
+AGREGAR SETTINGS -> editar carpeta donde se va a guardar todo y NOMBRE DEL ARCHIVO
 
 Dependencias eliminadas:
 * html2canvas
@@ -35,6 +38,7 @@ Missing dependencies
 * eslint-config-react-app: .\package.json
 PS C:\Users\diego\proyectos-practica\INDIRE-pws\FRONTEND>
  
+
 
 COMANDOS PARA VERIFICAR DEPENDENCIAS NO UTILIZADAS
 depcheck

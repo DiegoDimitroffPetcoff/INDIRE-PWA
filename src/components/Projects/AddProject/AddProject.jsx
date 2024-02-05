@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import { PDFMakerFILE } from "../../../utils/pdfMakerFILE";
 
 import { Summary } from "./Summary/summary";
-import { AddInput } from "./AddInput"
+import { AddInput } from "../../../hooks/AddInput";
 
 import gral_descriptionTemplate from "../Templates/Gral_description.json";
 
@@ -16,13 +16,21 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
   const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
 
   //Sections Statnes
+
+  const [introduction, setIntroduction] = useState(data.introduction || "");
   const [gral_description, setGral_description] = useState(
     data.gral_description || ""
   );
-  const [introduction, setIntroduction] = useState(data.introduction || "");
-  const [base_element, setBase_element] = useState(data.base_element || "");
   const [building_technical_inspection, setBuilding_technical_inspection] =
     useState(data.building_technical_inspection || "");
+  const [base_element, setBase_element] = useState(data.base_element || "");
+
+  const [history, setHistory] = useState(data.base_element || "");
+  const [elemento, setElemento] = useState(data.base_element || "");
+  const [recommendations, setRecommendations] = useState(
+    data.base_element || ""
+  );
+  const [conclusions, setConclusions] = useState(data.base_element || "");
 
   //File States
   const [file, setFile] = useState(null);
@@ -45,6 +53,11 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
         gral_description,
         building_technical_inspection,
         base_element,
+        history,
+        elemento,
+        recommendations,
+        conclusions,
+        
       };
 
       setData(newPDF);
@@ -95,7 +108,7 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
     <div style={{ width: "100%" }}>
       {errorMessage && <h1>{errorMessage}</h1>}
 
-      <form onSubmit={handleSubmite} >
+      <form onSubmit={handleSubmite}>
         <Summary
           setTitle={setTitle}
           title={title}
@@ -136,6 +149,35 @@ export const AddProject = ({ setData, setShowPreview, showPreview, data }) => {
           setProp={setBase_element}
           title="ELEMENTOS BASE"
           placeholder="ELEMENTOS BASE"
+          templates={gral_descriptionTemplate}
+        />
+
+        <AddInput
+          Prop={history}
+          setProp={setHistory}
+          title="HISTÓRICO DE INTERVENÇÕES"
+          placeholder="HISTÓRICO DE INTERVENÇÕES"
+          templates={gral_descriptionTemplate}
+        />
+        <AddInput
+          Prop={elemento}
+          setProp={setElemento}
+          title=" ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
+          placeholder=" ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
+          templates={gral_descriptionTemplate}
+        />
+        <AddInput
+          Prop={recommendations}
+          setProp={setRecommendations}
+          title=" RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO"
+          placeholder=" RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO"
+          templates={gral_descriptionTemplate}
+        />
+        <AddInput
+          Prop={conclusions}
+          setProp={setConclusions}
+          title="CONCLUSÕES"
+          placeholder="CONCLUSÕES"
           templates={gral_descriptionTemplate}
         />
 

@@ -63,12 +63,12 @@ export const Summary = ({
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="exampleFormControlInput1" className="form-label">
+{/*         <label htmlFor="exampleFormControlInput1" className="form-label">
           Imagen
-        </label>
+        </label> */}
         <input
-          id="inputFile"
           type="file"
+          accept="image/*" 
           hidden
           className="form-control-file"
           onChange={({ target: { files } }) => {
