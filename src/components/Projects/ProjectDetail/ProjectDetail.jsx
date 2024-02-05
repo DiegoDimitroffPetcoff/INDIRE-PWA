@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
 });
 
 export const ProjectDetail = ({ data }) => {
+
   return (
     <>
       {" "}

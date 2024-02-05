@@ -60,7 +60,7 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
         recommendations,
         conclusions,
       };
-
+console.log(newPDF.conclusions);
       setData(newPDF);
       setShowPreview(!showPreview);
     } catch (error) {

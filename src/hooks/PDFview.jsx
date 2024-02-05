@@ -84,24 +84,21 @@ export const PDFView = ({ data }) => (
     </Page>
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
-        <Text style={styles.title}>INTRODUÇÃO</Text>
+        <Text style={styles.title}>{data.title}</Text>
         <Text>{data.introduction}</Text>
-        <Text style={styles.title}>DESCRIÇÃO GERAL</Text>
+        <Text style={styles.title}>{data.title}</Text>
         <Text>{data.gral_description}</Text>
-        <Text style={styles.title}>INSPEÇÃO TÉCNICA AO EDIFÍCIO</Text>
+        <Text style={styles.title}>{data.title}</Text>
         <Text>{data.building_technical_inspection}</Text>
-        <Text style={styles.title}>ELEMENTO BASE</Text>
+        <Text style={styles.title}>{data.title}</Text>
         <Text>{data.base_element}</Text>
-        <Text style={styles.title}>HISTÓRICO DE INTERVENÇÕES</Text>
+        <Text style={styles.title}>{data.title}</Text>
         <Text>{data.history}</Text>
-        <Text style={styles.title}>
-          {" "}
-          ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS
-        </Text>
+        <Text style={styles.title}>{data.title}</Text>
         <Text>{data.elemento}</Text>
-        <Text style={styles.title}>RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO</Text>
+        <Text style={styles.title}>{data.title}</Text>
         <Text>{data.recommendations}</Text>
-        <Text style={styles.title}>CONCLUSÕES</Text>
+        <Text style={styles.title}>{data.title}</Text>
         <Text>{data.conclusions}</Text>
       </View>
     </Page>
