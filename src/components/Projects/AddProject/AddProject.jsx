@@ -26,12 +26,12 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
   const [building_technical_inspection, setBuilding_technical_inspection] =
     useState(data.building_technical_inspection || "");
   const [base_element, setBase_element] = useState(data.base_element || "");
-  const [history, setHistory] = useState(data.base_element || "");
-  const [elemento, setElemento] = useState(data.base_element || "");
+  const [history, setHistory] = useState(data.history || "");
+  const [elemento, setElemento] = useState(data.elemento || "");
   const [recommendations, setRecommendations] = useState(
-    data.base_element || ""
+    data.recommendations || ""
   );
-  const [conclusions, setConclusions] = useState(data.base_element || "");
+  const [conclusions, setConclusions] = useState(data.conclusions || "");
 
   //File States---------------------------------------------------------------------------------
   //--------------------------------------------------------------------------------------------
@@ -54,15 +54,24 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
         sections: [
           { content: introduction, title: "INTRODUÇÃO" },
           { content: gral_description, title: "DESCRIÇÃO GERAL" },
-          { content: building_technical_inspection, title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO" },
+          {
+            content: building_technical_inspection,
+            title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO",
+          },
           { content: base_element, title: "ELEMENTOS BASE" },
           { content: history, title: "HISTÓRICO DE INTERVENÇÕES" },
-          { content: elemento, title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS" },
-          { content: recommendations, title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO" },
+          {
+            content: elemento,
+            title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
+          },
+          {
+            content: recommendations,
+            title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
+          },
           { content: conclusions, title: "CONCLUSÕES" },
         ],
       };
-    
+
       setData(newPDF);
       setShowPreview(!showPreview);
     } catch (error) {
@@ -107,13 +116,15 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
         />
 
         <AddInput
+          data={data.sections}
           Prop={introduction}
           setProp={setIntroduction}
           title="INTRODUÇÃO"
           placeholder="INTRODUÇÃO"
           templates={gral_descriptionTemplate}
+          
         />
-
+{/* 
         <AddInput
           Prop={gral_description}
           setProp={setGral_description}
@@ -165,7 +176,7 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
           title="CONCLUSÕES"
           placeholder="CONCLUSÕES"
           templates={gral_descriptionTemplate}
-        />
+        /> */}
 
         <br></br>
 
@@ -184,7 +195,6 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
         type="file"
         onChange={handleFileChange1}
       />
-      
     </div>
   );
 };

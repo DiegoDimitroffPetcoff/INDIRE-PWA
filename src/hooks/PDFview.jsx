@@ -91,7 +91,7 @@ export const PDFView = ({ data }) => {
                 {" "}
                 {item.content !== "" ? (
                   <>
-                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.title}>{index + 1}-{item.title}</Text>
                     <Text>{item.content}</Text>
                   </>
                 ) : (
