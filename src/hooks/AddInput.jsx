@@ -1,6 +1,10 @@
+import Button from "react-bootstrap/Button";
 import { BTNTemplates } from "../hooks/BTNtemplates";
+import { useState } from "react";
+import { AddTemplate } from "./AddTemplate";
 
 export const AddInput = ({ Prop, setProp, title, templates }) => {
+  const [formToAdd, setFormToAdd] = useState(false);
   return (
     <>
       {" "}
@@ -19,7 +23,25 @@ export const AddInput = ({ Prop, setProp, title, templates }) => {
           }}
         />
       </div>
-      <BTNTemplates templates={templates} setState={setProp} />
+      {formToAdd ? (
+        <>
+          <AddTemplate
+            templates={templates}
+            prop={Prop}
+            setState={setProp}
+            setFormToAdd={setFormToAdd}
+            formToAdd={formToAdd}
+          />
+          <BTNTemplates templates={templates} setState={setProp} />
+        </>
+      ) : (
+        <>
+          <BTNTemplates templates={templates} setState={setProp} />
+          <Button variant="success" onClick={() => setFormToAdd(!formToAdd)}>
+            +
+          </Button>
+        </>
+      )}
     </>
   );
 };
