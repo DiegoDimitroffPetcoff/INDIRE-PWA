@@ -5,14 +5,30 @@ import { ProjectDetail } from "./ProjectDetail/ProjectDetail.jsx";
 
 export const ProjectComponent = () => {
   const [data, setData] = useState({});
+  const [sections, setSections] = useState([
+    { content: "", title: "INTRODUÇÃO" },
+    { content: "", title: "DESCRIÇÃO GERAL" },
+    { content: "", title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO" },
+    { content: "", title: "ELEMENTOS BASE" },
+    { content: "", title: "HISTÓRICO DE INTERVENÇÕES" },
+    {
+      content: "",
+      title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
+    },
+    { content: "", title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO" },
+    { content: "", title: "CONCLUSÕES" },
+  ]);
   const [showPreview, setShowPreview] = useState(false);
-  console.log("se renderiza projectView");
 
   return (
     <>
       {showPreview ? (
         <>
-          <ProjectDetail data={data} />
+          <ProjectDetail
+            data={data}
+            sections={sections}
+            setSections={setSections}
+          />
 
           <button
             onClick={() => {
@@ -26,18 +42,13 @@ export const ProjectComponent = () => {
       ) : (
         <AddProject
           data={data}
+          sections={sections}
+          setSections={setSections}
           setData={setData}
           setShowPreview={setShowPreview}
           showPreview={showPreview}
         />
       )}
-      <button
-        onClick={() => {
-          console.log(data);
-        }}
-      >
-        VER DATA
-      </button>
     </>
   );
 };

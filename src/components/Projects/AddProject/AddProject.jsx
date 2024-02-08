@@ -7,9 +7,14 @@ import { AddInput } from "../../../hooks/AddInput";
 
 import gral_descriptionTemplate from "../Templates/Gral_description.json";
 
-export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
-  console.log("se renderiza projectView");
-
+export const AddProject = ({
+  data,
+  setData,
+  sections,
+  setSections,
+  setShowPreview,
+  showPreview,
+}) => {
   //Summary States------------------------------------------------------------------------------
   //--------------------------------------------------------------------------------------------
 
@@ -17,23 +22,6 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
   const [sub_title, setSub_title] = useState(data.sub_title || "");
   const [address, setAddress] = useState(data.address || "");
   const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
-
-
-  //File Sections---------------------------------------------------------------------------------
-  //--------------------------------------------------------------------------------------------
-  const [sections, setSections] = useState([
-    { content: "", title: "INTRODUÇÃO" },
-    { content: "", title: "DESCRIÇÃO GERAL" },
-    { content: "", title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO" },
-    { content: "", title: "ELEMENTOS BASE" },
-    { content: "", title: "HISTÓRICO DE INTERVENÇÕES" },
-    {
-      content: "",
-      title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
-    },
-    { content: "", title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO" },
-    { content: "", title: "CONCLUSÕES" },
-  ]);
 
   //File States---------------------------------------------------------------------------------
   //--------------------------------------------------------------------------------------------
@@ -65,8 +53,6 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
   };
 
   const handleFileChange1 = async (event) => {
-    console.log("ADD PROJECT");
-    console.log(event.target.files);
     setFile(event.target.files[0]);
   };
 
