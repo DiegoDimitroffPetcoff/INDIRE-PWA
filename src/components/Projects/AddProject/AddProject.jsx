@@ -8,6 +8,8 @@ import { AddInput } from "../../../hooks/AddInput";
 import gral_descriptionTemplate from "../Templates/Gral_description.json";
 
 export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
+  console.log("se renderiza projectView");
+
   //Summary States------------------------------------------------------------------------------
   //--------------------------------------------------------------------------------------------
 
@@ -16,22 +18,22 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
   const [address, setAddress] = useState(data.address || "");
   const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
 
-  //Sections States----------------------------------------------------------------------------
-  //--------------------------------------------------------------------------------------------
 
-  const [introduction, setIntroduction] = useState(data.introduction || "");
-  const [gral_description, setGral_description] = useState(
-    data.gral_description || ""
-  );
-  const [building_technical_inspection, setBuilding_technical_inspection] =
-    useState(data.building_technical_inspection || "");
-  const [base_element, setBase_element] = useState(data.base_element || "");
-  const [history, setHistory] = useState(data.history || "");
-  const [elemento, setElemento] = useState(data.elemento || "");
-  const [recommendations, setRecommendations] = useState(
-    data.recommendations || ""
-  );
-  const [conclusions, setConclusions] = useState(data.conclusions || "");
+  //File Sections---------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------------
+  const [sections, setSections] = useState([
+    { content: "", title: "INTRODUÇÃO" },
+    { content: "", title: "DESCRIÇÃO GERAL" },
+    { content: "", title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO" },
+    { content: "", title: "ELEMENTOS BASE" },
+    { content: "", title: "HISTÓRICO DE INTERVENÇÕES" },
+    {
+      content: "",
+      title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
+    },
+    { content: "", title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO" },
+    { content: "", title: "CONCLUSÕES" },
+  ]);
 
   //File States---------------------------------------------------------------------------------
   //--------------------------------------------------------------------------------------------
@@ -51,25 +53,7 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
         main_img_url,
         address,
         project_number: "Ref.ª 19.11.12_RELATÓRIO_INSPEÇÃO_v1.0",
-        sections: [
-          { content: introduction, title: "INTRODUÇÃO" },
-          { content: gral_description, title: "DESCRIÇÃO GERAL" },
-          {
-            content: building_technical_inspection,
-            title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO",
-          },
-          { content: base_element, title: "ELEMENTOS BASE" },
-          { content: history, title: "HISTÓRICO DE INTERVENÇÕES" },
-          {
-            content: elemento,
-            title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
-          },
-          {
-            content: recommendations,
-            title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
-          },
-          { content: conclusions, title: "CONCLUSÕES" },
-        ],
+        sections,
       };
 
       setData(newPDF);
@@ -114,72 +98,20 @@ export const AddProject = ({ data, setData, setShowPreview, showPreview }) => {
           setMain_img_url={setMain_img_url}
           main_img_url={main_img_url}
         />
-
-        <AddInput
-          data={data.sections}
-          Prop={introduction}
-          setProp={setIntroduction}
-          title="INTRODUÇÃO"
-          placeholder="INTRODUÇÃO"
-          templates={gral_descriptionTemplate}
-          
-        />
-{/* 
-        <AddInput
-          Prop={gral_description}
-          setProp={setGral_description}
-          title="DESCRIÇÃO GERAL"
-          placeholder="DESCRIÇÃO GERAL"
-          templates={gral_descriptionTemplate}
-        />
-
-        <AddInput
-          Prop={building_technical_inspection}
-          setProp={setBuilding_technical_inspection}
-          title="INSPEÇÃO TÉCNICA AO EDIFÍCIO"
-          placeholder="INSPEÇÃO TÉCNICA AO EDIFÍCIO"
-          templates={gral_descriptionTemplate}
-        />
-
-        <AddInput
-          Prop={base_element}
-          setProp={setBase_element}
-          title="ELEMENTOS BASE"
-          placeholder="ELEMENTOS BASE"
-          templates={gral_descriptionTemplate}
-        />
-
-        <AddInput
-          Prop={history}
-          setProp={setHistory}
-          title="HISTÓRICO DE INTERVENÇÕES"
-          placeholder="HISTÓRICO DE INTERVENÇÕES"
-          templates={gral_descriptionTemplate}
-        />
-        <AddInput
-          Prop={elemento}
-          setProp={setElemento}
-          title="ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
-          placeholder=" ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS"
-          templates={gral_descriptionTemplate}
-        />
-        <AddInput
-          Prop={recommendations}
-          setProp={setRecommendations}
-          title="RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO"
-          placeholder=" RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO"
-          templates={gral_descriptionTemplate}
-        />
-        <AddInput
-          Prop={conclusions}
-          setProp={setConclusions}
-          title="CONCLUSÕES"
-          placeholder="CONCLUSÕES"
-          templates={gral_descriptionTemplate}
-        /> */}
-
+        {sections.map((section, index) => (
+          <AddInput
+            Prop={section.content}
+            setProp={(value) => {
+              const updatedSection = [...sections];
+              updatedSection[index].content = value;
+              setSections(updatedSection);
+            }}
+            title={section.title}
+            templates={gral_descriptionTemplate}
+            key={index}
+          />
+        ))}
         <br></br>
-
         <button style={{ background: "green" }}> PREVIEW</button>
       </form>
 

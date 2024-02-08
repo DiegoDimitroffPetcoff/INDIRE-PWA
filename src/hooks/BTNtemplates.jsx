@@ -1,4 +1,6 @@
 export const BTNTemplates = ({ templates, setState }) => {
+ 
+
   function handleTemplate(value, e) {
     e.preventDefault();
     let templateSelected = templates[value];

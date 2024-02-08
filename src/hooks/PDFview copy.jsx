@@ -91,9 +91,7 @@ export const PDFView = ({ data }) => {
                 {" "}
                 {item.content !== "" ? (
                   <>
-                    <Text style={styles.title}>
-                      {index + 1}-{item.title}
-                    </Text>
+                    <Text style={styles.title}>{index + 1}-{item.title}</Text>
                     <Text>{item.content}</Text>
                   </>
                 ) : (
@@ -109,3 +107,20 @@ export const PDFView = ({ data }) => {
     </Document>
   );
 };
+
+/*         <Text style={styles.title}>{data.title}</Text>
+        <Text>{data.introduction}</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text>{data.gral_description}</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text>{data.building_technical_inspection}</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text>{data.base_element}</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text>{data.history}</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text>{data.elemento}</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text>{data.recommendations}</Text>
+        <Text style={styles.title}>{data.title}</Text>
+        <Text>{data.conclusions}</Text> */

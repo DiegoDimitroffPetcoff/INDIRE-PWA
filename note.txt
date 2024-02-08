@@ -25,6 +25,8 @@ Validaciones de cuando no se agrega nada en el inputn(agregar el color que muest
 Que el objeto sea crado de manera dinamica
 Validacion cuando no haya un data.body (es enviado desde addProject a PDFview)
 
+Probar crear un estado sections e incorporar todos los estados alli
+
 Dependencias eliminadas:
 * html2canvas
 * jspdf

@@ -1,6 +1,6 @@
 import { BTNTemplates } from "../hooks/BTNtemplates";
 
-export const AddInput = ({ Prop, setProp, title, templates }) => {
+export const AddInput = ({ Prop, setProp, title, placeholder, templates }) => {
   return (
     <>
       {" "}
@@ -13,7 +13,7 @@ export const AddInput = ({ Prop, setProp, title, templates }) => {
           rows={5}
           className="form-control"
           value={Prop}
-          placeholder={"EXAMPLE:" + title}
+          placeholder={"EXAMPLE:" + placeholder}
           onChange={(e) => {
             setProp(e.target.value);
           }}
