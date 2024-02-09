@@ -7,11 +7,16 @@ FetchAddProjectTest.jsx(deprequeted - non confirmed)
 Se envia a Microsoft Graph data en binario
    como aplicacion /PDF
 
+COLORES:
+amarillo: #e7b504
+negro: #050404
+marron oscuro: #663c0c
+marron: #8e5404
+verde: #746c04
+
+
 TAREAS:
-REORDENAR CODIGO
-Leer que es BLOB
 Buscar como almacenar el archivo PDF localmente para casos offline
-Mirar el archivos BlobConversor y practicar retornos de promesas
 Hacer visual de usuario no logeado (hecho pero desordenado) Tambien desabilitar ruta segun este o no logeado
 MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO) 
 Crear ventanas emergentes para los casos en los que se suban de manera exitosa los archivos

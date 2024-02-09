@@ -3,6 +3,8 @@ import { useState } from "react";
 import { AddProject } from "./AddProject/AddProject.jsx";
 import { ProjectDetail } from "./ProjectDetail/ProjectDetail.jsx";
 
+import Button from "react-bootstrap/Button";
+
 export const ProjectComponent = () => {
   const [data, setData] = useState({});
   const [sections, setSections] = useState([
@@ -30,14 +32,15 @@ export const ProjectComponent = () => {
             setSections={setSections}
           />
 
-          <button
+          <Button
+            variant="secondary"
             onClick={() => {
               setShowPreview(!showPreview);
             }}
           >
             {" "}
             BACK
-          </button>
+          </Button>
         </>
       ) : (
         <AddProject

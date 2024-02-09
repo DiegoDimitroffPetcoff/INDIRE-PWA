@@ -30,7 +30,7 @@ export const SideBar = () => {
                   className="nav-link"
                   aria-current="page"
                 >
-                  Add Project
+                  Redigir novo projeto
                 </Link>
               </li>
               <li className="nav-item">

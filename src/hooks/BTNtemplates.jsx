@@ -1,3 +1,4 @@
+import Button from "react-bootstrap/Button";
 export const BTNTemplates = ({ templates, setState }) => {
   function handleTemplate(value, e) {
     e.preventDefault();
@@ -14,14 +15,15 @@ export const BTNTemplates = ({ templates, setState }) => {
       {templates.map((template, value) => (
         <>
           {" "}
-          <label
+          <Button
+            variant="dark"
             key={value}
-            className="btn btn-outline-danger"
-            htmlFor="vbtn-radio2"
+           // className="btn btn-outline-danger"
+           // htmlFor="vbtn-radio2"
             onClick={(e) => handleTemplate(value, e)}
           >
             Template {value + 1}
-          </label>
+          </Button>
         </>
       ))}
     </div>

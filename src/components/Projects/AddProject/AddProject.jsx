@@ -6,6 +6,7 @@ import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
 
 import gral_descriptionTemplate from "../Templates/Gral_description.json";
+import Button from "react-bootstrap/Button";
 
 export const AddProject = ({
   data,
@@ -23,11 +24,7 @@ export const AddProject = ({
   const [address, setAddress] = useState(data.address || "");
   const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
 
-  //File States---------------------------------------------------------------------------------
-  //--------------------------------------------------------------------------------------------
-  const [file, setFile] = useState(null);
-  const fileInputRef = useRef(null); //
-  const [errorMessage, setErrorMessage] = useState("Subir Projecto");
+  const [errorMessage, setErrorMessage] = useState("Redigir novo projeto");
 
   const handleSubmite = async (e) => {
     e.preventDefault();
@@ -49,23 +46,6 @@ export const AddProject = ({
     } catch (error) {
       console.log(error);
       setErrorMessage("Hubo un problema al crear el PDF.");
-    }
-  };
-
-  const handleFileChange1 = async (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  const SaveFile = async () => {
-    if (file) {
-      try {
-        await PDFMakerFILE(file);
-        fileInputRef.current.value = null;
-      } catch (error) {
-        setErrorMessage(
-          "Hubo un problema al subir el archivo. Por favor, inténtelo de nuevo más tarde."
-        );
-      }
     }
   };
 
@@ -98,21 +78,8 @@ export const AddProject = ({
           />
         ))}
         <br></br>
-        <button style={{ background: "green" }}> PREVIEW</button>
+        <Button variant="secondary"> PREVIEW</Button>
       </form>
-
-      <button
-        style={{ background: "pink" }}
-        onClick={SaveFile}
-        ref={fileInputRef}
-      >
-        SUBIR FILE
-      </button>
-      <input
-        style={{ background: "pink" }}
-        type="file"
-        onChange={handleFileChange1}
-      />
     </div>
   );
 };

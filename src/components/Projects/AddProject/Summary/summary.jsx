@@ -18,7 +18,7 @@ export const Summary = ({
     console.log("SUMMARY");
   };
   return (
-    <>
+    <div style={{backgroundColor:"#dee2e6", borderRadius: "15px", padding:"15px"}}>
       {" "}
       <div className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">
@@ -64,12 +64,9 @@ export const Summary = ({
         />
       </div>
       <div className="mb-3">
-{/*         <label htmlFor="exampleFormControlInput1" className="form-label">
-          Imagen
-        </label> */}
         <input
           type="file"
-          accept="image/*" 
+          accept="image/*"
           hidden
           className="form-control-file"
           onChange={({ target: { files } }) => {
@@ -88,7 +85,7 @@ export const Summary = ({
           <img src={main_img_url} width={60} height={60} alt={fileName} />
         ) : (
           <MdCloudUpload
-            color="red"
+            color="#717171"
             size={60}
             onClick={() =>
               document.getElementsByClassName("form-control-file")[0].click()
@@ -96,6 +93,6 @@ export const Summary = ({
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
