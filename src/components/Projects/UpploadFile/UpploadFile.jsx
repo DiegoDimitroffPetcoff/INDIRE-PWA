@@ -36,6 +36,7 @@ export const UpploadFile = () => {
           borderRadius: "15px",
           padding: "15px",
           margin: "5px",
+          
         }}
       >
         <input type="file" onChange={handleFileChange1} />

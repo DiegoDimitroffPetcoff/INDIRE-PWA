@@ -1,11 +1,4 @@
-AddPD2.jsx (deprequeted - non confirmed)
-Selecciona un archivo PDF lo convierte en un BLOB
-y lo envia
-- ya saque la logica.. falta eliminarlo y probar si todo sigue funcionando
 
-FetchAddProjectTest.jsx(deprequeted - non confirmed)
-Se envia a Microsoft Graph data en binario
-   como aplicacion /PDF
 
 COLORES:
 amarillo: #e7b504
@@ -16,6 +9,8 @@ verde: #746c04
 
 
 TAREAS:
+1- Hacer los templates
+2- Agregar alert cuando se sube un PDF
 Buscar como almacenar el archivo PDF localmente para casos offline
 Hacer visual de usuario no logeado (hecho pero desordenado) Tambien desabilitar ruta segun este o no logeado
 MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO) 
@@ -26,11 +21,10 @@ Agregar espacio para subir directamente un PDF
 AGREGAR NUMERO DE RELATORIO
 
 automatizar componente de Text
-Validaciones de cuando no se agrega nada en el inputn(agregar el color que muestra cuando un input esta completado)
-Que el objeto sea crado de manera dinamica
+agregar el color que muestra cuando un input esta completado)
 Validacion cuando no haya un data.body (es enviado desde addProject a PDFview)
 
-Probar crear un estado sections e incorporar todos los estados alli
+
 
 Dependencias eliminadas:
 * html2canvas

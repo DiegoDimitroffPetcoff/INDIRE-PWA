@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
 
-import { PDFMakerFILE } from "../../../utils/pdfMakerFILE";
-
 import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
 
@@ -73,12 +71,12 @@ export const AddProject = ({
               setSections(updatedSection);
             }}
             title={section.title}
-            templates={gral_descriptionTemplate}
+            templates={section.template}
             key={index}
           />
         ))}
         <br></br>
-        <Button variant="secondary"> PREVIEW</Button>
+        <Button variant="secondary" onClick={handleSubmite}> PREVIEW</Button>
       </form>
     </div>
   );

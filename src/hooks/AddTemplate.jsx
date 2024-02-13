@@ -16,7 +16,6 @@ export const AddTemplate = ({
   function addTemplate(template) {
     setTemplateAdded(true);
 
-    console.log("si");
     const newTemplate = templates.push(template);
     setFormToAdd(!formToAdd);
     return newTemplate;
@@ -36,7 +35,6 @@ export const AddTemplate = ({
           margin: "5px",
           transition: "opacity 0.3s ease", // Agrega transición de opacidad
           opacity: "2", // Hace que la ventana aparezca gradualmente
-   
         }}
       >
         <BTNTemplates templates={templates} setState={setState} />
