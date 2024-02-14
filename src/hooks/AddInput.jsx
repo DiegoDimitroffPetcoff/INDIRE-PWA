@@ -5,6 +5,9 @@ import { AddTemplate } from "./AddTemplate";
 
 export const AddInput = ({ Prop, setProp, title, templates }) => {
   const [formToAdd, setFormToAdd] = useState(false);
+  function cleatInput(params) {
+    setProp("");
+  }
 
   return (
     <>
@@ -26,14 +29,30 @@ export const AddInput = ({ Prop, setProp, title, templates }) => {
             variant="success"
             style={{
               borderRadius: "50%",
+              margin: "5px",
               boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
-              margin: "0px 100px 1px 10px",
             }}
             onClick={() => setFormToAdd(!formToAdd)}
           >
             {" "}
             +
           </Button>
+          {Prop ? (
+            <Button
+              variant="danger"
+              style={{
+                borderRadius: "50%",
+                padding: "10px",
+                fontSize: "10px",
+                margin: "2.5px",
+                boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
+              }}
+              onClick={() => cleatInput()}
+            >
+              {" "}
+              Limpar
+            </Button>
+          ) : null}
           <div
             id="prueba"
             className="mb-3"
@@ -44,6 +63,7 @@ export const AddInput = ({ Prop, setProp, title, templates }) => {
           >
             <textarea
               type="text"
+              style={{ backgroundColor: Prop ? "#19875457" : "" }}
               rows={5}
               className="form-control"
               value={Prop}

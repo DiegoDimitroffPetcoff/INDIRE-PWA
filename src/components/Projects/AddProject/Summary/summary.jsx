@@ -13,12 +13,15 @@ export const Summary = ({
   setMain_img_url,
 }) => {
   const [fileName, setFileName] = useState(null);
-  const handleFileChange = (event) => {
-    event.preventDefault();
-    console.log("SUMMARY");
-  };
+
   return (
-    <div style={{backgroundColor:"#dee2e6", borderRadius: "15px", padding:"15px"}}>
+    <div
+      style={{
+        backgroundColor: "#dee2e6",
+        borderRadius: "15px",
+        padding: "15px",
+      }}
+    >
       {" "}
       <div className="mb-3">
         <label htmlFor="exampleFormControlInput1" className="form-label">

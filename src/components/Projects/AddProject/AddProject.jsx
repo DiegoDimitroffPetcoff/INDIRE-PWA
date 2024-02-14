@@ -62,21 +62,34 @@ export const AddProject = ({
           setMain_img_url={setMain_img_url}
           main_img_url={main_img_url}
         />
-        {sections.map((section, index) => (
-          <AddInput
-            Prop={section.content}
-            setProp={(value) => {
-              const updatedSection = [...sections];
-              updatedSection[index].content = value;
-              setSections(updatedSection);
-            }}
-            title={section.title}
-            templates={section.template}
-            key={index}
-          />
-        ))}
-        <br></br>
-        <Button variant="secondary" onClick={handleSubmite}> PREVIEW</Button>
+        <div
+          style={{
+            padding: "5px",
+            margin: "5px",
+          }}
+        >
+          {sections.map((section, index) => (
+            <>
+              <h3>{section.title}</h3>
+              <AddInput
+                Prop={section.content}
+                setProp={(value) => {
+                  const updatedSection = [...sections];
+                  updatedSection[index].content = value;
+                  setSections(updatedSection);
+                }}
+                title={section.title}
+                templates={section.template}
+                key={index}
+              />
+            </>
+          ))}
+        </div>
+
+        <Button variant="secondary" onClick={handleSubmite}>
+          {" "}
+          PREVIEW
+        </Button>
       </form>
     </div>
   );
