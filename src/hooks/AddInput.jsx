@@ -3,9 +3,12 @@ import { BTNTemplates } from "../hooks/BTNtemplates";
 import { useState } from "react";
 import { AddTemplate } from "./AddTemplate";
 
+import { IoMdAdd } from "react-icons/io";
+import { MdOutlineClear } from "react-icons/md";
+
 export const AddInput = ({ Prop, setProp, title, templates }) => {
   const [formToAdd, setFormToAdd] = useState(false);
-  function cleatInput(params) {
+  function cleatInput() {
     setProp("");
   }
 
@@ -28,29 +31,23 @@ export const AddInput = ({ Prop, setProp, title, templates }) => {
           <Button
             variant="success"
             style={{
-              borderRadius: "50%",
-              margin: "5px",
               boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
             }}
             onClick={() => setFormToAdd(!formToAdd)}
           >
             {" "}
-            +
+            <IoMdAdd />
           </Button>
           {Prop ? (
             <Button
               variant="danger"
               style={{
-                borderRadius: "50%",
-                padding: "10px",
-                fontSize: "10px",
-                margin: "2.5px",
                 boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
               }}
               onClick={() => cleatInput()}
             >
               {" "}
-              Limpar
+              <MdOutlineClear />
             </Button>
           ) : null}
           <div
@@ -58,7 +55,7 @@ export const AddInput = ({ Prop, setProp, title, templates }) => {
             className="mb-3"
             style={{
               padding: "0px 0px 50px",
-              borderRadius: "15px",
+              borderRadius: "50%",
             }}
           >
             <textarea

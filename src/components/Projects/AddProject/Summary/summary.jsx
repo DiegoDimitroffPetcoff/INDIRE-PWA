@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { AiFillFileImage } from "react-icons/ai";
+
 import { MdCloudUpload } from "react-icons/md";
+import { CiCircleCheck } from "react-icons/ci";
 
 export const Summary = ({
   setTitle,
@@ -66,29 +67,61 @@ export const Summary = ({
           }}
         />
       </div>
-      <div className="mb-3">
+      <div
+        className="mb-3"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignContent: "end",
+
+          aligItems: "flex-end",
+        }}
+      >
         <input
+          style={{
+            cursor: "pointer",
+            padding: "20px",
+          }}
           type="file"
           accept="image/*"
           hidden
           className="form-control-file"
           onChange={({ target: { files } }) => {
-            files[0] && setFileName(files[0].name);
             if (files) {
+              files[0] && setFileName(files[0].name);
               const reader = new FileReader();
               reader.onload = (e) => {
                 setMain_img_url(e.target.result);
               };
-              reader.readAsDataURL(files[0]);
+              if (files[0] !== undefined) {
+                reader.readAsDataURL(files[0]);
+              }
             }
           }}
         />
 
         {main_img_url ? (
-          <img src={main_img_url} width={60} height={60} alt={fileName} />
+          <>
+            <img
+              src={main_img_url}
+              style={{
+                cursor: "pointer",
+              }}
+              width={60}
+              height={60}
+              onClick={() =>
+                document.getElementsByClassName("form-control-file")[0].click()
+              }
+              alt={fileName}
+            />
+            <CiCircleCheck />
+          </>
         ) : (
           <MdCloudUpload
             color="#717171"
+            style={{
+              cursor: "pointer",
+            }}
             size={60}
             onClick={() =>
               document.getElementsByClassName("form-control-file")[0].click()

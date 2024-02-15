@@ -1,9 +1,8 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
 
-import gral_descriptionTemplate from "../Templates/Gral_description.json";
 import Button from "react-bootstrap/Button";
 
 export const AddProject = ({
@@ -68,22 +67,24 @@ export const AddProject = ({
             margin: "5px",
           }}
         >
-          {sections.map((section, index) => (
-            <>
-              <h3>{section.title}</h3>
-              <AddInput
-                Prop={section.content}
-                setProp={(value) => {
-                  const updatedSection = [...sections];
-                  updatedSection[index].content = value;
-                  setSections(updatedSection);
-                }}
-                title={section.title}
-                templates={section.template}
-                key={index}
-              />
-            </>
-          ))}
+          {sections
+            ? sections.map((section, index) => (
+                <>
+                  <h3>{section.title}</h3>
+                  <AddInput
+                    Prop={section.content}
+                    setProp={(value) => {
+                      const updatedSection = [...sections];
+                      updatedSection[index].content = value;
+                      setSections(updatedSection);
+                    }}
+                    title={section.title}
+                    templates={section.template}
+                    key={index}
+                  />
+                </>
+              ))
+            : null}
         </div>
 
         <Button variant="secondary" onClick={handleSubmite}>

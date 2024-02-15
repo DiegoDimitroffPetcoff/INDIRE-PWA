@@ -1,6 +1,5 @@
 import Button from "react-bootstrap/Button";
 export const BTNTemplates = ({ templates, setState }) => {
-  console.log(templates);
   function handleTemplate(value, e) {
     e.preventDefault();
     let templateSelected = templates[value];

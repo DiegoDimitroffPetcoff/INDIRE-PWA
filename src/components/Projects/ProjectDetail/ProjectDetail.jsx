@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
 });
 
 export const ProjectDetail = ({ data }) => {
-
   return (
     <>
       {" "}
@@ -25,6 +24,8 @@ export const ProjectDetail = ({ data }) => {
         {({ loading, url, error, blob }) =>
           loading ? (
             <button>Loaging Document..</button>
+          ) : error ? (
+            "hunbo un error"
           ) : (
             <button onClick={() => FetchPostMicrosoftGraph(blob)}>
               Download now
