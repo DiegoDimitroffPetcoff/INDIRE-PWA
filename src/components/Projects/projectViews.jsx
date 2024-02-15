@@ -14,6 +14,7 @@ import Conclusions from "./Templates/conclusions.json";
 import Cost from "./Templates/cost.json";
 
 import Button from "react-bootstrap/Button";
+import { MdArrowBackIosNew } from "react-icons/md";
 
 export const ProjectComponent = () => {
   const [data, setData] = useState({});
@@ -49,12 +50,6 @@ export const ProjectComponent = () => {
     <>
       {showPreview ? (
         <>
-          <ProjectDetail
-            data={data}
-            sections={sections}
-            setSections={setSections}
-          />
-
           <Button
             variant="secondary"
             onClick={() => {
@@ -62,8 +57,17 @@ export const ProjectComponent = () => {
             }}
           >
             {" "}
-            BACK
+            <MdArrowBackIosNew
+              onClick={() => {
+                setShowPreview(!showPreview);
+              }}
+            />
           </Button>
+          <ProjectDetail
+            data={data}
+            sections={sections}
+            setSections={setSections}
+          />
         </>
       ) : (
         <AddProject

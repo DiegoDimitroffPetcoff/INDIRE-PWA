@@ -81,6 +81,7 @@ export const Summary = ({
           style={{
             cursor: "pointer",
             padding: "20px",
+            
           }}
           type="file"
           accept="image/*"
@@ -106,9 +107,10 @@ export const Summary = ({
               src={main_img_url}
               style={{
                 cursor: "pointer",
+                borderRadius: "10px"
               }}
-              width={60}
-              height={60}
+              width={100}
+              height={100}
               onClick={() =>
                 document.getElementsByClassName("form-control-file")[0].click()
               }
