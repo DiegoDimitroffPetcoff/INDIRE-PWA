@@ -5,8 +5,10 @@ import { Alerts } from "../../../hooks/Alerts";
 import { useState } from "react";
 
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { LuHardDriveDownload } from "react-icons/lu";
 import { ImOnedrive } from "react-icons/im";
+import Spinner from "react-bootstrap/Spinner";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -37,20 +39,21 @@ export const ProjectDetail = ({ data }) => {
 
   return (
     <>
-      {/* Alert for success and error cases */}
-
       <PDFDownloadLink
         document={<PDFView data={data} />}
         fileName={data.title + ".pdf"}
       >
         {({ loading, url, error, blob }) =>
           loading ? (
-            <Button>Loaging Document..</Button>
+            <Spinner />
           ) : error ? (
             "hunbo un error"
           ) : (
             <>
-              <Button onClick={() => handleFectch(blob)}>
+              <Button
+                style={{ margin: "3px" }}
+                onClick={() => handleFectch(blob)}
+              >
                 <ImOnedrive />
               </Button>
               <Button>
@@ -60,6 +63,8 @@ export const ProjectDetail = ({ data }) => {
           )
         }
       </PDFDownloadLink>
+      {/* Alert for success and error cases */}
+
       {showAlert && (
         <Alerts
           message={messageAlert}
@@ -67,6 +72,7 @@ export const ProjectDetail = ({ data }) => {
           closeOn={() => setShowAlert(false)}
         />
       )}
+
       <PDFViewer style={styles.viewer}>
         <PDFView data={data} />
       </PDFViewer>

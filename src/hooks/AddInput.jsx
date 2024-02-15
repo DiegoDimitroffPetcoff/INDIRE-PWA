@@ -54,7 +54,7 @@ export const AddInput = ({ Prop, setProp, title, templates }) => {
             id="prueba"
             className="mb-3"
             style={{
-              padding: "0px 0px 50px",
+              padding: "0px 0px 10px",
               borderRadius: "50%",
             }}
           >

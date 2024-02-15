@@ -4,6 +4,9 @@ import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
 
 import Button from "react-bootstrap/Button";
+import { VscOpenPreview } from "react-icons/vsc";
+import { MdOutlinePictureAsPdf } from "react-icons/md";
+import { FaRegFileWord } from "react-icons/fa";
 
 export const AddProject = ({
   data,
@@ -50,7 +53,15 @@ export const AddProject = ({
     <div style={{ width: "100%" }}>
       {errorMessage && <h1>{errorMessage}</h1>}
 
-      <form onSubmit={handleSubmite}>
+      <form
+        onSubmit={handleSubmite}
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
         <Summary
           setTitle={setTitle}
           title={title}
@@ -86,11 +97,24 @@ export const AddProject = ({
               ))
             : null}
         </div>
-
-        <Button variant="secondary" onClick={handleSubmite}>
-          {" "}
-          PREVIEW
-        </Button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            variant="secondary"
+            onClick={handleSubmite}
+            style={{ width: "40%", margin: "5px" }}
+          >
+            {" "}
+            <MdOutlinePictureAsPdf  />
+          </Button>
+          <Button
+            variant="secondary"
+            onClick={handleSubmite}
+            style={{ width: "40%", margin: "5px" }}
+          >
+            {" "}
+            <FaRegFileWord  />
+          </Button>
+        </div>
       </form>
     </div>
   );
