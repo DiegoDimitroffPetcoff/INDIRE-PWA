@@ -74,4 +74,4 @@ self.addEventListener('message', (event) => {
 
 
 //new version
-const version = "app-version-v17 - Succesfully PFD and Upload Imagen!" 
+const version = "app-version-v18 - Add Info on LocalStorage and Pesquisador" 

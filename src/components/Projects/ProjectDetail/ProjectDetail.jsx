@@ -5,7 +5,6 @@ import { Alerts } from "../../../hooks/Alerts";
 import { useState } from "react";
 
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import { LuHardDriveDownload } from "react-icons/lu";
 import { ImOnedrive } from "react-icons/im";
 import Spinner from "react-bootstrap/Spinner";
@@ -26,8 +25,18 @@ export const ProjectDetail = ({ data }) => {
 
   async function handleFectch(blob) {
     //do the fetch - error case: Change the alert to danger with the message
+
     try {
-      const result = await FetchPostMicrosoftGraph(blob);
+      //TENGO QUE VER COMO MANEJAR CUANDO NO HAYA AUN INFORMACION EN EL LOCAL STORAGE
+      let allData = JSON.parse(localStorage.getItem("ProjectList"));
+      allData.push(data);
+      console.log("se agrega nuevo objeto");
+      console.log(allData);
+      const result = localStorage.setItem(
+        "ProjectList",
+        JSON.stringify(allData)
+      );
+      //const result = await FetchPostMicrosoftGraph(blob);
       setShowAlert(true);
       setMessageAlert(result);
     } catch (error) {

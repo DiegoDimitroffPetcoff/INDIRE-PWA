@@ -34,18 +34,8 @@ export const SideBar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Search By Number
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Search By Title
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" aria-disabled="false">
-                  Disabled
+                <a className="nav-link" href="/ProjectList">
+                  Pesquisa
                 </a>
               </li>
             </ul>
@@ -56,4 +46,3 @@ export const SideBar = () => {
     </>
   );
 };
-
