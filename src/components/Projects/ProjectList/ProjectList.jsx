@@ -1,13 +1,12 @@
-
 import Alert from "react-bootstrap/Alert";
-import { LuHardDriveDownload } from "react-icons/lu";
-import { ImOnedrive } from "react-icons/im";
 
+import { TiDeleteOutline } from "react-icons/ti";
+import { CiEdit } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 
 import Table from "react-bootstrap/Table";
-export const ProjectList = ({ setDataToEdite }) => {
-  console.log(setDataToEdite);
+import { IdMaker } from "../../../utils/idMaker";
+export const ProjectList = ({ setData }) => {
   const navigate = useNavigate();
   const data = JSON.parse(localStorage.getItem("ProjectList"));
 
@@ -39,19 +38,19 @@ export const ProjectList = ({ setDataToEdite }) => {
                     cursor: "pointer",
                   }}
                   onClick={() => {
-                    setDataToEdite(project);
-                    console.log(project);
-                    navigate("/EditeProject");
+                    setData(project);
+                    navigate("/AddProjectPage");
                   }}
                 >
-                  <ImOnedrive />
+                  <CiEdit />
                 </td>
                 <td
                   style={{
                     cursor: "pointer",
                   }}
+                  onClick={() => IdMaker(index + 1)}
                 >
-                  <LuHardDriveDownload />
+                  <TiDeleteOutline />
                 </td>
               </tr>
             ))}

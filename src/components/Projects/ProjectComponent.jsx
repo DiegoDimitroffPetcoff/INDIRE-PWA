@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { AddProject } from "./AddProject/AddProject.jsx";
 import { ProjectDetail } from "./ProjectDetail/ProjectDetail.jsx";
@@ -8,6 +8,11 @@ import { MdArrowBackIosNew } from "react-icons/md";
 
 export const ProjectComponent = ({ data, setData, sections, setSections }) => {
   const [showPreview, setShowPreview] = useState(false);
+  useEffect(() => {
+    if (data && data.sections) {
+      setSections(data.sections);
+    }
+  }, [data, setSections]);
 
   return (
     <>

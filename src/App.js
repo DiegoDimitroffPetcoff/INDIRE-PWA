@@ -7,7 +7,7 @@ import { SideBar } from "./components/Common/SideBar.jsx";
 import { UpploadFile } from "./components/Projects/UpploadFile/UpploadFile.jsx";
 import { ProjectComponent } from "./components/Projects/ProjectComponent.jsx";
 import { ProjectList } from "./components/Projects/ProjectList/ProjectList.jsx";
-import { EditeProject } from "./components/Projects/EditeProject/EditeProject.jsx";
+
 
 import Introduction from "./components/Projects/Templates/Introduction.json";
 import Gral_description from "./components/Projects/Templates/Gral_description.json";
@@ -21,7 +21,7 @@ import Cost from "./components/Projects/Templates/cost.json";
 
 export const Context = React.createContext();
 function App() {
-  const [dataToEdite, setDataToEdite] = useState({});
+ 
   const [data, setData] = useState({});
   const [sections, setSections] = useState([
     { content: "", title: "INTRODUÇÃO", template: Introduction },
@@ -67,12 +67,9 @@ function App() {
         />
         <Route
           path="/ProjectList"
-          element={<ProjectList setDataToEdite={setDataToEdite} />}
+          element={<ProjectList data={data} setData={setData}  />}
         />
-        <Route
-          path="/EditeProject"
-          element={<EditeProject dataToEdite={dataToEdite} />}
-        />
+
       </Routes>
     </Context.Provider>
   );
