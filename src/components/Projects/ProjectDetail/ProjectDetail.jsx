@@ -24,19 +24,20 @@ export const ProjectDetail = ({ data }) => {
   const [type, setType] = useState("success");
 
   async function handleFectch(blob) {
-    //do the fetch - error case: Change the alert to danger with the message
-
     try {
-      //TENGO QUE VER COMO MANEJAR CUANDO NO HAYA AUN INFORMACION EN EL LOCAL STORAGE
-      let allData = JSON.parse(localStorage.getItem("ProjectList"));
+      let allData = null;
+      if (localStorage.getItem("ProjectList") === null) {
+        localStorage.setItem("ProjectList", "[]");
+        allData = JSON.parse(localStorage.getItem("ProjectList"));
+        console.log("se creo array");
+      } else {
+        allData = JSON.parse(localStorage.getItem("ProjectList"));
+        console.log("LocalStorage ya con array");
+      }
+
       allData.push(data);
-      console.log("se agrega nuevo objeto");
-      console.log(allData);
-      const result = localStorage.setItem(
-        "ProjectList",
-        JSON.stringify(allData)
-      );
-      //const result = await FetchPostMicrosoftGraph(blob);
+      localStorage.setItem("ProjectList", JSON.stringify(allData));
+      const result = await FetchPostMicrosoftGraph(blob);
       setShowAlert(true);
       setMessageAlert(result);
     } catch (error) {

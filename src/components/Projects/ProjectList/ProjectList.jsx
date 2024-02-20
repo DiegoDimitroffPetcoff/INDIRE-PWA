@@ -1,15 +1,20 @@
-import dataMock from "../../../mocks/projectListMocks.json";
+
 import Alert from "react-bootstrap/Alert";
 import { LuHardDriveDownload } from "react-icons/lu";
 import { ImOnedrive } from "react-icons/im";
 
+import { useNavigate } from "react-router-dom";
+
 import Table from "react-bootstrap/Table";
-export const ProjectList = () => {
+export const ProjectList = ({ setDataToEdite }) => {
+  console.log(setDataToEdite);
+  const navigate = useNavigate();
   const data = JSON.parse(localStorage.getItem("ProjectList"));
+
   return (
     <>
       <h1>Pesquisar</h1>
-      {data ? (
+      {data && data.length > 0 ? (
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -22,16 +27,21 @@ export const ProjectList = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((data, index) => (
-              <tr key={index} onClick={() => console.log({ data })}>
-                <td>{data.project_id}</td>
-                <td>{data.title}</td>
-                <td>{data.address}</td>
-                <td>{data.date}</td>
-                <td>{data.project_number}</td>
+            {data.map((project, index) => (
+              <tr key={index}>
+                <td>{project.project_id}</td>
+                <td>{project.title}</td>
+                <td>{project.address}</td>
+                <td>{project.date}</td>
+                <td>{project.project_number}</td>
                 <td
                   style={{
                     cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    setDataToEdite(project);
+                    console.log(project);
+                    navigate("/EditeProject");
                   }}
                 >
                   <ImOnedrive />

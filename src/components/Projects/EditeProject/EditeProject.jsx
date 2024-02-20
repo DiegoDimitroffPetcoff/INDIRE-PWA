@@ -7,24 +7,18 @@ import Button from "react-bootstrap/Button";
 
 import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { FaRegFileWord } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
-export const AddProject = ({
-  data,
-  setData,
-  sections,
-  setSections,
-  setShowPreview,
-  showPreview,
-}) => {
-  //Summary States------------------------------------------------------------------------------
-  //--------------------------------------------------------------------------------------------
+export const EditeProject = ({ dataToEdite }) => {
+  const sections = dataToEdite.sections;
+  const [title, setTitle] = useState(dataToEdite.title || "");
+  const [sub_title, setSub_title] = useState(dataToEdite.sub_title || "");
+  const [address, setAddress] = useState(dataToEdite.address || "");
+  const [main_img_url, setMain_img_url] = useState(
+    dataToEdite.main_img_url || ""
+  );
 
-  const [title, setTitle] = useState(data.title || "");
-  const [sub_title, setSub_title] = useState(data.sub_title || "");
-  const [address, setAddress] = useState(data.address || "");
-  const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
-
-  const [errorMessage, setErrorMessage] = useState("Redigir novo projeto");
+  const [errorMessage, setErrorMessage] = useState("Editar");
 
   const handleSubmite = async (e) => {
     e.preventDefault();
@@ -38,11 +32,11 @@ export const AddProject = ({
         main_img_url,
         address,
         project_number: "Ref.ª 19.11.12_RELATÓRIO_INSPEÇÃO_v1.0",
-        sections,
+        sections: dataToEdite.sections,
       };
-
+      /*
       setData(newPDF);
-      setShowPreview(!showPreview);
+      setShowPreview(!showPreview);*/
     } catch (error) {
       console.log(error);
       setErrorMessage("Hubo un problema al crear el PDF.");
@@ -87,7 +81,7 @@ export const AddProject = ({
                     setProp={(value) => {
                       const updatedSection = [...sections];
                       updatedSection[index].content = value;
-                      setSections(updatedSection);
+                      /* setSections(updatedSection); */
                     }}
                     title={section.title}
                     templates={section.template}
