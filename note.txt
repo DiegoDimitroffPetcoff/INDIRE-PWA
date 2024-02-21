@@ -10,20 +10,13 @@ verde: #746c04
 
 TAREAS:
 1- Hacer los templates
-2- Agregar alert cuando se sube un PDF
-Buscar como almacenar el archivo PDF localmente para casos offline
-Hacer visual de usuario no logeado (hecho pero desordenado) Tambien desabilitar ruta segun este o no logeado
-MIRAR LOS ERRORES(POR EJEMPLO CUANDO SE SUBE UN ARCHIVO SIN ESTAR LOGEADO) 
-Crear ventanas emergentes para los casos en los que se suban de manera exitosa los archivos
-TERMINAR RELATORIO VISUAL PDF
-AGREGAR SETTINGS -> editar carpeta donde se va a guardar todo y NOMBRE DEL ARCHIVO
-Agregar espacio para subir directamente un PDF
-AGREGAR NUMERO DE RELATORIO
-
-automatizar componente de Text
-agregar el color que muestra cuando un input esta completado)
-Validacion cuando no haya un data.body (es enviado desde addProject a PDFview)
-
+2- Agregar alert cuando se sube un PDF directamente
+3- Estudiar INdexdb
+4- Manejo de la App cuando este offline
+5- Recrear funciones de guardado en casos offline
+6- TERMINAR RELATORIO VISUAL PDF
+7- AGREGAR SETTINGS -> editar carpeta donde se va a guardar todo y NOMBRE DEL ARCHIVO
+8- AGREGAR NUMERO DE RELATORIO
 
 
 Dependencias eliminadas:
