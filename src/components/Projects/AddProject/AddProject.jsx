@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 
 import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { FaRegFileWord } from "react-icons/fa";
+import { DateMaker } from "../../../utils/dateMaker";
 
 export const AddProject = ({
   data,
@@ -39,6 +40,7 @@ export const AddProject = ({
         address,
         project_number: "Ref.ª 19.11.12_RELATÓRIO_INSPEÇÃO_v1.0",
         sections,
+        date: DateMaker()
       };
 
       setData(newPDF);

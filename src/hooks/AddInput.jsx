@@ -60,7 +60,7 @@ export const AddInput = ({ Prop, setProp, title, templates }) => {
           >
             <textarea
               type="text"
-              style={{ backgroundColor: Prop ? "#19875457" : "" }}
+              style={{ backgroundColor: Prop ? "rgb(13 110 253 / 15%)" : "" }}
               rows={5}
               className="form-control"
               value={Prop}

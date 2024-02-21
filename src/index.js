@@ -9,8 +9,9 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
 //Microsoft Graph and provider msal
-import { Providers } from "@microsoft/mgt-element";
+import { Providers, ProviderState } from "@microsoft/mgt-element";
 import { Msal2Provider } from "@microsoft/mgt-msal2-provider";
+
 Providers.globalProvider = new Msal2Provider({
   clientId: "d58ed348-f9f6-4d18-96b8-235eec7929c7",
 });

@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
 });
 
 export const PDFView = ({ data }) => {
+
  let counter = 0
 
   return (
@@ -81,7 +82,7 @@ export const PDFView = ({ data }) => {
           {data.main_img_url && (
             <Image style={styles.mainImg} src={data.main_img_url} />
           )}
-          <Text style={styles.date}>{DateMaker()}</Text>
+          <Text style={styles.date}>{data.date}</Text>
           <Text style={styles.subTitle}>{data.sub_title}</Text>
           <Text style={styles.title}>{data.project_number}</Text>
         </View>
