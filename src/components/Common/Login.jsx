@@ -3,17 +3,18 @@ import { Logo } from "./Logo";
 
 export const Log = () => {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        alignContent: "center",
+        justifyContent: "center",
+        flexWrap: "wrap",
+        height: "100vh",
+        flexDirection: "column",
+      }}
+    >
       <Logo />
       <Login />
     </div>
   );
 };
-
-/* 
-display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    height: 100vh;
-    flex-direction: column; */
