@@ -74,4 +74,4 @@ self.addEventListener('message', (event) => {
 
 
 //new version
-const version = "app-version-v18 - Add Info on LocalStorage and Pesquisador" 
+const version = "app-version-v19 - / route Logged in and Not Logged" 
