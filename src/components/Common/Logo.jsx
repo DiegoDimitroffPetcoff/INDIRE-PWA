@@ -1,6 +1,6 @@
 import LogoImage from "../../assets/INDIRE_LOGO.png";
 
-export const Logo = () => {
+ const Logo = () => {
   return (
     <figure
       style={{
@@ -13,4 +13,4 @@ export const Logo = () => {
     </figure>
   );
 };
-/*  */
+export default Logo

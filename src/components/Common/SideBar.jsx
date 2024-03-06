@@ -1,9 +1,9 @@
-import { Logo } from "./Logo";
+import  Logo  from "./Logo";
 import { Link } from "react-router-dom";
 
 import { Login } from "@microsoft/mgt-react";
 
-export const SideBar = () => {
+const SideBar = () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -44,3 +44,4 @@ export const SideBar = () => {
     </nav>
   );
 };
+export default SideBar

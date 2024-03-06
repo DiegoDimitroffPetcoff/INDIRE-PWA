@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-
-import { SideBar } from "./components/Common/SideBar.jsx";
-import { UpploadFile } from "./components/Projects/UpploadFile/UpploadFile.jsx";
-import { ProjectComponent } from "./components/Projects/ProjectComponent.jsx";
-import { ProjectList } from "./components/Projects/ProjectList/ProjectList.jsx";
+import { Providers, ProviderState } from "@microsoft/mgt-element";
 
 import Introduction from "./components/Projects/Templates/Introduction.json";
 import Gral_description from "./components/Projects/Templates/Gral_description.json";
@@ -15,10 +11,20 @@ import Element from "./components/Projects/Templates/element.json";
 import Recommendations from "./components/Projects/Templates/recommendations.json";
 import Conclusions from "./components/Projects/Templates/conclusions.json";
 import Cost from "./components/Projects/Templates/cost.json";
-import { Log } from "./components/Common/Login.jsx";
+import SpinnerComponent from "./components/Common/Spinner.jsx";
 
-import { Providers, ProviderState } from "@microsoft/mgt-element";
-import { NotFound } from "./components/Common/NotFound.jsx";
+const SideBar = lazy(() => import("./components/Common/SideBar.jsx"));
+const UpploadFile = lazy(() =>
+  import("./components/Projects/UpploadFile/UpploadFile.jsx")
+);
+const ProjectComponent = lazy(() =>
+  import("./components/Projects/ProjectComponent.jsx")
+);
+const ProjectList = lazy(() =>
+  import("./components/Projects/ProjectList/ProjectList.jsx")
+);
+const Log = lazy(() => import("./components/Common/Login.jsx"));
+const NotFound = lazy(() => import("./components/Common/NotFound.jsx"));
 
 function App() {
   const [data, setData] = useState({});
@@ -65,37 +71,39 @@ function App() {
     };
   }, []);
   return (
-    <>
-      {isLoggedIn ? (
-        <>
-          <SideBar />
+
+      <Suspense fallback={<SpinnerComponent />}>
+        {isLoggedIn ? (
+          <>
+            <SideBar />
+            <Routes>
+              <Route path="/" element={<UpploadFile />} />
+              <Route
+                path="/AddProjectPage"
+                element={
+                  <ProjectComponent
+                    data={data}
+                    setData={setData}
+                    sections={sections}
+                    setSections={setSections}
+                  />
+                }
+              />
+              <Route
+                path="/ProjectList"
+                element={<ProjectList data={data} setData={setData} />}
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </>
+        ) : (
           <Routes>
-            <Route path="/" element={<UpploadFile />} />
-            <Route
-              path="/AddProjectPage"
-              element={
-                <ProjectComponent
-                  data={data}
-                  setData={setData}
-                  sections={sections}
-                  setSections={setSections}
-                />
-              }
-            />
-            <Route
-              path="/ProjectList"
-              element={<ProjectList data={data} setData={setData} />}
-            />
+            <Route path="/" element={<Log />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </>
-      ) : (
-        <Routes>
-          <Route path="/" element={<Log />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      )}
-    </>
+        )}
+      </Suspense>
+
   );
 }
 

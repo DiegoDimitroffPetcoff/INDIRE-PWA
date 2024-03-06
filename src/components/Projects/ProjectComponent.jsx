@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
-
-import { AddProject } from "./AddProject/AddProject.jsx";
-import { ProjectDetail } from "./ProjectDetail/ProjectDetail.jsx";
-
+import { useState, useEffect, lazy, Suspense } from "react";
 import Button from "react-bootstrap/Button";
 import { MdArrowBackIosNew } from "react-icons/md";
 
-export const ProjectComponent = ({ data, setData, sections, setSections }) => {
+import SpinnerComponent from "../Common/Spinner.jsx";
+
+const AddProject = lazy(() => import("./AddProject/AddProject.jsx"));
+const ProjectDetail = lazy(() => import("./ProjectDetail/ProjectDetail.jsx"));
+
+const ProjectComponent = ({ data, setData, sections, setSections }) => {
   const [showPreview, setShowPreview] = useState(false);
   useEffect(() => {
     if (data && data.sections) {
@@ -15,7 +16,7 @@ export const ProjectComponent = ({ data, setData, sections, setSections }) => {
   }, [data, setSections]);
 
   return (
-    <>
+    <Suspense fallback={<SpinnerComponent />}>
       {showPreview ? (
         <>
           <Button
@@ -47,6 +48,7 @@ export const ProjectComponent = ({ data, setData, sections, setSections }) => {
           showPreview={showPreview}
         />
       )}
-    </>
+    </Suspense>
   );
 };
+export default ProjectComponent;

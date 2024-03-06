@@ -3,13 +3,13 @@ import { useState } from "react";
 import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
 
-import Button from "react-bootstrap/Button";
-
+import { DateMaker } from "../../../utils/dateMaker";
 import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { FaRegFileWord } from "react-icons/fa";
-import { DateMaker } from "../../../utils/dateMaker";
+import Button from "react-bootstrap/Button";
 
-export const AddProject = ({
+
+const AddProject = ({
   data,
   setData,
   sections,
@@ -121,3 +121,4 @@ export const AddProject = ({
     </div>
   );
 };
+export default AddProject

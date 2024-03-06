@@ -1,7 +1,7 @@
 import { Login } from "@microsoft/mgt-react";
-import { Logo } from "./Logo";
+import Logo from "./Logo";
 
-export const Log = () => {
+const Log = () => {
   return (
     <div
       style={{
@@ -11,8 +11,7 @@ export const Log = () => {
         flexWrap: "wrap",
         height: "100vh",
         flexDirection: "column",
-        boxShadow: "rgba(0, 0, 0, 0.5) -1px -1px 20px 0px inset"
-        
+        boxShadow: "rgba(0, 0, 0, 0.5) -1px -1px 20px 0px inset",
       }}
     >
       <Logo />
@@ -20,3 +19,4 @@ export const Log = () => {
     </div>
   );
 };
+export default Log;

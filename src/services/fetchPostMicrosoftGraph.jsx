@@ -1,6 +1,6 @@
 import { Auth } from "../utils/auth";
 
-export const FetchPostMicrosoftGraph = async (file) => {
+const FetchPostMicrosoftGraph = async (file) => {
   try {
     const accessToken = await Auth();
     var root = "https://graph.microsoft.com/v1.0/me/drive/root:";
@@ -33,3 +33,4 @@ export const FetchPostMicrosoftGraph = async (file) => {
     throw new Error(error);
   }
 };
+export default FetchPostMicrosoftGraph

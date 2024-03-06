@@ -18,6 +18,13 @@ TAREAS:
 7- AGREGAR SETTINGS -> editar carpeta donde se va a guardar todo y NOMBRE DEL ARCHIVO
 8- AGREGAR NUMERO DE RELATORIO
 
+a- Performance (ver cuando se renderizan de mas los componentes)
+b- Agregar numero de Relatorio en INput
+c- Agregar fecha Manualmente
+d- Menu 
+f- boton para ir para arriba en el momento de edicion
+g- Reordenar cuado de proyectos guardados
+
 
 Dependencias eliminadas:
 * html2canvas

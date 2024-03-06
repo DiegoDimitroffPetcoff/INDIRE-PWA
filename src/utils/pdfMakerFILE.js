@@ -1,4 +1,4 @@
-import { FetchPostMicrosoftGraph } from "../services/fetchPostMicrosoftGraph";
+import  FetchPostMicrosoftGraph  from "../services/fetchPostMicrosoftGraph";
 
 //UTILS TO CONVERT FILE PDF IN BLOB TO BE SENT
 export const PDFMakerFILE = async (file) => {

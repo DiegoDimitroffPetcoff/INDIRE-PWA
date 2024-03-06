@@ -1,7 +1,7 @@
 import { TbError404 } from "react-icons/tb";
-import { Logo } from "./Logo";
+import Logo from "./Logo";
 
-export const NotFound = () => {
+const NotFound = () => {
   return (
     <div
       style={{
@@ -20,7 +20,7 @@ export const NotFound = () => {
           width: "50%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <Logo />
@@ -30,3 +30,4 @@ export const NotFound = () => {
     </div>
   );
 };
+export default NotFound;

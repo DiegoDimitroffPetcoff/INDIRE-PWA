@@ -1,4 +1,4 @@
-import { FetchPostMicrosoftGraph } from "../../../services/fetchPostMicrosoftGraph";
+import  FetchPostMicrosoftGraph  from "../../../services/fetchPostMicrosoftGraph";
 import { StyleSheet, PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFView } from "../../../hooks/PDFview";
 import { Alerts } from "../../../hooks/Alerts";
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ProjectDetail = ({ data }) => {
+const ProjectDetail = ({ data }) => {
   //Status to show the alert
   const [showAlert, setShowAlert] = useState(false);
   const [messageAlert, setMessageAlert] = useState("");
@@ -89,3 +89,4 @@ export const ProjectDetail = ({ data }) => {
     </>
   );
 };
+export default ProjectDetail;
