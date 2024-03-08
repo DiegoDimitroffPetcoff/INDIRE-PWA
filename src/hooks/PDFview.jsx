@@ -12,13 +12,13 @@ import {
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    flexDirection: "row",
-    backgroundColor: "#E4E4E4",
-    width: "100%",
-    height: "100vh",
-    justifyContent: "center",
-    alignContent: "center",
-    padding: 5,
+    paddingTop: 35,
+    paddingBottom: 65,
+    paddingHorizontal: 35,
+  },
+  title: {
+    fontSize: 24,
+    textAlign: "center",
   },
   section: {
     margin: 10,
@@ -30,8 +30,16 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100vh",
   },
+  header: {
+    fontSize: 12,
+    textAlign: "right",
+    color: "grey",
+  },
   logo: {
     width: "10%",
+  },
+  logoHeader:{
+    width: "50px"
   },
   mainImg: {
     width: "50%",
@@ -59,11 +67,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
   },
-  title: {
-    display: "flex",
-    fontSize: 20,
+  pageNumber: {
+    position: "absolute",
+    fontSize: 12,
+    bottom: 30,
+    left: 0,
+    right: 0,
     textAlign: "center",
-    marginTop: 50,
+    color: "grey",
   },
 });
 
@@ -74,7 +85,7 @@ export const PDFView = ({ data }) => {
     <Document style={styles.viewer}>
       <Page size="A4" style={styles.page}>
         <View style={styles.section}>
-          <Image style={styles.logo} src={LogoImage} />
+          <Image style={styles.logoHeader} src={LogoImage} />
           <Text style={styles.mainTitle}>{data.title}</Text>
           <Text style={styles.adress}>{data.address}</Text>
           {data.main_img_url && (
@@ -87,7 +98,25 @@ export const PDFView = ({ data }) => {
           </Text>
         </View>
       </Page>
-      <Page size="A4" style={styles.page}>
+      <Page size="A4" style={styles.page} wrap>
+        <View fixed>
+          <Text style={styles.header}>
+            {data.project_number + "-" + data.title + "-V" + data.version}
+          </Text>
+          <Image style={styles.logo} src={LogoImage} />
+          <Text style={styles.header}>{data.title}</Text>
+          <Text style={styles.header}>{data.address}</Text>
+          <Text
+            style={styles.pageNumber}
+            render={({ pageNumber, totalPages }) =>
+              `${pageNumber} / ${totalPages}`
+            }
+            fixed
+          />
+          <Text style={styles.header}>
+            ------------------------------------------------------------------------------------------------------------------
+          </Text>
+        </View>
         <View style={styles.section}>
           {data.sections ? (
             data.sections.map((item, index) => (
