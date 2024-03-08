@@ -8,7 +8,6 @@ import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { FaRegFileWord } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
 
-
 const AddProject = ({
   data,
   setData,
@@ -24,6 +23,11 @@ const AddProject = ({
   const [sub_title, setSub_title] = useState(data.sub_title || "");
   const [address, setAddress] = useState(data.address || "");
   const [main_img_url, setMain_img_url] = useState(data.main_img_url || "");
+  const [project_number, setProject_number] = useState(
+    data.project_number || ""
+  );
+  const [date, setDate] = useState(data.date || "");
+  const [version, setVersion] = useState(data.version || "");
 
   const [errorMessage, setErrorMessage] = useState("Redigir novo projeto");
 
@@ -38,9 +42,10 @@ const AddProject = ({
         sub_title,
         main_img_url,
         address,
-        project_number: "Ref.ª 19.11.12_RELATÓRIO_INSPEÇÃO_v1.0",
+        project_number,
         sections,
-        date: DateMaker()
+        date,
+        version
       };
 
       setData(newPDF);
@@ -73,6 +78,12 @@ const AddProject = ({
           adrress={address}
           setMain_img_url={setMain_img_url}
           main_img_url={main_img_url}
+          setProject_number={setProject_number}
+          project_number={project_number}
+          date={date}
+          setDate={setDate}
+          version={version}
+          setVersion={setVersion}
         />
         <div
           style={{
@@ -121,4 +132,4 @@ const AddProject = ({
     </div>
   );
 };
-export default AddProject
+export default AddProject;

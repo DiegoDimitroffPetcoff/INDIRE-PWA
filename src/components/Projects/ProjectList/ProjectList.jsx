@@ -3,6 +3,7 @@ import Alert from "react-bootstrap/Alert";
 
 import Table from "react-bootstrap/Table";
 import { IdMaker } from "../../../utils/idMaker";
+
 import { TiDeleteOutline } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
 

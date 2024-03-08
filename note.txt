@@ -14,17 +14,25 @@ TAREAS:
 3- Estudiar INdexdb
 4- Manejo de la App cuando este offline
 5- Recrear funciones de guardado en casos offline
-6- TERMINAR RELATORIO VISUAL PDF
-7- AGREGAR SETTINGS -> editar carpeta donde se va a guardar todo y NOMBRE DEL ARCHIVO
-8- AGREGAR NUMERO DE RELATORIO
 
+JUEVES:
 a- Performance (ver cuando se renderizan de mas los componentes)
-b- Agregar numero de Relatorio en INput
-c- Agregar fecha Manualmente
-d- Menu 
+b-
+c- 
+d- Menu desplegable
+VIERNES:
 f- boton para ir para arriba en el momento de edicion
-g- Reordenar cuado de proyectos guardados
+g- Reordenar tabla de proyectos guardados
+f- Seleccionar carpeta donde se va a guardar el proyecto
+g- Diseno de PDF
+SABADO:
+A- Creacion de Inputs anidados
 
+B- Creacion de documentos word
+C- Creacion de Presupuesto
+D- Analisis de utilizacion de MEMORIA
+f- Creacin de Alert en caso de que el archivo o la carpeta 
+no exista o de que el archivo ya exista/que sea editado
 
 Dependencias eliminadas:
 * html2canvas

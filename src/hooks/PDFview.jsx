@@ -1,6 +1,5 @@
-import { useState } from "react";
 import LogoImage from "../assets/INDIRE_LOGO.png";
-import { DateMaker } from "../utils/dateMaker";
+
 import {
   Page,
   Text,
@@ -69,8 +68,7 @@ const styles = StyleSheet.create({
 });
 
 export const PDFView = ({ data }) => {
-
- let counter = 0
+  let counter = 0;
 
   return (
     <Document style={styles.viewer}>
@@ -84,7 +82,9 @@ export const PDFView = ({ data }) => {
           )}
           <Text style={styles.date}>{data.date}</Text>
           <Text style={styles.subTitle}>{data.sub_title}</Text>
-          <Text style={styles.title}>{data.project_number}</Text>
+          <Text style={styles.title}>
+            {data.project_number + "-" + data.title + "-V" + data.version}
+          </Text>
         </View>
       </Page>
       <Page size="A4" style={styles.page}>
@@ -96,8 +96,7 @@ export const PDFView = ({ data }) => {
                 {item.content !== "" ? (
                   <>
                     <Text style={styles.title}>
-                    {++counter}-{item.title}
-                      
+                      {++counter}-{item.title}
                     </Text>
                     <Text>{item.content}</Text>
                   </>
