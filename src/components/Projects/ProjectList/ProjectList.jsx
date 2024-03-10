@@ -33,7 +33,13 @@ const ProjectList = ({ setData }) => {
                 <td>{project.title}</td>
                 <td>{project.address}</td>
                 <td>{project.date}</td>
-                <td>{project.project_number}</td>
+                <td>
+                  {project.date +
+                    "_" +
+                    project.title +
+                    "_" +
+                    project.project_number}
+                </td>
                 <td
                   style={{
                     cursor: "pointer",
