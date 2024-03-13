@@ -99,15 +99,10 @@ const AddProject = ({
                   <AddInput
                     Content={section.content}
                     subSection={section.subSection}
-                    setSubSections={
-                      (value)=>{
-                        console.log("section")
-                        console.log(section)
-                        console.log("value")
-                        console.log(value)
-                        /* const updatedSubSection = [...section.] */
-                      }
-                    }
+                    setSubSections={(value) => {
+                      section.subSection.push(value);
+                      console.log(section);
+                    }}
                     id={index}
                     setContent={(value) => {
                       const updatedSection = [...sections];

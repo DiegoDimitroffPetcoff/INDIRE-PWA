@@ -9,6 +9,11 @@ verde: #746c04
 
 
 TAREAS:
+SECTIONS:
+A- templates
+B- GESTIONAR CREACION DE COMPONENTES (como repetir el componente?)
+c- id de los componentes
+
 1- Hacer los templates
 2- Agregar alert cuando se sube un PDF directamente
 3- Estudiar INdexdb

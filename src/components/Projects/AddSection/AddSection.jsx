@@ -24,12 +24,9 @@ const AddSection = ({ id, addSubSection, setAddSubSection }) => {
       subSection: [],
       template: "",
     };
-    console.log(subSection);
-    setAddSubSection(subSection)
+
+    setAddSubSection(subSection);
   }
-
-
-
 
   return (
     <>
@@ -45,7 +42,7 @@ const AddSection = ({ id, addSubSection, setAddSubSection }) => {
           <BTNTemplates templates={templates} setState={setContent} />
         </>
       ) : (
-        <>
+        <div style={{ padding: "10px" }}>
           <BTNTemplates templates={templates} setState={setContent} />
           <Button
             variant="success"
@@ -91,7 +88,7 @@ const AddSection = ({ id, addSubSection, setAddSubSection }) => {
             />
             <Button onClick={handleAddSubSection}>Manter</Button>
           </div>
-        </>
+        </div>
       )}
     </>
   );
