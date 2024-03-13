@@ -1,27 +1,35 @@
 import Button from "react-bootstrap/Button";
-import { BTNTemplates } from "../hooks/BTNtemplates";
+import { BTNTemplates } from "../../../hooks/BTNtemplates";
 import { useState } from "react";
-import { AddTemplate } from "./AddTemplate";
-
+import { AddTemplate } from "../../../hooks/AddTemplate";
+import templates from "../../../mocks/introductionMock.json";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineClear } from "react-icons/md";
-import AddSection from "../components/Projects/AddSection/AddSection";
 
-export const AddInput = ({
-  Content,
-  setContent,
-  title,
-  templates,
-  id,
-  subSection,
-  setSubSections
-}) => {
+const AddSection = ({ id, addSubSection, setAddSubSection }) => {
   const [addTemplate, setAddTemplate] = useState(false);
-  const [addSubSection, setAddSubSection] = useState(false);
+
+  const [title, setTitle] = useState(addSubSection.title || "");
+  const [content, setContent] = useState(addSubSection.content || "");
 
   function cleatInput() {
     setContent("");
   }
+
+  function handleAddSubSection(params) {
+    let subSection = {
+      id: id,
+      content,
+      title,
+      subSection: [],
+      template: "",
+    };
+    console.log(subSection);
+    setAddSubSection(subSection)
+  }
+
+
+
 
   return (
     <>
@@ -29,7 +37,7 @@ export const AddInput = ({
         <>
           <AddTemplate
             templates={templates}
-            Content={Content}
+            Content={content}
             setState={setContent}
             setAddTemplate={setAddTemplate}
             addTemplate={addTemplate}
@@ -49,7 +57,7 @@ export const AddInput = ({
             {" "}
             <IoMdAdd />
           </Button>
-          {Content ? (
+          {content ? (
             <Button
               variant="danger"
               style={{
@@ -72,30 +80,20 @@ export const AddInput = ({
             <textarea
               type="text"
               style={{
-                backgroundColor: Content ? "rgb(13 110 253 / 15%)" : "",
+                backgroundColor: content ? "rgb(13 110 253 / 15%)" : "",
               }}
               rows={5}
               className="form-control"
-              value={Content}
-              placeholder={title}
+              value={content}
               onChange={(e) => {
                 setContent(e.target.value);
               }}
             />
-            {addSubSection ? (
-              <AddSection
-                id={id}
-                addSubSection={subSection}
-                setAddSubSection={setSubSections}
-              />
-            ) : (
-              <Button onClick={() => setAddSubSection(!addSubSection)}>
-                +
-              </Button>
-            )}
+            <Button onClick={handleAddSubSection}>Manter</Button>
           </div>
         </>
       )}
     </>
   );
 };
+export default AddSection;

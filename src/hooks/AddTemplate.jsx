@@ -7,17 +7,17 @@ import { BTNTemplates } from "../hooks/BTNtemplates";
 
 export const AddTemplate = ({
   templates,
-  prop,
+  Content,
   setState,
-  setFormToAdd,
-  formToAdd,
+  setAddTemplate,
+  addTemplate,
 }) => {
-  const [alertTemplate, setTemplateAdded] = useState(false);
+  const [alertTemplate, setAddTemplateAdded] = useState(false);
   function addTemplate(template) {
-    setTemplateAdded(true);
+    setAddTemplateAdded(true);
 
     const newTemplate = templates.push(template);
-    setFormToAdd(!formToAdd);
+    setAddTemplate(!addTemplate);
     return newTemplate;
   }
   return (
@@ -44,7 +44,7 @@ export const AddTemplate = ({
           <Form.Control
             as="textarea"
             rows={4}
-            value={prop}
+            value={Content}
             onChange={(e) => setState(e.target.value)}
           />
         </Form.Group>
@@ -53,7 +53,7 @@ export const AddTemplate = ({
           style={{
             boxShadow: " rgba(0, 0, 0, 0.5) 0px 0px 11px 0px",
           }}
-          onClick={() => setFormToAdd(!formToAdd)}
+          onClick={() => setAddTemplate(!addTemplate)}
         >
           Cancelar
         </Button>
@@ -63,7 +63,7 @@ export const AddTemplate = ({
             boxShadow: " rgba(0, 0, 0, 0.5) 0px 0px 11px 0px",
             margin: "5px",
           }}
-          onClick={() => addTemplate(prop)}
+          onClick={() => addTemplate(Content)}
         >
           Manter
         </Button>

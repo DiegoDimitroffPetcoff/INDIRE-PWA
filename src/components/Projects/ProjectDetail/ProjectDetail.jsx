@@ -22,7 +22,7 @@ const ProjectDetail = ({ data }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [messageAlert, setMessageAlert] = useState("");
   const [type, setType] = useState("success");
-
+console.log(data);
   async function handleFectch(blob) {
     try {
       let allData = null;

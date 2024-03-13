@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
 
-import { DateMaker } from "../../../utils/dateMaker";
 import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { FaRegFileWord } from "react-icons/fa";
 import Button from "react-bootstrap/Button";
@@ -33,7 +32,7 @@ const AddProject = ({
 
   const handleSubmite = async (e) => {
     e.preventDefault();
-   
+
     try {
       const newPDF = {
         project_id: 1,
@@ -45,7 +44,7 @@ const AddProject = ({
         project_number,
         sections,
         date,
-        version
+        version,
       };
 
       setData(newPDF);
@@ -94,10 +93,23 @@ const AddProject = ({
           {sections
             ? sections.map((section, index) => (
                 <div key={index}>
-                  <h3>{section.title}</h3>
+                  <h3>
+                    {index + 1}. {section.title}
+                  </h3>
                   <AddInput
-                    Prop={section.content}
-                    setProp={(value) => {
+                    Content={section.content}
+                    subSection={section.subSection}
+                    setSubSections={
+                      (value)=>{
+                        console.log("section")
+                        console.log(section)
+                        console.log("value")
+                        console.log(value)
+                        /* const updatedSubSection = [...section.] */
+                      }
+                    }
+                    id={index}
+                    setContent={(value) => {
                       const updatedSection = [...sections];
                       updatedSection[index].content = value;
                       setSections(updatedSection);

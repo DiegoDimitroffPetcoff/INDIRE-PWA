@@ -17,6 +17,7 @@ const ProjectComponent = ({ data, setData, sections, setSections }) => {
 
   return (
     <Suspense fallback={<SpinnerComponent />}>
+      
       {showPreview ? (
         <>
           <Button
