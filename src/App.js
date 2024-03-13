@@ -29,30 +29,49 @@ const NotFound = lazy(() => import("./components/Common/NotFound.jsx"));
 function App() {
   const [data, setData] = useState({});
   const [sections, setSections] = useState([
-    { content: "", title: "INTRODUÇÃO", template: Introduction },
-    { content: "", title: "DESCRIÇÃO GERAL", template: Gral_description },
+    {
+      content: "",
+      title: "INTRODUÇÃO",
+      subSection: [],
+      template: Introduction,
+    },
+    {
+      content: "",
+      title: "DESCRIÇÃO GERAL",
+      subSection: [],
+      template: Gral_description,
+    },
     {
       content: "",
       title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO",
+      subSection: [],
       template: Building_technical_inspection,
     },
-    { content: "", title: "ELEMENTOS BASE", template: Base_element },
+    {
+      content: "",
+      title: "ELEMENTOS BASE",
+      subSection: [],
+      template: Base_element,
+    },
     {
       content: "",
       title: "HISTÓRICO DE INTERVENÇÕES",
+      subSection: [],
       template: Intervention_history,
     },
     {
       content: "",
       title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
+      subSection: [],
       template: Element,
     },
     {
       content: "",
       title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
+      subSection: [],
       template: Recommendations,
     },
-    { content: "", title: "CONCLUSÕES", template: Conclusions },
+    { content: "", title: "CONCLUSÕES", subSection: [], template: Conclusions },
   ]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -71,39 +90,37 @@ function App() {
     };
   }, []);
   return (
-
-      <Suspense fallback={<SpinnerComponent />}>
-        {isLoggedIn ? (
-          <>
-            <SideBar />
-            <Routes>
-              <Route path="/" element={<UpploadFile />} />
-              <Route
-                path="/AddProjectPage"
-                element={
-                  <ProjectComponent
-                    data={data}
-                    setData={setData}
-                    sections={sections}
-                    setSections={setSections}
-                  />
-                }
-              />
-              <Route
-                path="/ProjectList"
-                element={<ProjectList data={data} setData={setData} />}
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </>
-        ) : (
+    <Suspense fallback={<SpinnerComponent />}>
+      {isLoggedIn ? (
+        <>
+          <SideBar />
           <Routes>
-            <Route path="/" element={<Log />} />
+            <Route path="/" element={<UpploadFile />} />
+            <Route
+              path="/AddProjectPage"
+              element={
+                <ProjectComponent
+                  data={data}
+                  setData={setData}
+                  sections={sections}
+                  setSections={setSections}
+                />
+              }
+            />
+            <Route
+              path="/ProjectList"
+              element={<ProjectList data={data} setData={setData} />}
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        )}
-      </Suspense>
-
+        </>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Log />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
+    </Suspense>
   );
 }
 

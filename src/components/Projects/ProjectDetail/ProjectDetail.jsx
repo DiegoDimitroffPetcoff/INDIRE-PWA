@@ -57,7 +57,7 @@ const ProjectDetail = ({ data }) => {
           loading ? (
             <Spinner />
           ) : error ? (
-            "hunbo un error"
+            "Ocorreu um erro ao tentar carregar a visualização. Tente novamente mais tarde, por favor"
           ) : (
             <>
               <Button
