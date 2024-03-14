@@ -5,27 +5,19 @@ import { AddTemplate } from "../../../hooks/AddTemplate";
 import templates from "../../../mocks/introductionMock.json";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineClear } from "react-icons/md";
+import SectionDone from "./views/SectionDone";
+
+import SubSectionEdite from "./views/SectionEdite";
 
 const AddSection = ({ id, addSubSection, setAddSubSection }) => {
   const [addTemplate, setAddTemplate] = useState(false);
+  const [viewSectionEdit, setViewSectionEdit] = useState(false);
 
   const [title, setTitle] = useState(addSubSection.title || "");
   const [content, setContent] = useState(addSubSection.content || "");
 
   function cleatInput() {
     setContent("");
-  }
-
-  function handleAddSubSection(params) {
-    let subSection = {
-      id: id,
-      content,
-      title,
-      subSection: [],
-      template: "",
-    };
-
-    setAddSubSection(subSection);
   }
 
   return (
@@ -66,28 +58,27 @@ const AddSection = ({ id, addSubSection, setAddSubSection }) => {
               <MdOutlineClear />
             </Button>
           ) : null}
-          <div
-            id="prueba"
-            className="mb-3"
-            style={{
-              padding: "0px 0px 10px",
-              borderRadius: "50%",
-            }}
-          >
-            <textarea
-              type="text"
-              style={{
-                backgroundColor: content ? "rgb(13 110 253 / 15%)" : "",
-              }}
-              rows={5}
-              className="form-control"
-              value={content}
-              onChange={(e) => {
-                setContent(e.target.value);
-              }}
+
+          {viewSectionEdit ? (
+            <SectionDone
+              content={content}
+              /*    title={title}
+              setAddSubSection={setAddSubSection}
+              
+              viewSectionEdit={viewSectionEdit}
+              setViewSectionEdit={setViewSectionEdit}*/
+              id={id} 
             />
-            <Button onClick={handleAddSubSection}>Manter</Button>
-          </div>
+          ) : (
+            <SubSectionEdite
+              content={content}
+              setContent={setContent}
+              title={title}
+              setAddSubSection={setAddSubSection}
+              viewSectionEdit={viewSectionEdit}
+              setViewSectionEdit={setViewSectionEdit}
+            />
+          )}
         </div>
       )}
     </>

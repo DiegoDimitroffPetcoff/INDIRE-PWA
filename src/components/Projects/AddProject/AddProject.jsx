@@ -100,8 +100,11 @@ const AddProject = ({
                     Content={section.content}
                     subSection={section.subSection}
                     setSubSections={(value) => {
-                      section.subSection.push(value);
-                      console.log(section);
+                      //Copy the State Section to update
+                      const updatedSection = [...sections];
+                      console.log(sections);
+                      updatedSection[index].subSection.push(value);
+                      setSections(updatedSection);
                     }}
                     id={index}
                     setContent={(value) => {
