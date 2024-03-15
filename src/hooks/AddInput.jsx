@@ -62,7 +62,7 @@ export const AddInput = ({
             </Button>
           ) : null}
           <div
-            id="prueba"
+            id="Add-input"
             className="mb-3"
             style={{
               padding: "0px 0px 10px",

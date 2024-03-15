@@ -92,7 +92,7 @@ const AddProject = ({
         >
           {sections
             ? sections.map((section, index) => (
-                <div key={index}>
+                <section key={index}>
                   <h3>
                     {index + 1}. {section.title}
                   </h3>
@@ -116,7 +116,7 @@ const AddProject = ({
                     templates={section.template}
                     key={index}
                   />
-                </div>
+                </section>
               ))
             : null}
         </div>
