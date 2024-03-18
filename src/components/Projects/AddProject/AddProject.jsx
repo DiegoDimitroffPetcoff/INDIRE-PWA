@@ -2,10 +2,7 @@ import { useState } from "react";
 
 import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
-
-import { MdOutlinePictureAsPdf } from "react-icons/md";
-import { FaRegFileWord } from "react-icons/fa";
-import Button from "react-bootstrap/Button";
+import ShowDetailsButtons from "../ProjectDetail/showDetailsButtons";
 
 const AddProject = ({
   data,
@@ -120,24 +117,7 @@ const AddProject = ({
               ))
             : null}
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button
-            variant="secondary"
-            onClick={handleSubmite}
-            style={{ width: "40%", margin: "5px" }}
-          >
-            {" "}
-            <MdOutlinePictureAsPdf />
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={handleSubmite}
-            style={{ width: "40%", margin: "5px" }}
-          >
-            {" "}
-            <FaRegFileWord />
-          </Button>
-        </div>
+        <ShowDetailsButtons handleSubmite={handleSubmite} />
       </form>
     </div>
   );

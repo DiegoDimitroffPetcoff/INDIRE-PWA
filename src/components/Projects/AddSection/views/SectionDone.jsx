@@ -18,6 +18,7 @@ const SectionDone = ({
           display: "block",
           width: "100%",
           padding: ".375rem .75rem",
+          minHeight: "150px",
           fontSize: "1rem",
           fontWeight: 400,
           lineHeight: 1.5,

@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import templates from "../../../../mocks/introductionMock.json";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineClear } from "react-icons/md";
+import { MdArrowBackIosNew } from "react-icons/md";
+
 
 const SubSectionEdite = ({
   content,
@@ -19,6 +21,7 @@ const SubSectionEdite = ({
 }) => {
   function cleatInput() {
     setContent("");
+    setTitle("");
   }
   function handleAddSubSection() {
     let subSection = {
@@ -36,27 +39,96 @@ const SubSectionEdite = ({
       id="subSection"
       className="mb-3"
       style={{
-        padding: "0px 0px 10px",
-        borderRadius: "50%",
+        padding: "10px",
       }}
     >
       <div>
+        <MdArrowBackIosNew/>
+        <h1>{id+1}.</h1>
+        {title ? (
+          <MdOutlineClear
+            onClick={() => setTitle("")}
+            style={{
+              position: "absolute",
+              right: "35px",
+              transform: "traslate(-50)",
+              cursor: " pointer",
+            }}
+          />
+        ) : null}
+        <input
+          type="text"
+          style={{
+            backgroundColor: title ? "rgb(13 110 253 / 15%)" : "",
+          }}
+          rows={5}
+          className="form-control"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
+      </div>
+      <div>
+        {" "}
+        {content ? (
+          <MdOutlineClear
+            onClick={() => setContent("")}
+            style={{
+              position: "absolute",
+              right: "35px",
+              transform: "traslate(-50)",
+              cursor: " pointer",
+            }}
+          />
+        ) : null}
+        <textarea
+          type="text"
+          style={{
+            backgroundColor: content ? "rgb(13 110 253 / 15%)" : "",
+          }}
+          rows={5}
+          className="form-control"
+          value={content}
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+        />
+      </div>
+
+      <div style={{ margin: "10px" }}>
         <BTNTemplates templates={templates} setState={setContent} />
         <Button
           variant="success"
           style={{
             boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
+            margin: "5px",
           }}
           onClick={() => setAddTemplate(!addTemplate)}
         >
           {" "}
           <IoMdAdd />
         </Button>
-        {content ? (
+
+        <Button
+          onClick={() => {
+            handleAddSubSection();
+            setSubSectionEditable(!subSectionEditable);
+          }}
+          style={{
+            boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
+            margin: "5px",
+          }}
+        >
+          Manter
+        </Button>
+
+        {content || title ? (
           <Button
             variant="danger"
             style={{
               boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
+              margin: "5px",
             }}
             onClick={() => cleatInput()}
           >
@@ -65,39 +137,6 @@ const SubSectionEdite = ({
           </Button>
         ) : null}
       </div>
-      <label>Titulo</label>
-      <input
-        type="text"
-        style={{
-          backgroundColor: title ? "rgb(13 110 253 / 15%)" : "",
-        }}
-        rows={5}
-        className="form-control"
-        value={title}
-        onChange={(e) => {
-          setTitle(e.target.value);
-        }}
-      />
-      <textarea
-        type="text"
-        style={{
-          backgroundColor: content ? "rgb(13 110 253 / 15%)" : "",
-        }}
-        rows={5}
-        className="form-control"
-        value={content}
-        onChange={(e) => {
-          setContent(e.target.value);
-        }}
-      />
-      <Button
-        onClick={() => {
-          handleAddSubSection();
-          setSubSectionEditable(!subSectionEditable);
-        }}
-      >
-        Manter
-      </Button>
     </fieldset>
   );
 };
