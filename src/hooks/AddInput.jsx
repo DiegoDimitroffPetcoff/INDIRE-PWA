@@ -12,7 +12,7 @@ export const AddInput = ({
   subSection,
   setSubSections,
 }) => {
-  const [addSubSection, setAddSubSection] = useState(false);
+  const [additionalSections, setAdditionalSections] = useState([]);
 
   return (
     <>
@@ -42,15 +42,29 @@ export const AddInput = ({
             setContent(e.target.value);
           }}
         />
-        {addSubSection ? (
-          <AddSection
-            id={id}
-            addSubSection={subSection}
-            setAddSubSection={setSubSections}
-          />
-        ) : (
-          <Button onClick={() => setAddSubSection(!addSubSection)}>+</Button>
-        )}
+        {additionalSections
+          ? additionalSections.map((section, index) => (
+              <section style={{ padding: "10px" }} key={index}>
+                {section}
+              </section>
+            ))
+          : null}
+
+        <Button
+          onClick={() =>
+            setAdditionalSections([
+              ...additionalSections,
+              <AddSection
+                key={additionalSections.length}
+                id={id}
+                addSubSection={subSection}
+                setAddSubSection={setSubSections}
+              />,
+            ])
+          }
+        >
+          +
+        </Button>
       </div>
     </>
   );

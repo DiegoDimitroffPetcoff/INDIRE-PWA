@@ -13,7 +13,6 @@ const SectionDone = ({
       {" "}
       <div
         id="SubSectionDone"
- 
         style={{
           display: "block",
           width: "100%",

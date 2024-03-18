@@ -4,6 +4,8 @@ import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
 import ShowDetailsButtons from "../ProjectDetail/showDetailsButtons";
 
+
+
 const AddProject = ({
   data,
   setData,
@@ -117,7 +119,8 @@ const AddProject = ({
               ))
             : null}
         </div>
-        <ShowDetailsButtons handleSubmite={handleSubmite} />
+        <ShowDetailsButtons handleSubmite={handleSubmite}/>
+
       </form>
     </div>
   );

@@ -5,7 +5,8 @@ import templates from "../../../../mocks/introductionMock.json";
 import { IoMdAdd } from "react-icons/io";
 import { MdOutlineClear } from "react-icons/md";
 import { MdArrowBackIosNew } from "react-icons/md";
-
+import TemplateButtons from "../../AddProject/TemplateButtons/templateButtons";
+import AddSection from "../AddSection";
 
 const SubSectionEdite = ({
   content,
@@ -43,8 +44,10 @@ const SubSectionEdite = ({
       }}
     >
       <div>
-        <MdArrowBackIosNew/>
-        <h1>{id+1}.</h1>
+        <MdArrowBackIosNew />
+        <h1>
+          {id + 1}. {id + 1}
+        </h1>
         {title ? (
           <MdOutlineClear
             onClick={() => setTitle("")}
@@ -96,47 +99,24 @@ const SubSectionEdite = ({
         />
       </div>
 
-      <div style={{ margin: "10px" }}>
-        <BTNTemplates templates={templates} setState={setContent} />
-        <Button
-          variant="success"
-          style={{
-            boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
-            margin: "5px",
-          }}
-          onClick={() => setAddTemplate(!addTemplate)}
-        >
-          {" "}
-          <IoMdAdd />
-        </Button>
-
-        <Button
-          onClick={() => {
-            handleAddSubSection();
-            setSubSectionEditable(!subSectionEditable);
-          }}
-          style={{
-            boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
-            margin: "5px",
-          }}
-        >
-          Manter
-        </Button>
-
-        {content || title ? (
-          <Button
-            variant="danger"
-            style={{
-              boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
-              margin: "5px",
-            }}
-            onClick={() => cleatInput()}
-          >
-            {" "}
-            <MdOutlineClear />
-          </Button>
-        ) : null}
-      </div>
+      <TemplateButtons
+        templates={templates}
+        Content={content}
+        setContent={setContent}
+      />
+      <Button
+        onClick={() => {
+          handleAddSubSection();
+          setSubSectionEditable(!subSectionEditable);
+        }}
+        style={{
+          boxShadow: "inset rgba(0, 0, 0, 0.5) 0px -8px 11px 0px",
+          margin: "5px",
+        }}
+      >
+        Manter
+      </Button>
+   
     </fieldset>
   );
 };

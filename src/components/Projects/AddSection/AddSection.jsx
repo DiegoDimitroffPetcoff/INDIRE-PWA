@@ -27,7 +27,7 @@ const AddSection = ({ id, addSubSection, setAddSubSection }) => {
           <BTNTemplates templates={templates} setState={setContent} />
         </>
       ) : (
-        <section style={{ padding: "10px" }}>
+        <>
           {subSectionEditable ? (
             <SectionDone
               content={content}
@@ -50,7 +50,7 @@ const AddSection = ({ id, addSubSection, setAddSubSection }) => {
               setSubSectionEditable={setSubSectionEditable}
             />
           )}
-        </section>
+        </>
       )}
     </>
   );
