@@ -44,7 +44,10 @@ export const AddInput = ({
         />
         {additionalSections
           ? additionalSections.map((section, index) => (
-              <section style={{ padding: "10px" }} key={index}>
+              <section
+                style={{ paddingLeft: "10px", border: "solid" }}
+                key={index}
+              >
                 {section}
               </section>
             ))
@@ -57,8 +60,11 @@ export const AddInput = ({
               <AddSection
                 key={additionalSections.length}
                 id={id}
-                addSubSection={subSection}
-                setAddSubSection={setSubSections}
+                subSection={subSection}
+                setSubSections={setSubSections}
+                
+                additionalSections={additionalSections}
+                setAdditionalSections={setAdditionalSections}
               />,
             ])
           }

@@ -7,6 +7,7 @@ import { MdOutlineClear } from "react-icons/md";
 import { MdArrowBackIosNew } from "react-icons/md";
 import TemplateButtons from "../../AddProject/TemplateButtons/templateButtons";
 import AddSection from "../AddSection";
+import { useState } from "react";
 
 const SubSectionEdite = ({
   content,
@@ -16,14 +17,14 @@ const SubSectionEdite = ({
   id,
   addTemplate,
   setAddTemplate,
-  setAddSubSection,
+  subSection,
+  setSubSections,
   subSectionEditable,
   setSubSectionEditable,
 }) => {
-  function cleatInput() {
-    setContent("");
-    setTitle("");
-  }
+  const [additionalSections, setAdditionalSections] = useState([]);
+
+
   function handleAddSubSection() {
     let subSection = {
       id: id,
@@ -33,7 +34,7 @@ const SubSectionEdite = ({
       template: "",
     };
 
-    setAddSubSection(subSection);
+    setSubSections(subSection);
   }
   return (
     <fieldset
@@ -97,6 +98,16 @@ const SubSectionEdite = ({
             setContent(e.target.value);
           }}
         />
+        {additionalSections
+          ? additionalSections.map((section, index) => (
+              <section
+                style={{ paddingLeft: "10px", border: "solid" }}
+                key={index}
+              >
+                {section}
+              </section>
+            ))
+          : null}
       </div>
 
       <TemplateButtons
@@ -116,7 +127,21 @@ const SubSectionEdite = ({
       >
         Manter
       </Button>
-   
+      <Button
+        onClick={() =>
+          setAdditionalSections([
+            ...additionalSections,
+            <AddSection
+              key={additionalSections.length}
+              id={id}
+              subSection={subSection}
+              setSubSections={setSubSections}
+            />,
+          ])
+        }
+      >
+        +
+      </Button>
     </fieldset>
   );
 };
