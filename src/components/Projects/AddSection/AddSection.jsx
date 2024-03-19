@@ -6,11 +6,11 @@ import SectionDone from "./views/SectionDone";
 
 import SubSectionEdite from "./views/SectionEdite";
 
-const AddSection = ({ id, subSection, setSubSections }) => {
+const AddSection = ({ id, subSection, setSubSections, subProjectCounts }) => {
   const [addTemplate, setAddTemplate] = useState(false);
   const [subSectionEditable, setSubSectionEditable] = useState(false);
 
-  const [title, setTitle] = useState(subSection.title || "");
+  const [title, setTitle] = useState(subSection.title ||  "");
   const [content, setContent] = useState(subSection.content || "");
 
   return (
@@ -43,6 +43,7 @@ const AddSection = ({ id, subSection, setSubSections }) => {
               title={title}
               setTitle={setTitle}
               id={id}
+              subProjectCounts={subProjectCounts}
               addTemplate={addTemplate}
               setAddTemplate={setAddTemplate}
               subSection={subSection}

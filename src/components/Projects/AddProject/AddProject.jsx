@@ -26,6 +26,7 @@ const AddProject = ({
   );
   const [date, setDate] = useState(data.date || "");
   const [version, setVersion] = useState(data.version || "");
+  
 
   const [errorMessage, setErrorMessage] = useState("Redigir novo projeto");
 
@@ -98,6 +99,8 @@ const AddProject = ({
                   <AddInput
                     Content={section.content}
                     subSection={section.subSection}
+                    id={index}
+
                     setSubSections={(value) => {
                       //Copy the State Section to update
                       const updatedSection = [...sections];
@@ -105,7 +108,6 @@ const AddProject = ({
                       updatedSection[index].subSection.push(value);
                       setSections(updatedSection);
                     }}
-                    id={index}
                     setContent={(value) => {
                       const updatedSection = [...sections];
                       updatedSection[index].content = value;

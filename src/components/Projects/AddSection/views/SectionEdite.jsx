@@ -1,8 +1,8 @@
-import { BTNTemplates } from "../../../../hooks/BTNtemplates";
 import Button from "react-bootstrap/Button";
+import { LuArrowDownToDot } from "react-icons/lu";
 
 import templates from "../../../../mocks/introductionMock.json";
-import { IoMdAdd } from "react-icons/io";
+
 import { MdOutlineClear } from "react-icons/md";
 import { MdArrowBackIosNew } from "react-icons/md";
 import TemplateButtons from "../../AddProject/TemplateButtons/templateButtons";
@@ -15,6 +15,8 @@ const SubSectionEdite = ({
   title,
   setTitle,
   id,
+  counter,
+  subProjectCounts,
   addTemplate,
   setAddTemplate,
   subSection,
@@ -47,7 +49,7 @@ const SubSectionEdite = ({
       <div>
         <MdArrowBackIosNew />
         <h1>
-          {id + 1}. {id + 1}
+          {id + 1}. {counter }
         </h1>
         {title ? (
           <MdOutlineClear
@@ -128,19 +130,21 @@ const SubSectionEdite = ({
         Manter
       </Button>
       <Button
-        onClick={() =>
+        onClick={() =>{
+          console.log(subProjectCounts)
           setAdditionalSections([
             ...additionalSections,
             <AddSection
               key={additionalSections.length}
               id={id}
+              counter={counter}
               subSection={subSection}
               setSubSections={setSubSections}
             />,
-          ])
+          ])}
         }
       >
-        +
+        {} <LuArrowDownToDot />
       </Button>
     </fieldset>
   );
