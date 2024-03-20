@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
-import { LuArrowDownToDot } from "react-icons/lu";
+import { MdOutlineStart } from "react-icons/md";
+
 
 import templates from "../../../../mocks/introductionMock.json";
 
@@ -9,23 +10,25 @@ import TemplateButtons from "../../AddProject/TemplateButtons/templateButtons";
 import AddSection from "../AddSection";
 import { useState } from "react";
 
-const SubSectionEdite = ({
+const SectionEdite = ({
   content,
   setContent,
   title,
   setTitle,
   id,
-  counter,
+
   subProjectCounts,
+  setSubProjectCounts,
   addTemplate,
   setAddTemplate,
   subSection,
   setSubSections,
+
   subSectionEditable,
   setSubSectionEditable,
 }) => {
   const [additionalSections, setAdditionalSections] = useState([]);
-
+  const [sectionCount, setSectionCount] = useState(1);
 
   function handleAddSubSection() {
     let subSection = {
@@ -38,6 +41,44 @@ const SubSectionEdite = ({
 
     setSubSections(subSection);
   }
+  const handleCounter = () => {
+    console.log("proyect");
+    console.log(subProjectCounts);
+    console.log("count");
+    console.log(sectionCount);
+    let test = `${subProjectCounts}` + `${sectionCount}.`;
+    console.log("test");
+    console.log(test);
+
+    const subProjectCountsNumber = parseFloat(subProjectCounts);
+
+    // Calcular la suma de subProjectCounts y sectionCount
+    const newCount = subProjectCountsNumber + sectionCount;
+
+    // Construir el nuevo contador en el formato deseado (por ejemplo, "1.1.1")
+    const newCounter = `${newCount}`;
+
+    // Actualizar el estado de subProjectCounts y sectionCount
+    setSubProjectCounts(newCounter);
+    setSectionCount(sectionCount + 1);
+
+    return test;
+  };
+
+  const addSubSection = async () => {
+    let result = await handleCounter(id + 1);
+    setAdditionalSections([
+      ...additionalSections,
+      <AddSection
+        key={additionalSections.length}
+        id={id}
+        setSubProjectCounts={setSubProjectCounts}
+        subSection={subSection}
+        setSubSections={setSubSections}
+        subProjectCounts={result}
+      />,
+    ]);
+  };
   return (
     <fieldset
       id="subSection"
@@ -48,9 +89,7 @@ const SubSectionEdite = ({
     >
       <div>
         <MdArrowBackIosNew />
-        <h1>
-          {id + 1}. {counter }
-        </h1>
+        <h1>{subProjectCounts}</h1>
         {title ? (
           <MdOutlineClear
             onClick={() => setTitle("")}
@@ -129,24 +168,10 @@ const SubSectionEdite = ({
       >
         Manter
       </Button>
-      <Button
-        onClick={() =>{
-          console.log(subProjectCounts)
-          setAdditionalSections([
-            ...additionalSections,
-            <AddSection
-              key={additionalSections.length}
-              id={id}
-              counter={counter}
-              subSection={subSection}
-              setSubSections={setSubSections}
-            />,
-          ])}
-        }
-      >
-        {} <LuArrowDownToDot />
+      <Button onClick={addSubSection}>
+        {subProjectCounts} <MdOutlineStart />
       </Button>
     </fieldset>
   );
 };
-export default SubSectionEdite;
+export default SectionEdite;

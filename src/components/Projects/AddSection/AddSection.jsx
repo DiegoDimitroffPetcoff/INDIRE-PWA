@@ -4,9 +4,9 @@ import { AddTemplate } from "../../../hooks/AddTemplate";
 import templates from "../../../mocks/introductionMock.json";
 import SectionDone from "./views/SectionDone";
 
-import SubSectionEdite from "./views/SectionEdite";
+import SectionEdite from "./views/SectionEdite";
 
-const AddSection = ({ id, subSection, setSubSections, subProjectCounts }) => {
+const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubProjectCounts }) => {
   const [addTemplate, setAddTemplate] = useState(false);
   const [subSectionEditable, setSubSectionEditable] = useState(false);
 
@@ -37,13 +37,14 @@ const AddSection = ({ id, subSection, setSubSections, subProjectCounts }) => {
               setSubSectionEditable={setSubSectionEditable}
             />
           ) : (
-            <SubSectionEdite
+            <SectionEdite
               content={content}
               setContent={setContent}
               title={title}
               setTitle={setTitle}
               id={id}
               subProjectCounts={subProjectCounts}
+              setSubProjectCounts={setSubProjectCounts}
               addTemplate={addTemplate}
               setAddTemplate={setAddTemplate}
               subSection={subSection}
