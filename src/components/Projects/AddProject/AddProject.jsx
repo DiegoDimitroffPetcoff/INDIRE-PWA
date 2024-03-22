@@ -108,6 +108,7 @@ const AddProject = ({
                       updatedSection[index].subSection.push(value);
                       setSections(updatedSection);
                     }}
+                    
                     setContent={(value) => {
                       const updatedSection = [...sections];
                       updatedSection[index].content = value;

@@ -16,12 +16,13 @@ export const AddInput = ({
   const [additionalSections, setAdditionalSections] = useState([]);
 
   const [subProjectCounts, setSubProjectCounts] = useState({}); // Estado para el número de subproyectos
+  const [projectCount, setProjectCount] = useState({}); // Estado para el número de subproyectos
 
   const handleCounter = (parentId) => {
-    const parentCount = subProjectCounts[parentId] || 0;
+    const parentCount = projectCount[parentId] || 0;
     const subProjectName = `${parentId}.${parentCount + 1}.`;
-    setSubProjectCounts({
-      ...subProjectCounts,
+    setProjectCount({
+      ...projectCount,
       [parentId]: parentCount + 1, // Incrementa el contador de subproyectos para el proyecto padre
     });
 
@@ -37,6 +38,7 @@ export const AddInput = ({
         id={id}
         subSection={subSection}
         setSubSections={setSubSections}
+        
         subProjectCounts={result}
         setSubProjectCounts={setSubProjectCounts}
       />,
@@ -74,7 +76,22 @@ export const AddInput = ({
           <>
             {additionalSections.map((section, index) => (
               <section
-                style={{ paddingLeft: "10px", border: "solid" }}
+                style={{
+                  paddingLeft: "10px",
+                  border: "solid",
+                  minHeight: "350px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                /*                 padding-left: 10px;
+    border: solid;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
                 key={index}
               >
                 {section}

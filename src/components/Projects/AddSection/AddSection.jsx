@@ -17,6 +17,7 @@ const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubPro
     <>
       {addTemplate ? (
         <>
+        
           <AddTemplate
             templates={templates}
             Content={content}
@@ -30,11 +31,13 @@ const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubPro
         <>
           {subSectionEditable ? (
             <SectionDone
+            subSection={subSection}
               content={content}
               id={id}
               title={title}
               subSectionEditable={subSectionEditable}
               setSubSectionEditable={setSubSectionEditable}
+              subProjectCounts={subProjectCounts}
             />
           ) : (
             <SectionEdite
@@ -49,7 +52,9 @@ const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubPro
               setAddTemplate={setAddTemplate}
               subSection={subSection}
               setSubSections={setSubSections}
+              
               subSectionEditable={subSectionEditable}
+              
               setSubSectionEditable={setSubSectionEditable}
             />
           )}

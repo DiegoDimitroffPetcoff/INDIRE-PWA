@@ -1,7 +1,6 @@
 import Button from "react-bootstrap/Button";
 import { MdOutlineStart } from "react-icons/md";
 
-
 import templates from "../../../../mocks/introductionMock.json";
 
 import { MdOutlineClear } from "react-icons/md";
@@ -23,45 +22,39 @@ const SectionEdite = ({
   setAddTemplate,
   subSection,
   setSubSections,
+  editeSubSections,
 
   subSectionEditable,
   setSubSectionEditable,
 }) => {
   const [additionalSections, setAdditionalSections] = useState([]);
   const [sectionCount, setSectionCount] = useState(1);
+  const [newSectionCount, setNewSectionCount] = useState([]);
+  
 
   function handleAddSubSection() {
-    let subSection = {
+    let newSubSection = {
       id: id,
       content,
       title,
-      subSection: [],
+      subSection: newSectionCount,
       template: "",
     };
 
-    setSubSections(subSection);
+    setSubSections(newSubSection);
+  console.log(subSection);
+
   }
   const handleCounter = () => {
-    console.log("proyect");
-    console.log(subProjectCounts);
-    console.log("count");
-    console.log(sectionCount);
     let test = `${subProjectCounts}` + `${sectionCount}.`;
-    console.log("test");
-    console.log(test);
-
     const subProjectCountsNumber = parseFloat(subProjectCounts);
-
     // Calcular la suma de subProjectCounts y sectionCount
     const newCount = subProjectCountsNumber + sectionCount;
-
     // Construir el nuevo contador en el formato deseado (por ejemplo, "1.1.1")
     const newCounter = `${newCount}`;
-
     // Actualizar el estado de subProjectCounts y sectionCount
     setSubProjectCounts(newCounter);
     setSectionCount(sectionCount + 1);
-
     return test;
   };
 
@@ -73,8 +66,8 @@ const SectionEdite = ({
         key={additionalSections.length}
         id={id}
         setSubProjectCounts={setSubProjectCounts}
-        subSection={subSection}
-        setSubSections={setSubSections}
+        subSection={newSectionCount}
+        setSubSections={setNewSectionCount}
         subProjectCounts={result}
       />,
     ]);
@@ -84,12 +77,11 @@ const SectionEdite = ({
       id="subSection"
       className="mb-3"
       style={{
-        padding: "10px",
+        width: "95%",
       }}
     >
       <div>
         <MdArrowBackIosNew />
-        <h1>{subProjectCounts}</h1>
         {title ? (
           <MdOutlineClear
             onClick={() => setTitle("")}
@@ -101,18 +93,22 @@ const SectionEdite = ({
             }}
           />
         ) : null}
-        <input
-          type="text"
-          style={{
-            backgroundColor: title ? "rgb(13 110 253 / 15%)" : "",
-          }}
-          rows={5}
-          className="form-control"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
+        <div style={{ display: "flex" }}>
+          {" "}
+          <h1>{subProjectCounts}</h1>
+          <input
+            type="text"
+            style={{
+              backgroundColor: title ? "rgb(13 110 253 / 15%)" : "",
+            }}
+            rows={5}
+            className="form-control"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          />
+        </div>
       </div>
       <div>
         {" "}
