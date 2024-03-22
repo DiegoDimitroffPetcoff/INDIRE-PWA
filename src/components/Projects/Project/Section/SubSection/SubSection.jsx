@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-import { BTNTemplates } from "../../../hooks/BTNtemplates";
-import { AddTemplate } from "../../../hooks/AddTemplate";
-import templates from "../../../mocks/introductionMock.json";
+import { BTNTemplates } from "../../../../../hooks/BTNtemplates";
+import { AddTemplate } from "../../../../../hooks/AddTemplate";
+import templates from "../../../../../mocks/introductionMock.json";
 /* AGREGAR LAZY  */
-import SectionDone from "./views/SectionDone";
-import SectionEdite from "./views/SectionEdite";
+import SubSectionDone from "./views/SubSectionDone";
+import SubSectionEdite from "./views/SubSectionEdite";
 
-const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubProjectCounts }) => {
+const SubSection = ({ id, subSection, setSubSections, subProjectCounts,setSubProjectCounts }) => {
   const [addTemplate, setAddTemplate] = useState(false);
   const [subSectionEditable, setSubSectionEditable] = useState(false);
 
@@ -31,7 +31,7 @@ const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubPro
       ) : (
         <>
           {subSectionEditable ? (
-            <SectionDone
+            <SubSectionDone
             subSection={subSection}
               content={content}
               id={id}
@@ -41,7 +41,7 @@ const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubPro
               subProjectCounts={subProjectCounts}
             />
           ) : (
-            <SectionEdite
+            <SubSectionEdite
               content={content}
               setContent={setContent}
               title={title}
@@ -64,4 +64,4 @@ const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubPro
     </>
   );
 };
-export default AddSection;
+export default SubSection;

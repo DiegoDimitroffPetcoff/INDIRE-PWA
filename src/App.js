@@ -15,7 +15,7 @@ import SpinnerComponent from "./components/Common/Spinner.jsx";
 
 const SideBar = lazy(() => import("./components/Common/SideBar.jsx"));
 const UpploadFile = lazy(() =>
-  import("./components/Projects/UpploadFile/UpploadFile.jsx")
+  import("./components/UpploadFile/UpploadFile.jsx")
 );
 const ProjectComponent = lazy(() =>
   import("./components/Projects/ProjectComponent.jsx")

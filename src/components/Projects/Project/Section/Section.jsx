@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-import AddSection from "../components/Projects/AddSection/AddSection";
-import TemplateButtons from "../components/Projects/AddProject/TemplateButtons/templateButtons";
+import SubSection from "../Section/SubSection/SubSection";
+
+import TemplateButtons from "../TemplateButtons/templateButtons"
 import Button from "react-bootstrap/Button";
 import { LuArrowDownToDot } from "react-icons/lu";
 
-export const AddInput = ({
+const Section = ({
   Content,
   setContent,
   title,
@@ -34,7 +35,7 @@ export const AddInput = ({
     let result = await handleCounter(id + 1);
     setAdditionalSections([
       ...additionalSections,
-      <AddSection
+      <SubSection
         key={additionalSections.length}
         id={id}
         subSection={subSection}
@@ -85,3 +86,4 @@ export const AddInput = ({
     </div>
   );
 };
+export default Section

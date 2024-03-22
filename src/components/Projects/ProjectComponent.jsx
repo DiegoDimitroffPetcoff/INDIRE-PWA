@@ -6,7 +6,7 @@ import SpinnerComponent from "../Common/Spinner.jsx";
 import Button from "react-bootstrap/Button";
 import { MdArrowBackIosNew } from "react-icons/md";
 
-const AddProject = lazy(() => import("./AddProject/AddProject.jsx"));
+const Project = lazy(() => import("./Project/Project.jsx"));
 const ProjectDetail = lazy(() => import("./ProjectDetail/ProjectDetail.jsx"));
 
 const ProjectComponent = ({ data, setData, sections, setSections }) => {
@@ -41,7 +41,7 @@ const ProjectComponent = ({ data, setData, sections, setSections }) => {
           />
         </>
       ) : (
-        <AddProject
+        <Project
           data={data}
           sections={sections}
           setSections={setSections}

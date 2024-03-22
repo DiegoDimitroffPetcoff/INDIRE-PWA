@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button";
-import { PDFMakerFILE } from "../../../utils/pdfMakerFILE";
+import { PDFMakerFILE } from "../../utils/pdfMakerFILE";
 
-import "../../../styles/global.css";
+import "../../styles/global.css";
 import { useState, useRef } from "react";
 
-import { ErrorHandler } from "../../../utils/errorHandler";
+import { ErrorHandler } from "../../utils/errorHandler";
 
 const UpploadFile = () => {
   const [file, setFile] = useState(null);

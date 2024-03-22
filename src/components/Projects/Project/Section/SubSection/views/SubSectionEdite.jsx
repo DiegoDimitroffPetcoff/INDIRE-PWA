@@ -1,15 +1,15 @@
 import Button from "react-bootstrap/Button";
 import { MdOutlineStart } from "react-icons/md";
 
-import templates from "../../../../mocks/introductionMock.json";
+import templates from "../../../../../../mocks/introductionMock.json";
 
 import { MdOutlineClear } from "react-icons/md";
 import { MdArrowBackIosNew } from "react-icons/md";
-import TemplateButtons from "../../AddProject/TemplateButtons/templateButtons";
-import AddSection from "../AddSection";
+import TemplateButtons from "../../../TemplateButtons/templateButtons";
+import AddSection from "../SubSection";
 import { useState } from "react";
 
-const SectionEdite = ({
+const SubSectionEdite = ({
   content,
   setContent,
   title,
@@ -157,4 +157,4 @@ const SectionEdite = ({
     </fieldset>
   );
 };
-export default SectionEdite;
+export default SubSectionEdite;

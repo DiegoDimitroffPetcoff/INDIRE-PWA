@@ -1,6 +1,6 @@
 import { Button } from "react-bootstrap";
 
-const SectionDone = ({
+const SubSectionDone = ({
   subSection,
   content,
   id,
@@ -62,4 +62,4 @@ const SectionDone = ({
     </>
   );
 };
-export default SectionDone;
+export default SubSectionDone;

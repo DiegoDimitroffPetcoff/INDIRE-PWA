@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import { Summary } from "./Summary/summary";
-import { AddInput } from "../../../hooks/AddInput";
 import ShowDetailsButtons from "../ProjectDetail/showDetailsButtons";
+import Section from "./Section/Section";
 
-const AddProject = ({
+const Project = ({
   data,
   setData,
   sections,
@@ -80,7 +80,7 @@ const AddProject = ({
                 <h3>
                   {index + 1}. {section.title}
                 </h3>
-                <AddInput
+                <Section
                   Content={section.content}
                   subSection={section.subSection}
                   id={index}
@@ -109,4 +109,4 @@ const AddProject = ({
     </div>
   );
 };
-export default AddProject;
+export default Project;
