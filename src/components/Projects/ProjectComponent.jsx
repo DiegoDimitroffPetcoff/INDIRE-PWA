@@ -1,8 +1,10 @@
 import { useState, useEffect, lazy, Suspense } from "react";
-import Button from "react-bootstrap/Button";
-import { MdArrowBackIosNew } from "react-icons/md";
+
+import "../../styles/components/projects/ProjectComponent.css";
 
 import SpinnerComponent from "../Common/Spinner.jsx";
+import Button from "react-bootstrap/Button";
+import { MdArrowBackIosNew } from "react-icons/md";
 
 const AddProject = lazy(() => import("./AddProject/AddProject.jsx"));
 const ProjectDetail = lazy(() => import("./ProjectDetail/ProjectDetail.jsx"));
@@ -17,7 +19,6 @@ const ProjectComponent = ({ data, setData, sections, setSections }) => {
 
   return (
     <Suspense fallback={<SpinnerComponent />}>
-      
       {showPreview ? (
         <>
           <Button

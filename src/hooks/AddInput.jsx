@@ -1,7 +1,8 @@
-import Button from "react-bootstrap/Button";
 import { useState } from "react";
+
 import AddSection from "../components/Projects/AddSection/AddSection";
 import TemplateButtons from "../components/Projects/AddProject/TemplateButtons/templateButtons";
+import Button from "react-bootstrap/Button";
 import { LuArrowDownToDot } from "react-icons/lu";
 
 export const AddInput = ({
@@ -15,15 +16,15 @@ export const AddInput = ({
 }) => {
   const [additionalSections, setAdditionalSections] = useState([]);
 
-  const [subProjectCounts, setSubProjectCounts] = useState({}); // Estado para el número de subproyectos
-  const [projectCount, setProjectCount] = useState({}); // Estado para el número de subproyectos
+  const [subProjectCounts, setSubProjectCounts] = useState({});
+  const [projectCount, setProjectCount] = useState({});
 
   const handleCounter = (parentId) => {
     const parentCount = projectCount[parentId] || 0;
     const subProjectName = `${parentId}.${parentCount + 1}.`;
     setProjectCount({
       ...projectCount,
-      [parentId]: parentCount + 1, // Incrementa el contador de subproyectos para el proyecto padre
+      [parentId]: parentCount + 1,
     });
 
     return subProjectName;
@@ -38,14 +39,13 @@ export const AddInput = ({
         id={id}
         subSection={subSection}
         setSubSections={setSubSections}
-        
         subProjectCounts={result}
         setSubProjectCounts={setSubProjectCounts}
       />,
     ]);
   };
   return (
-    <>
+    <div className="sectionContainer">
       <TemplateButtons
         templates={templates}
         Content={Content}
@@ -53,11 +53,7 @@ export const AddInput = ({
       />
       <div
         id="Add-input"
-        className="mb-3"
-        style={{
-          padding: "0px 0px 10px",
-          borderRadius: "50%",
-        }}
+       className="textTareaSection"
       >
         <textarea
           type="text"
@@ -75,25 +71,7 @@ export const AddInput = ({
         {additionalSections.length > 0 && (
           <>
             {additionalSections.map((section, index) => (
-              <section
-                style={{
-                  paddingLeft: "10px",
-                  border: "solid",
-                  minHeight: "350px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                /*                 padding-left: 10px;
-    border: solid;
-    min-height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-                key={index}
-              >
+              <section className="section" key={index}>
                 {section}
               </section>
             ))}
@@ -104,6 +82,6 @@ export const AddInput = ({
           {id + 1} <LuArrowDownToDot />
         </Button>
       </div>
-    </>
+    </div>
   );
 };

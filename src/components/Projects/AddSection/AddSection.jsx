@@ -1,9 +1,10 @@
-import { BTNTemplates } from "../../../hooks/BTNtemplates";
 import { useState } from "react";
+
+import { BTNTemplates } from "../../../hooks/BTNtemplates";
 import { AddTemplate } from "../../../hooks/AddTemplate";
 import templates from "../../../mocks/introductionMock.json";
+/* AGREGAR LAZY  */
 import SectionDone from "./views/SectionDone";
-
 import SectionEdite from "./views/SectionEdite";
 
 const AddSection = ({ id, subSection, setSubSections, subProjectCounts,setSubProjectCounts }) => {

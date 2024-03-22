@@ -4,8 +4,6 @@ import { Summary } from "./Summary/summary";
 import { AddInput } from "../../../hooks/AddInput";
 import ShowDetailsButtons from "../ProjectDetail/showDetailsButtons";
 
-
-
 const AddProject = ({
   data,
   setData,
@@ -26,7 +24,6 @@ const AddProject = ({
   );
   const [date, setDate] = useState(data.date || "");
   const [version, setVersion] = useState(data.version || "");
-  
 
   const [errorMessage, setErrorMessage] = useState("Redigir novo projeto");
 
@@ -59,15 +56,7 @@ const AddProject = ({
     <div style={{ width: "100%" }}>
       {errorMessage && <h1>{errorMessage}</h1>}
 
-      <form
-        onSubmit={handleSubmite}
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
+      <form onSubmit={handleSubmite} className="formAddProject">
         <Summary
           setTitle={setTitle}
           title={title}
@@ -84,46 +73,38 @@ const AddProject = ({
           version={version}
           setVersion={setVersion}
         />
-        <div
-          style={{
-            padding: "5px",
-            margin: "5px",
-          }}
-        >
-          {sections
-            ? sections.map((section, index) => (
-                <section key={index}>
-                  <h3>
-                    {index + 1}. {section.title}
-                  </h3>
-                  <AddInput
-                    Content={section.content}
-                    subSection={section.subSection}
-                    id={index}
 
-                    setSubSections={(value) => {
-                      //Copy the State Section to update
-                      const updatedSection = [...sections];
-                      console.log(sections);
-                      updatedSection[index].subSection.push(value);
-                      setSections(updatedSection);
-                    }}
-                    
-                    setContent={(value) => {
-                      const updatedSection = [...sections];
-                      updatedSection[index].content = value;
-                      setSections(updatedSection);
-                    }}
-                    title={section.title}
-                    templates={section.template}
-                    key={index}
-                  />
-                </section>
-              ))
-            : null}
-        </div>
-        <ShowDetailsButtons handleSubmite={handleSubmite}/>
+        {sections
+          ? sections.map((section, index) => (
+              <section key={index}>
+                <h3>
+                  {index + 1}. {section.title}
+                </h3>
+                <AddInput
+                  Content={section.content}
+                  subSection={section.subSection}
+                  id={index}
+                  setSubSections={(value) => {
+                    //Copy the State Section to update
+                    const updatedSection = [...sections];
+                    console.log(sections);
+                    updatedSection[index].subSection.push(value);
+                    setSections(updatedSection);
+                  }}
+                  setContent={(value) => {
+                    const updatedSection = [...sections];
+                    updatedSection[index].content = value;
+                    setSections(updatedSection);
+                  }}
+                  title={section.title}
+                  templates={section.template}
+                  key={index}
+                />
+              </section>
+            ))
+          : null}
 
+        <ShowDetailsButtons handleSubmite={handleSubmite} />
       </form>
     </div>
   );

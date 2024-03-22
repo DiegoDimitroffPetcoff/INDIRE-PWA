@@ -30,7 +30,6 @@ const SectionEdite = ({
   const [additionalSections, setAdditionalSections] = useState([]);
   const [sectionCount, setSectionCount] = useState(1);
   const [newSectionCount, setNewSectionCount] = useState([]);
-  
 
   function handleAddSubSection() {
     let newSubSection = {
@@ -42,8 +41,7 @@ const SectionEdite = ({
     };
 
     setSubSections(newSubSection);
-  console.log(subSection);
-
+    console.log(subSection);
   }
   const handleCounter = () => {
     let test = `${subProjectCounts}` + `${sectionCount}.`;
@@ -73,13 +71,7 @@ const SectionEdite = ({
     ]);
   };
   return (
-    <fieldset
-      id="subSection"
-      className="mb-3"
-      style={{
-        width: "95%",
-      }}
-    >
+    <fieldset id="subSection" className="fieldset">
       <div>
         <MdArrowBackIosNew />
         {title ? (
@@ -115,12 +107,7 @@ const SectionEdite = ({
         {content ? (
           <MdOutlineClear
             onClick={() => setContent("")}
-            style={{
-              position: "absolute",
-              right: "35px",
-              transform: "traslate(-50)",
-              cursor: " pointer",
-            }}
+            className="textTareaSectionContent"
           />
         ) : null}
         <textarea
