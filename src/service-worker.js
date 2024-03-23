@@ -74,4 +74,4 @@ self.addEventListener('message', (event) => {
 
 
 //new version
-const version = "app-version-v19 - / route Logged in and Not Logged" 
+const version = "app-version-v20 - / Second try to download on cellphone -" 
