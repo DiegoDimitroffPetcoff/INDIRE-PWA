@@ -60,7 +60,6 @@ PS C:\Users\diego\proyectos-practica\INDIRE-pws\FRONTEND>
 
 
 COMANDOS PARA VERIFICAR DEPENDENCIAS NO UTILIZADAS
-depcheck
 npx depcheck
 npx npm depcheck
 
@@ -80,3 +79,9 @@ NODE_OPTIONS="--max-old-space-size=4096" react-scripts start   (no funciono)
  **auth.jsx
   Se encarga de enviar el Token de seguridad si el usuario esta logueado
   
+MIGRACION DE CREATE-REACT-APP HACIA NEXT JS
+1- Se crea layout.js y se transfiere lo que pertenecia al index.js (asegurarse del cambio de metadata: charset por charSet)
+1- CREACION DE LA CARPETA APP EN SRC Y MOVER TODAS LAS CARPETAS DENTRO
+2-CREACION DE LA CARPETA [[...slug]] y dentro CLient.js y page.js
+3- Client js crea el componente ClientOnly exportando App.js con dynamic funcion de next.js
+4- Page retorna el clientOnly recibido de client.js  y sucede algo con slug  
