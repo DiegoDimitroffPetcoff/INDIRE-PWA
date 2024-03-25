@@ -27,52 +27,7 @@ const Log = lazy(() => import("./components/Common/Login.jsx"));
 const NotFound = lazy(() => import("./components/Common/NotFound.jsx"));
 
 function App() {
-  const [data, setData] = useState({});
-  const [sections, setSections] = useState([
-    {
-      content: "",
-      title: "INTRODUÇÃO",
-      subSection: [],
-      template: Introduction,
-    },
-    {
-      content: "",
-      title: "DESCRIÇÃO GERAL",
-      subSection: [],
-      template: Gral_description,
-    },
-    {
-      content: "",
-      title: "INSPEÇÃO TÉCNICA AO EDIFÍCIO",
-      subSection: [],
-      template: Building_technical_inspection,
-    },
-    {
-      content: "",
-      title: "ELEMENTOS BASE",
-      subSection: [],
-      template: Base_element,
-    },
-    {
-      content: "",
-      title: "HISTÓRICO DE INTERVENÇÕES",
-      subSection: [],
-      template: Intervention_history,
-    },
-    {
-      content: "",
-      title: "ELEMENTOS INSPECIONADOS E MEDIDAS CORRETIVAS PROPOSTAS",
-      subSection: [],
-      template: Element,
-    },
-    {
-      content: "",
-      title: "RECOMENDAÇÕES E AÇÕES DE MANUTENÇÃO",
-      subSection: [],
-      template: Recommendations,
-    },
-    { content: "", title: "CONCLUSÕES", subSection: [], template: Conclusions },
-  ]);
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {

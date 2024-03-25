@@ -1,6 +1,4 @@
-import LogoImage from "../../assets/INDIRE_LOGO.png";
-
- const Logo = () => {
+const Logo = () => {
   return (
     <figure
       style={{
@@ -9,8 +7,8 @@ import LogoImage from "../../assets/INDIRE_LOGO.png";
         justifyContent: "center",
       }}
     >
-      <img src={LogoImage} alt="Indire Logo" style={{ width: "50px" }} />
+      <img src="/INDIRE_LOGO.png" alt="Indire Logo" style={{ width: "50px" }} />
     </figure>
   );
 };
-export default Logo
+export default Logo;

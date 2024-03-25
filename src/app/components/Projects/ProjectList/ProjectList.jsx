@@ -8,7 +8,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 import { CiEdit } from "react-icons/ci";
 
 const ProjectList = ({ setData }) => {
-  const navigate = useNavigate();
+/*   const navigate = useNavigate(); */
   const data = JSON.parse(localStorage.getItem("ProjectList"));
 
   return (
@@ -46,7 +46,7 @@ const ProjectList = ({ setData }) => {
                   }}
                   onClick={() => {
                     setData(project);
-                    navigate("/AddProjectPage");
+                   /*  navigate("/AddProjectPage"); */
                   }}
                 >
                   <CiEdit />
