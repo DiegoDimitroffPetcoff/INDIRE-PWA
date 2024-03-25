@@ -1,14 +1,10 @@
-"use client"
+"use client";
 import SideBar from "../components/Common/SideBar";
-
-
-
-
 
 export default function Layout({ children }) {
   return (
     <>
-      <SideBar/>
+      <SideBar />
       {children};
     </>
   );
