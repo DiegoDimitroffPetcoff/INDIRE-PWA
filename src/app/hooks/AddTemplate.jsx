@@ -13,7 +13,7 @@ export const AddTemplate = ({
   addTemplate,
 }) => {
   const [alertTemplate, setAddTemplateAdded] = useState(false);
-  function addTemplate(template) {
+  function handleTemplate(template) {
     setAddTemplateAdded(true);
 
     const newTemplate = templates.push(template);
@@ -63,7 +63,7 @@ export const AddTemplate = ({
             boxShadow: " rgba(0, 0, 0, 0.5) 0px 0px 11px 0px",
             margin: "5px",
           }}
-          onClick={() => addTemplate(Content)}
+          onClick={() => handleTemplate(Content)}
         >
           Manter
         </Button>
