@@ -12,19 +12,21 @@ import { Msal2Provider } from "@microsoft/mgt-msal2-provider";
 Providers.globalProvider = new Msal2Provider({
   clientId: "d58ed348-f9f6-4d18-96b8-235eec7929c7",
 });
+/* 
 
-const Home = lazy(() => import("./home/layout.js"));
+const Home = lazy(() => import("./home/layout.js")); */
+import { Home } from "./home/layout.js";
 
-const Log = lazy(() => import("./components/Common/Login.jsx"));
-const NotFound = lazy(() => import("./components/Common/NotFound.jsx"));
+/* const Log = lazy(() => import("./components/Common/Login.jsx"));
+const NotFound = lazy(() => import("./components/Common/NotFound.jsx")); */
 
-async function App() {
+ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Suspense fallback={<SpinnerComponent />}>
-      {/* <Home /> */}
-      <h1>ejemplo</h1>
+ <Home />
+  
     </Suspense>
   );
 }
