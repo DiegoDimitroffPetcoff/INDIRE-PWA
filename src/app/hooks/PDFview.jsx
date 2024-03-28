@@ -1,5 +1,5 @@
-import LogoImage from "../assets/INDIRE_LOGO.png";
-import EmptyImg from "../assets/empty.png";
+import LogoImage from '../assets/INDIRE_LOGO.png';
+import EmptyImg from '../assets/empty.png';
 
 import {
   Page,
@@ -8,7 +8,7 @@ import {
   Document,
   StyleSheet,
   Image,
-} from "@react-pdf/renderer";
+} from '@react-pdf/renderer';
 
 // Create styles
 const styles = StyleSheet.create({
@@ -19,70 +19,70 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   section: {
     margin: 10,
     padding: 10,
     flexGrow: 1,
-    textAlign: "justify",
+    textAlign: 'justify',
   },
   viewer: {
-    width: "100%",
-    height: "100vh",
+    width: '100%',
+    height: '100vh',
   },
   header: {
     fontSize: 12,
-    textAlign: "right",
-    color: "grey",
-    margin: "5px",
+    textAlign: 'right',
+    color: 'grey',
+    margin: '5px',
   },
   headerTitle: {
     fontSize: 15,
-    textAlign: "right",
-    color: "grey",
+    textAlign: 'right',
+    color: 'grey',
   },
   logo: {
-    width: "150px",
-    padding: "10px",
+    width: '150px',
+    padding: '10px',
   },
   logoHeader: {
-    position: "absolute",
-    width: "100px",
+    position: 'absolute',
+    width: '100px',
   },
   mainImg: {
-    width: "410px",
-    display: "flex",
-    alignSelf: "center",
+    width: '410px',
+    display: 'flex',
+    alignSelf: 'center',
     margin: 50,
   },
   mainTitle: {
-    display: "flex",
+    display: 'flex',
     fontSize: 50,
-    textAlign: "center",
+    textAlign: 'center',
   },
   adress: {
-    display: "flex",
+    display: 'flex',
     fontSize: 15,
-    textAlign: "center",
+    textAlign: 'center',
   },
   date: {
-    display: "flex",
+    display: 'flex',
     fontSize: 12,
-    textAlign: "center",
+    textAlign: 'center',
   },
   subTitle: {
-    display: "flex",
+    display: 'flex',
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
 
-    textAlign: "center",
+    textAlign: 'center',
   },
   pageNumber: {
     fontSize: 12,
-    textAlign: "right",
-    color: "grey",
+    textAlign: 'right',
+    color: 'grey',
   },
 });
 
@@ -92,34 +92,38 @@ export const PDFView = ({ data }) => {
 
   return (
     <Document style={styles.viewer}>
-      <Page size="A4" style={styles.page}>
+      <Page size='A4' style={styles.page}>
         <View style={styles.section}>
-          <Image style={styles.logo} src={LogoImage} />
+          <Image style={styles.logo} src={LogoImage} alt='Logo Image' />
           <View style={styles.section}>
             <Text style={styles.mainTitle}>{data.title}</Text>
             <Text style={styles.adress}>-{data.address}-</Text>
             {data.main_img_url ? (
-              <Image style={styles.mainImg} src={data.main_img_url} />
+              <Image
+                style={styles.mainImg}
+                src={data.main_img_url || EmptyImg}
+                alt={data.main_img_url ? 'Main Image' : 'No Image Added'}
+              />
             ) : (
               <Image
                 style={styles.mainImg}
                 src={EmptyImg}
-                alt="No imagen Added"
+                alt='No imagen Added'
               />
             )}
             <Text style={styles.subTitle}>{data.sub_title}</Text>
             <Text style={styles.date}>{data.date}</Text>
             <Text style={styles.title}>
-              {data.project_number + "-" + data.title + "-V" + data.version}
+              {data.project_number + '-' + data.title + '-V' + data.version}
             </Text>
           </View>
         </View>
       </Page>
 
-      <Page size="A4" style={styles.page}>
+      <Page size='A4' style={styles.page}>
         <View fixed>
           <Text style={styles.header}>
-            {data.project_number + "_" + data.title + "_V" + data.version}
+            {data.project_number + '_' + data.title + '_V' + data.version}
           </Text>
           <Image style={styles.logoHeader} src={LogoImage} />
           <Text style={styles.headerTitle}>{data.title}</Text>
@@ -139,8 +143,7 @@ export const PDFView = ({ data }) => {
           {data.sections ? (
             data.sections.map((item, index) => (
               <View key={index}>
-                {" "}
-                {item.content !== "" ? (
+                {item.content !== '' ? (
                   <>
                     <Text style={styles.title}>
                       {++counter}-{item.title}
@@ -148,12 +151,12 @@ export const PDFView = ({ data }) => {
                     <Text>{item.content}</Text>
                   </>
                 ) : (
-                  ""
+                  ''
                 )}
               </View>
             ))
           ) : (
-            <Text>"No content Added"</Text>
+            <Text>'No content Added'</Text>
           )}
         </View>
       </Page>
