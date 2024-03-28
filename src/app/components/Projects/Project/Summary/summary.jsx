@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 
 import { MdCloudUpload } from "react-icons/md";
 import { CiCircleCheck } from "react-icons/ci";
@@ -172,7 +173,7 @@ export const Summary = ({
 
           {main_img_url ? (
             <>
-              <img
+              <Image
                 src={main_img_url}
                 style={{
                   cursor: "pointer",
