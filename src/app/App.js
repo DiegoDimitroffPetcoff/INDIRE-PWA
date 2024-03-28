@@ -23,7 +23,8 @@ async function App() {
 
   return (
     <Suspense fallback={<SpinnerComponent />}>
-      <Home />
+      {/* <Home /> */}
+      <h1>ejemplo</h1>
     </Suspense>
   );
 }
