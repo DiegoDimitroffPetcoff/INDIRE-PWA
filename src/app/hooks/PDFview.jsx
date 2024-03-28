@@ -125,7 +125,7 @@ export const PDFView = ({ data }) => {
           <Text style={styles.header}>
             {data.project_number + '_' + data.title + '_V' + data.version}
           </Text>
-          <Image style={styles.logoHeader} src={LogoImage} />
+          <Image style={styles.logoHeader} src={LogoImage} alt='Logo Image' />
           <Text style={styles.headerTitle}>{data.title}</Text>
           <Text style={styles.header}>-{data.address}-</Text>
           <Text
