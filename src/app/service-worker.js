@@ -74,4 +74,4 @@ self.addEventListener('message', (event) => {
 
 
 //new version
-const version = "app-version-v20 - / Second try to download on cellphone -" 
+const version = "app-version-v21 - /Try to deploy -" 
