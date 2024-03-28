@@ -1,3 +1,4 @@
+import Image  from "next/image";
 const Logo = () => {
   return (
     <figure
@@ -7,7 +8,7 @@ const Logo = () => {
         justifyContent: "center",
       }}
     >
-      <img src="/INDIRE_LOGO.png" alt="Indire Logo" style={{ width: "50px" }} />
+      <Image src="/INDIRE_LOGO.png" alt="Indire Logo" width={50} height={30} />
     </figure>
   );
 };
